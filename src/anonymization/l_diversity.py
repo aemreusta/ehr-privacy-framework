@@ -21,17 +21,17 @@ class LDiversity:
     well-represented values for sensitive attributes.
     """
 
-    def __init__(self, l: int = 2, k: int = 2):
+    def __init__(self, l_value: int = 2, k: int = 2):
         """
         Initialize l-diversity.
 
         Args:
-            l: Minimum number of distinct sensitive values per group
+            l_value: Minimum number of distinct sensitive values per group
             k: Minimum group size (k-anonymity requirement)
         """
-        self.l = l
+        self.l = l_value
         self.k = k
-        logger.info(f"Initialized l-diversity with l={l}, k={k}")
+        logger.info(f"Initialized l-diversity with l={l_value}, k={k}")
 
     def anonymize(
         self,
@@ -88,18 +88,29 @@ class LDiversity:
         df_gen = df.copy()
 
         if "age" in quasi_identifiers:
-            df_gen["age"] = pd.cut(
-                df_gen["age"],
-                bins=5,
-                labels=["18-30", "31-45", "46-60", "61-75", "76+"],
-            )
+            # Check if age is already generalized (string ranges) or still numeric
+            if df_gen["age"].dtype == "object" or pd.api.types.is_string_dtype(
+                df_gen["age"]
+            ):
+                # Age is already generalized, no need to apply pd.cut again
+                logger.debug("Age column is already generalized, skipping pd.cut()")
+            else:
+                # Age is still numeric, apply generalization
+                logger.debug("Age column is numeric, applying pd.cut()")
+                # Ensure age is numeric before cutting
+                df_gen["age"] = pd.to_numeric(df_gen["age"], errors="coerce")
+                df_gen["age"] = pd.cut(
+                    df_gen["age"],
+                    bins=5,
+                    labels=["18-30", "31-45", "46-60", "61-75", "76+"],
+                )
 
         # Group by quasi-identifiers
         grouped = df_gen.groupby(quasi_identifiers)
 
         # Keep only groups that satisfy k-anonymity
         valid_groups = []
-        for name, group in grouped:
+        for _name, group in grouped:
             if len(group) >= self.k:
                 valid_groups.append(group)
 
@@ -140,11 +151,22 @@ class LDiversity:
         # Generalize for grouping (same as in anonymization)
         df_gen = df.copy()
         if "age" in quasi_identifiers:
-            df_gen["age"] = pd.cut(
-                df_gen["age"],
-                bins=5,
-                labels=["18-30", "31-45", "46-60", "61-75", "76+"],
-            )
+            # Check if age is already generalized (string ranges) or still numeric
+            if df_gen["age"].dtype == "object" or pd.api.types.is_string_dtype(
+                df_gen["age"]
+            ):
+                # Age is already generalized, no need to apply pd.cut again
+                logger.debug("Age column is already generalized, skipping pd.cut()")
+            else:
+                # Age is still numeric, apply generalization
+                logger.debug("Age column is numeric, applying pd.cut()")
+                # Ensure age is numeric before cutting
+                df_gen["age"] = pd.to_numeric(df_gen["age"], errors="coerce")
+                df_gen["age"] = pd.cut(
+                    df_gen["age"],
+                    bins=5,
+                    labels=["18-30", "31-45", "46-60", "61-75", "76+"],
+                )
 
         grouped = df_gen.groupby(quasi_identifiers)
 
@@ -152,7 +174,7 @@ class LDiversity:
         total_groups = 0
         valid_groups = 0
 
-        for name, group in grouped:
+        for _name, group in grouped:
             if len(group) >= self.k:  # Only consider k-anonymous groups
                 total_groups += 1
                 group_diversity = min(
