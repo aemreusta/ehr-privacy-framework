@@ -97,18 +97,29 @@ class TCloseness:
         df_gen = df.copy()
 
         if "age" in quasi_identifiers:
-            df_gen["age"] = pd.cut(
-                df_gen["age"],
-                bins=5,
-                labels=["18-30", "31-45", "46-60", "61-75", "76+"],
-            )
+            # Check if age is already generalized (string ranges) or still numeric
+            if df_gen["age"].dtype == "object" or pd.api.types.is_string_dtype(
+                df_gen["age"]
+            ):
+                # Age is already generalized, no need to apply pd.cut again
+                logger.debug("Age column is already generalized, skipping pd.cut()")
+            else:
+                # Age is still numeric, apply generalization
+                logger.debug("Age column is numeric, applying pd.cut()")
+                # Ensure age is numeric before cutting
+                df_gen["age"] = pd.to_numeric(df_gen["age"], errors="coerce")
+                df_gen["age"] = pd.cut(
+                    df_gen["age"],
+                    bins=5,
+                    labels=["18-30", "31-45", "46-60", "61-75", "76+"],
+                )
 
         # Group by quasi-identifiers
         grouped = df_gen.groupby(quasi_identifiers)
 
         # Keep only groups that satisfy k-anonymity
         valid_groups = []
-        for name, group in grouped:
+        for _name, group in grouped:
             if len(group) >= self.k:
                 valid_groups.append(group)
 
@@ -134,7 +145,6 @@ class TCloseness:
                     # Create distribution dict with bin centers as keys
                     distribution = {}
                     for i in range(len(hist_normalized)):
-                        bin_center = (bin_edges[i] + bin_edges[i + 1]) / 2
                         distribution[f"bin_{i}"] = hist_normalized[i]
 
                     global_distributions[attr] = distribution
@@ -232,11 +242,22 @@ class TCloseness:
         # Generalize for grouping (same as in anonymization)
         df_gen = df.copy()
         if "age" in quasi_identifiers:
-            df_gen["age"] = pd.cut(
-                df_gen["age"],
-                bins=5,
-                labels=["18-30", "31-45", "46-60", "61-75", "76+"],
-            )
+            # Check if age is already generalized (string ranges) or still numeric
+            if df_gen["age"].dtype == "object" or pd.api.types.is_string_dtype(
+                df_gen["age"]
+            ):
+                # Age is already generalized, no need to apply pd.cut again
+                logger.debug("Age column is already generalized, skipping pd.cut()")
+            else:
+                # Age is still numeric, apply generalization
+                logger.debug("Age column is numeric, applying pd.cut()")
+                # Ensure age is numeric before cutting
+                df_gen["age"] = pd.to_numeric(df_gen["age"], errors="coerce")
+                df_gen["age"] = pd.cut(
+                    df_gen["age"],
+                    bins=5,
+                    labels=["18-30", "31-45", "46-60", "61-75", "76+"],
+                )
 
         grouped = df_gen.groupby(quasi_identifiers)
 
@@ -245,7 +266,7 @@ class TCloseness:
         valid_groups = 0
         distance_violations = []
 
-        for name, group in grouped:
+        for _name, group in grouped:
             if len(group) >= self.k:  # Only consider k-anonymous groups
                 total_groups += 1
 
@@ -270,7 +291,7 @@ class TCloseness:
                             group_satisfies_t_closeness = False
                             distance_violations.append(
                                 {
-                                    "group": str(name),
+                                    "group": str(_name),
                                     "attribute": attr,
                                     "distance": distance,
                                     "threshold": self.t,
@@ -320,11 +341,22 @@ class TCloseness:
         # Generalize for grouping
         df_gen = df.copy()
         if "age" in quasi_identifiers:
-            df_gen["age"] = pd.cut(
-                df_gen["age"],
-                bins=5,
-                labels=["18-30", "31-45", "46-60", "61-75", "76+"],
-            )
+            # Check if age is already generalized (string ranges) or still numeric
+            if df_gen["age"].dtype == "object" or pd.api.types.is_string_dtype(
+                df_gen["age"]
+            ):
+                # Age is already generalized, no need to apply pd.cut again
+                logger.debug("Age column is already generalized, skipping pd.cut()")
+            else:
+                # Age is still numeric, apply generalization
+                logger.debug("Age column is numeric, applying pd.cut()")
+                # Ensure age is numeric before cutting
+                df_gen["age"] = pd.to_numeric(df_gen["age"], errors="coerce")
+                df_gen["age"] = pd.cut(
+                    df_gen["age"],
+                    bins=5,
+                    labels=["18-30", "31-45", "46-60", "61-75", "76+"],
+                )
 
         grouped = df_gen.groupby(quasi_identifiers)
 
@@ -336,10 +368,10 @@ class TCloseness:
 
         all_distances = []
 
-        for name, group in grouped:
+        for _name, group in grouped:
             if len(group) >= self.k:
                 group_info = {
-                    "group_id": str(name),
+                    "group_id": str(_name),
                     "group_size": len(group),
                     "distances": {},
                     "satisfies_t_closeness": True,
