@@ -1,0 +1,12 @@
+Role-Based Access Control Compliance Report
+==================================================
+
+System Configuration:
+- Total roles defined: 7
+- Total permissions: 23
+- Total users: 8
+
+Access Control Effectiveness:
+- Access requests granted: 5
+- Access requests denied: 3
+- Security compliance rate: 37.5%

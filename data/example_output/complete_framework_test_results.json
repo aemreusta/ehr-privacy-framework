@@ -1,0 +1,42 @@
+{
+  "k_anonymity": {
+    "records_retained": 109,
+    "retention_rate": 0.8449612403100775
+  },
+  "l_diversity": {
+    "records_retained": 85,
+    "retention_rate": 0.6589147286821705
+  },
+  "t_closeness": {
+    "error": "Cannot cut empty array"
+  },
+  "differential_privacy": {
+    "epsilon": 1.0,
+    "numerical_columns_processed": 17,
+    "categorical_columns_processed": 7,
+    "private_statistics_generated": true
+  },
+  "homomorphic_encryption": {
+    "available": true,
+    "error": "Pyfhel library not available. Install with: pip install Pyfhel"
+  },
+  "rbac": {
+    "roles_defined": 5,
+    "tests_passed": 4,
+    "total_tests": 4,
+    "compliance_rate": 1.0
+  },
+  "integrated_framework": {
+    "techniques_applied": [
+      "k-anonymity",
+      "differential_privacy",
+      "rbac",
+      "homomorphic_encryption"
+    ],
+    "privacy_layers": 4,
+    "final_retention_rate": 0.8449612403100775,
+    "framework_score": 0.8134883720930232,
+    "original_records": 129,
+    "final_records": 109
+  }
+}

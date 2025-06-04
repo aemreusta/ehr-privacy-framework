@@ -1,0 +1,9 @@
+timestamp,user,role,action,context,result
+2025-06-04 14:31:19,dr_smith,attending_physician,read_all_patient_data,Emergency patient consultation,GRANTED
+2025-06-04 14:31:19,nurse_williams,nurse,prescribe_medication,Routine medication administration,DENIED
+2025-06-04 14:31:19,researcher_chen,researcher,read_patient_data,Clinical research study,DENIED
+2025-06-04 14:31:19,researcher_chen,researcher,read_anonymized_data,Population health analysis,GRANTED
+2025-06-04 14:31:19,pharm_davis,pharmacist,verify_prescriptions,Medication safety check,GRANTED
+2025-06-04 14:31:19,dr_jones,resident_physician,modify_diagnosis,Diagnosis update attempt,DENIED
+2025-06-04 14:31:19,analyst_garcia,data_analyst,generate_reports,Monthly utilization report,GRANTED
+2025-06-04 14:31:19,admin_taylor,system_admin,audit_access_logs,Security audit,GRANTED

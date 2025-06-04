@@ -1,0 +1,13 @@
+MIMIC-III Data Processing Summary
+========================================
+
+total_records: 129
+unique_patients: 100
+unique_admissions: 129
+date_range: MIMIC-III Demo Dataset
+mortality_rate: 0.31007751937984496
+avg_age: 64.63793062095634
+avg_los: 9.332811154177433
+columns: ['subject_id', 'hadm_id', 'age', 'gender', 'admission_type', 'primary_diagnosis', 'los_days', 'heart_rate_mean', 'blood_pressure_systolic', 'blood_pressure_diastolic', 'temperature_mean', 'glucose_mean', 'creatinine_mean', 'wbc_mean', 'mortality', 'ethnicity', 'marital_status', 'insurance', 'icu_los_days', 'num_icu_stays', 'first_careunit', 'icd9_primary', 'num_diagnoses', 'num_procedures']
+gender_distribution: {'M': 70, 'F': 59}
+admission_types: {'EMERGENCY': 119, 'ELECTIVE': 8, 'URGENT': 2}
