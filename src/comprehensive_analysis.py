@@ -136,23 +136,23 @@ class ComprehensivePrivacyAnalysis:
         l_values = [2, 3]
         l_results = {}
 
-        for l in l_values:
+        for l_val in l_values:
             for k in [2, 3]:
-                l_div = LDiversity(l=l, k=k)
+                l_div = LDiversity(l_value=l_val, k=k)
                 start_time = time.time()
                 try:
                     l_diverse_df = l_div.anonymize(df, qi_cols, sensitive_cols)
                     processing_time = time.time() - start_time
 
-                    l_results[f"l{l}_k{k}"] = {
+                    l_results[f"l{l_val}_k{k}"] = {
                         "records_retained": len(l_diverse_df),
                         "suppression_rate": 1 - (len(l_diverse_df) / len(df)),
                         "processing_time": processing_time,
                         "utility_score": self.calculate_utility_score(df, l_diverse_df),
                     }
                 except Exception as e:
-                    logger.warning(f"L-diversity l={l}, k={k} failed: {e}")
-                    l_results[f"l{l}_k{k}"] = {"error": str(e)}
+                    logger.warning(f"L-diversity l={l_val}, k={k} failed: {e}")
+                    l_results[f"l{l_val}_k{k}"] = {"error": str(e)}
 
         results["l_diversity"] = l_results
 
@@ -391,7 +391,7 @@ class ComprehensivePrivacyAnalysis:
             t_close_df = t_close.anonymize(dp_df, qi_cols, sensitive_cols)
             t_closeness_applied = True
             final_df = t_close_df
-        except:
+        except Exception:
             t_closeness_applied = False
             final_df = dp_df
 
@@ -564,7 +564,7 @@ class ComprehensivePrivacyAnalysis:
         # T-closeness results
         if "t_closeness" in self.results["anonymization"]:
             t_data = self.results["anonymization"]["t_closeness"]
-            t_configs = [k for k in t_data.keys() if "error" not in t_data[k]]
+            t_configs = [k for k in t_data if "error" not in t_data[k]]
             if t_configs:
                 t_utility = [
                     t_data[k]["utility_score"]
@@ -624,7 +624,7 @@ class ComprehensivePrivacyAnalysis:
                 times = [benchmark.get(op, {}).get(100, 0) for op in operations]
                 op_labels = ["Encrypt", "Decrypt", "Add", "Multiply"]
 
-                bars = axes[1, 0].bar(
+                axes[1, 0].bar(
                     op_labels,
                     times,
                     alpha=0.7,
@@ -676,7 +676,7 @@ class ComprehensivePrivacyAnalysis:
             rbac_data["compliance_rate"] * 100,
         ]
 
-        bars = axes[1, 2].bar(
+        axes[1, 2].bar(
             categories, values, alpha=0.7, color=["blue", "green", "orange", "red"]
         )
         axes[1, 2].set_title("Access Control System Metrics")

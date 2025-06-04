@@ -74,7 +74,7 @@ def main():
     # 2. Test l-diversity
     print("\n2️⃣ Testing L-Diversity")
     try:
-        l_div = LDiversity(l=2, k=2)
+        l_div = LDiversity(l_value=2, k=2)
         l_div_df = l_div.anonymize(df, available_qi, available_sensitive)
         print(
             f"   Records retained: {len(l_div_df)}/{len(df)} ({len(l_div_df) / len(df) * 100:.1f}%)"
@@ -120,7 +120,7 @@ def main():
     numerical_cols = df.select_dtypes(include=[np.number]).columns.tolist()
     categorical_cols = df.select_dtypes(include=["object", "category"]).columns.tolist()
 
-    private_stats = dp.private_summary_statistics(df, numerical_cols, categorical_cols)
+    dp.private_summary_statistics(df, numerical_cols, categorical_cols)
     print(
         f"   Generated private statistics for {len(numerical_cols)} numerical columns"
     )
@@ -156,7 +156,7 @@ def main():
 
             # Test secure aggregation on small subset
             test_df = df.head(10)
-            aggregation_results = he.secure_aggregation(test_df, numerical_cols[:2])
+            he.secure_aggregation(test_df, numerical_cols[:2])
 
             print(f"   Secure aggregation completed on {len(test_df)} records")
             print(f"   Processed {len(numerical_cols[:2])} columns")
@@ -251,7 +251,7 @@ def main():
             )
             techniques_working.append("t-closeness")
             print(f"   After t-closeness: {len(current_df)} records")
-        except:
+        except Exception:
             print("   T-closeness skipped in integration")
 
     # RBAC always applies

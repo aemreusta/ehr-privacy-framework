@@ -1104,7 +1104,7 @@ def show_l_diversity_demo(df):
                     return
 
                 # Apply l-diversity
-                l_div = LDiversity(l=l_value, k=k_value)
+                l_div = LDiversity(l_value=l_value, k=k_value)
 
                 start_time = time.time()
                 l_diverse_df = l_div.anonymize(
@@ -2039,7 +2039,7 @@ def show_integrated_analysis(df):
                 logger.info("Step 3/5: Attempting l-diversity")
 
                 try:
-                    l_div = LDiversity(l=2, k=2)
+                    l_div = LDiversity(l_value=2, k=2)
                     l_diverse_df = l_div.anonymize(
                         df, ["age", "gender"], ["primary_diagnosis"]
                     )
