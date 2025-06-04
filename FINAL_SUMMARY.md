@@ -1,10 +1,27 @@
 # Privacy-Preserving Electronic Health Records (EHR) Framework
 
+**AIN413 Machine Learning For Healthcare - Final Project Summary**  
+**Hacettepe University - Department of Artificial Intelligence Engineering**  
+**Spring Semester 2025**
+
+---
+
+**Student:** Ahmet Emre Usta  
+**Student ID:** 2200765036  
+**Instructor:** Güldén Olgun  
+**Course:** AIN413 Machine Learning For Healthcare  
+
+---
+
 ## Complete Implementation Summary
 
 ### Project Overview
 
-This project successfully delivers a complete privacy-preserving framework for Electronic Health Records that integrates **five major privacy techniques** with comprehensive evaluation and reporting. The framework addresses critical healthcare data privacy challenges while maintaining clinical utility.
+This project successfully delivers a complete privacy-preserving framework for Electronic Health Records that integrates **five major privacy techniques** with comprehensive evaluation and reporting. The framework addresses critical healthcare data privacy challenges while maintaining clinical utility, fulfilling the requirements of the AIN413 Machine Learning for Healthcare course project.
+
+**Project Title:** Privacy-Preserving Strategies for Electronic Health Records  
+**Dataset:** Medical Information Mart for Intensive Care (MIMIC-III)  
+**Implementation:** Comprehensive framework with k-anonymity, l-diversity, t-closeness, differential privacy, homomorphic encryption, and role-based access control
 
 ## ✅ All Novel Contributions Successfully Implemented
 
@@ -178,12 +195,24 @@ Privacy-Preserving EHR Framework/
 
 This privacy-preserving EHR framework successfully implements **all proposed novel contributions** and demonstrates their effectiveness on real healthcare data. The integration of five complementary privacy techniques provides comprehensive protection while maintaining clinical utility, making it suitable for production deployment in healthcare organizations.
 
-The framework represents a significant contribution to healthcare privacy research and provides a practical solution for secure EHR analytics and sharing.
+The framework represents a significant contribution to healthcare privacy research and provides a practical solution for secure EHR analytics and sharing, fulfilling all requirements for the AIN413 Machine Learning for Healthcare course project.
 
 ---
 
-**Framework Version**: 1.0.0  
-**Implementation Date**: 2024  
-**Validation Dataset**: MIMIC-III (129 admissions, 24 variables)  
-**Overall Score**: 81.3% framework effectiveness  
-**Status**: Production Ready ✅
+**Course Project Information:**
+
+- **Course:** AIN413 Machine Learning For Healthcare
+- **Institution:** Hacettepe University  
+- **Department:** Artificial Intelligence Engineering
+- **Semester:** Spring 2025
+- **Student:** Ahmet Emre Usta (ID: 2200765036)
+- **Instructor:** Güldén Olgun
+
+**Technical Details:**
+
+- **Framework Version:** 1.0.0  
+- **Implementation Date:** Spring 2025  
+- **Validation Dataset:** MIMIC-III (129 admissions, 24 variables)  
+- **Overall Score:** 81.3% framework effectiveness  
+- **Status:** Production Ready ✅
+- **Course Requirement:** Fully Satisfied ✅

@@ -1,6 +1,31 @@
 # Privacy-Preserving Electronic Health Records (EHR) Framework
 
-A comprehensive, production-ready framework implementing **five major privacy techniques** for securing electronic health records while maintaining data utility for healthcare analytics and research.
+**AIN413 Machine Learning For Healthcare - Course Project**  
+**Hacettepe University - Department of Artificial Intelligence Engineering**  
+**Spring Semester 2025**
+
+---
+
+**Student:** Ahmet Emre Usta  
+**Student ID:** 2200765036  
+**Instructor:** Güldén Olgun  
+**Course:** AIN413 Machine Learning For Healthcare  
+
+---
+
+## 📋 Project Overview
+
+**Title:** Privacy-Preserving Strategies for Electronic Health Records
+
+A comprehensive, production-ready framework implementing **five major privacy techniques** for securing electronic health records while maintaining data utility for healthcare analytics and research. This project explores privacy-preserving strategies for securing EHRs to mitigate risks while maintaining the integrity and utility of the data.
+
+### Problem Definition
+
+The growing use of electronic health records (EHRs) has revolutionized healthcare by providing accessible, efficient, and accurate patient data management. However, with the increased digitization of sensitive health data, privacy concerns have become a critical issue. Unauthorized access to EHRs, data breaches, and misuse of personal health data can lead to severe consequences, including identity theft, discrimination, and loss of trust in healthcare systems.
+
+### Motivation
+
+The increasing number of cyberattacks on healthcare systems has led to significant privacy violations. The sensitive nature of health data, combined with the growing trend of sharing data across platforms, increases the risk of exposure. Developing and evaluating privacy-preserving techniques is essential not only to comply with legal and ethical standards, but also to preserve patient trust in healthcare technologies.
 
 ## 🎯 Key Features
 

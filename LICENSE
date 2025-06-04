@@ -1,6 +1,9 @@
 MIT License
 
-Copyright (c) 2024 Privacy-Preserving MIMIC-III Project
+Copyright (c) 2025 Ahmet Emre Usta (Student ID: 2200765036)
+AIN413 Machine Learning For Healthcare - Course Project
+Hacettepe University - Department of Artificial Intelligence Engineering
+Instructor: Güldén Olgun
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +22,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+This project was developed as part of the AIN413 Machine Learning For Healthcare course
+at Hacettepe University, Spring Semester 2025, under the supervision of Güldén Olgun.
+The project focuses on privacy-preserving strategies for electronic health records
+using the MIMIC-III dataset.

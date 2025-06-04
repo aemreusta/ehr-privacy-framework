@@ -1,6 +1,21 @@
 # Privacy-Preserving Electronic Health Records (EHR) Framework
 
+**AIN413 Machine Learning For Healthcare - Course Project**  
+**Hacettepe University - Department of Artificial Intelligence Engineering**  
+**Spring Semester 2025**
+
+---
+
+**Student:** Ahmet Emre Usta  
+**Student ID:** 2200765036  
+**Instructor:** Güldén Olgun  
+**Project Title:** Privacy-Preserving Strategies for Electronic Health Records
+
+---
+
 ## Complete Project Structure
+
+This document provides a comprehensive overview of the project structure for the privacy-preserving electronic health records framework, developed as part of the AIN413 Machine Learning for Healthcare course project at Hacettepe University.
 
 ### 📁 Directory Overview
 

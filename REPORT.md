@@ -1,8 +1,24 @@
 # Privacy-Preserving Strategies for Electronic Health Records: A Comprehensive Framework Implementation
 
+**AIN413 Machine Learning For Healthcare - Course Project Report**  
+**Hacettepe University - Department of Artificial Intelligence Engineering**  
+**Spring Semester 2025**
+
+---
+
+**Student:** Ahmet Emre Usta  
+**Student ID:** 2200765036  
+**Instructor:** Güldén Olgun  
+**Course:** AIN413 Machine Learning For Healthcare  
+**Submission Date:** Spring 2025
+
+---
+
 ## Abstract
 
 This study presents a comprehensive framework for privacy-preserving electronic health records (EHRs) that integrates five major privacy-enhancing technologies including **data anonymization (k-anonymity, l-diversity, t-closeness), differential privacy, and homomorphic encryption**, combined with role-based access control (RBAC). Our implementation on the MIMIC-III dataset demonstrates effective privacy protection while maintaining data utility for healthcare analytics. The integrated framework achieves strong privacy guarantees with acceptable utility trade-offs, providing a practical solution for secure healthcare data sharing and analysis.
+
+This project addresses the critical need for privacy-preserving strategies in healthcare data management, exploring techniques such as data anonymization, encryption, access control models, and differential privacy while focusing on maintaining data utility for medical research and analytics.
 
 **Keywords:** Electronic Health Records, Privacy-Preserving, k-anonymity, l-diversity, t-closeness, Differential Privacy, Homomorphic Encryption, RBAC, Healthcare Data Security
 
@@ -11,6 +27,8 @@ This study presents a comprehensive framework for privacy-preserving electronic 
 ### 1.1 Problem Statement
 
 The increasing digitization of healthcare records has created unprecedented opportunities for medical research and improved patient care, while simultaneously raising critical privacy concerns. Electronic Health Records (EHRs) contain highly sensitive personal information that, if compromised, can lead to identity theft, discrimination, and loss of patient trust. Recent cyberattacks on healthcare systems have highlighted the urgent need for robust privacy-preserving technologies that can protect patient data without sacrificing the utility that makes EHRs valuable for healthcare delivery and research.
+
+As stated in the project motivation, the increasing number of cyberattacks on healthcare systems has led to significant privacy violations. The sensitive nature of health data, combined with the growing trend of sharing data across platforms, increases the risk of exposure. Developing and evaluating privacy-preserving techniques is essential not only to comply with legal and ethical standards, but also to preserve patient trust in healthcare technologies.
 
 ### 1.2 Research Objectives
 
