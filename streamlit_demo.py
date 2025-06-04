@@ -360,7 +360,7 @@ def show_debug_panel():
                 log_files = list(Path("logs").glob("streamlit_demo_*.log"))
                 if log_files:
                     latest_log = max(log_files, key=lambda x: x.stat().st_mtime)
-                    with open(latest_log, "r") as f:
+                    with open(latest_log) as f:
                         recent_logs = f.readlines()[-10:]  # Last 10 lines
 
                     st.text_area(
@@ -375,12 +375,61 @@ def show_debug_panel():
 def main():
     logger.info("=== Demo session started ===")
 
-    # Header
+    # University Header with Logo
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+        try:
+            st.image("data/hu_logo.png", width=200, caption="Hacettepe University")
+        except Exception:
+            logger.warning("Could not load university logo")
+            st.markdown("### 🎓 Hacettepe University")
+
+    st.markdown(
+        """
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2>🎓 Hacettepe University</h2>
+            <h3>Department of Artificial Intelligence Engineering</h3>
+            <h4>AIN413 Machine Learning For Healthcare - Course Project</h4>
+            <hr style="margin: 1rem 0;">
+            <p><strong>Student:</strong> Ahmet Emre Usta (2200765036)</p>
+            <p><strong>Email:</strong> a.emreusta@hotmail.com</p>
+            <p><strong>Instructor:</strong> Güldén Olgun</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/aemreusta/ehr-privacy-framework" target="_blank">github.com/aemreusta/ehr-privacy-framework</a></p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Main Header
     st.markdown(
         '<div class="main-header">🏥 Privacy-Preserving EHR Framework</div>',
         unsafe_allow_html=True,
     )
     st.markdown("### Interactive Demonstration of 5 Privacy Techniques")
+
+    # Project Overview from Report
+    st.markdown(
+        """
+        <div class="success-box">
+            <h4>📋 Project Overview</h4>
+            <p><strong>Title:</strong> Privacy-Preserving Strategies for Electronic Health Records</p>
+            <p>A comprehensive, production-ready framework implementing <strong>five major privacy techniques</strong>
+            for securing electronic health records while maintaining data utility for healthcare analytics and research.
+            This project explores privacy-preserving strategies for securing EHRs to mitigate risks while maintaining
+            the integrity and utility of the data.</p>
+
+            <p><strong>Novel Contributions:</strong></p>
+            <ul>
+                <li>✅ <strong>Complete Integration:</strong> All 5 privacy techniques working together</li>
+                <li>✅ <strong>Healthcare Specialization:</strong> Optimized for EHR data characteristics</li>
+                <li>✅ <strong>Production Readiness:</strong> Deployment-ready with regulatory compliance</li>
+                <li>✅ <strong>Scientific Rigor:</strong> Comprehensive evaluation methodology</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     # Load data
     logger.info("Loading dataset for demo")
@@ -439,6 +488,7 @@ def show_framework_overview(df):
         unsafe_allow_html=True,
     )
 
+    # Key Performance Metrics from Report
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
@@ -452,8 +502,66 @@ def show_framework_overview(df):
     with col4:
         st.metric("Framework Score", "81.3%", help="Overall effectiveness")
 
+    # Performance Summary from Report
+    st.markdown(
+        """
+        <div class="success-box">
+            <h4>📊 Framework Performance Summary</h4>
+            <ul>
+                <li><strong>Privacy Protection:</strong> 95% privacy score through 5-layer protection</li>
+                <li><strong>Data Utility:</strong> 84.5% retention rate maintaining clinical value</li>
+                <li><strong>Processing Speed:</strong> <4 seconds for complete privacy pipeline</li>
+                <li><strong>Dataset:</strong> Validated on 129 patient admissions, 24 clinical variables</li>
+                <li><strong>Compliance:</strong> HIPAA, GDPR, FDA compliant with real MIMIC-III validation</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Methodology Overview
+    st.subheader("🔬 Methodology Overview")
+    st.markdown(
+        """
+        Our integrated framework consists of five main components working together to provide comprehensive privacy protection:
+
+        **1. Data Anonymization Layer**
+        - k-anonymity with configurable k values (2, 3, 5, 10)
+        - l-diversity ensuring diverse sensitive attributes within equivalence classes
+        - t-closeness with Earth Mover's Distance calculations for distribution privacy
+
+        **2. Differential Privacy Layer**
+        - Laplace Mechanism adding calibrated noise to statistical queries
+        - Privacy Budget (ε) tested with values 0.1, 0.5, 1.0, 2.0
+        - Query Types: Count, mean, histogram, correlation queries
+
+        **3. Homomorphic Encryption Layer**
+        - CKKS Scheme for floating-point arithmetic on encrypted data using Pyfhel
+        - Supported Operations: Homomorphic addition, multiplication, secure aggregation
+        - Healthcare Applications: Secure multi-institutional analytics
+
+        **4. Access Control Layer**
+        - Role-Based Access Control with healthcare-specific roles and permissions
+        - Fine-grained Permissions: 23 distinct permission types
+        - Role Hierarchy: 7 healthcare roles from researchers to system administrators
+
+        **5. Integration Layer**
+        - Layered Protection: Multiple privacy techniques applied sequentially
+        - Utility Optimization: Balanced approach to privacy-utility trade-offs
+        - Performance Monitoring: Real-time analysis of computational overhead
+        """
+    )
+
     # Dataset preview
     st.subheader("📋 MIMIC-III Dataset Preview")
+    st.markdown("""
+    **Dataset Information:**
+    - **Source**: MIMIC-III Clinical Database Demo v1.4
+    - **Scale**: 129 patient admissions, 100 unique patients, 24 clinical variables
+    - **Processing**: Comprehensive preprocessing with overflow protection
+    - **Quasi-identifiers**: age, gender, admission_type, ethnicity
+    - **Sensitive attributes**: primary_diagnosis, mortality
+    """)
     st.dataframe(df.head(10), use_container_width=True)
 
     # Data distribution visualizations
@@ -481,7 +589,7 @@ def show_framework_overview(df):
                 abbreviated_labels.append(diagnosis)
 
         # Create the bar plot
-        bars = ax.bar(
+        ax.bar(
             range(len(diagnosis_counts)), diagnosis_counts.values, color="lightcoral"
         )
         ax.set_title("Primary Diagnosis Distribution (Top 20)")
@@ -598,7 +706,6 @@ def show_k_anonymity_demo(df):
 
                 # Calculate metrics
                 retention_rate = len(anonymized_df) / len(df)
-                suppression_rate = 1 - retention_rate
 
                 # Display results
                 col1, col2, col3, col4 = st.columns(4)
@@ -1696,7 +1803,7 @@ def show_integrated_analysis(df):
 
                 dp = DifferentialPrivacy(epsilon=1.0)
                 numerical_cols = df.select_dtypes(include=[np.number]).columns.tolist()
-                dp_stats = dp.private_summary_statistics(df, numerical_cols, [])
+                dp.private_summary_statistics(df, numerical_cols, [])
                 results["differential_privacy"] = {
                     "epsilon": 1.0,
                     "columns_processed": len(numerical_cols),
@@ -1817,7 +1924,7 @@ def show_integrated_analysis(df):
                         mode="markers+text",
                         text=comparison_data["Technique"],
                         textposition="top center",
-                        marker=dict(size=15, color="blue", opacity=0.7),
+                        marker={"size": 15, "color": "blue", "opacity": 0.7},
                         name="Privacy Techniques",
                     )
                 )
@@ -1830,7 +1937,7 @@ def show_integrated_analysis(df):
                         mode="markers+text",
                         text=["Integrated Framework"],
                         textposition="top center",
-                        marker=dict(size=20, color="red", symbol="star"),
+                        marker={"size": 20, "color": "red", "symbol": "star"},
                         name="Integrated Framework",
                     )
                 )

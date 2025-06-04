@@ -1,4 +1,10 @@
+<div align="center">
+  <img src="data/hu_logo.png" alt="Hacettepe University" width="200"/>
+</div>
+
 # Privacy-Preserving Strategies for Electronic Health Records: A Comprehensive Framework Implementation
+
+<div align="center">
 
 **AIN413 Machine Learning For Healthcare - Course Project Report**  
 **Hacettepe University - Department of Artificial Intelligence Engineering**  
@@ -8,9 +14,13 @@
 
 **Student:** Ahmet Emre Usta  
 **Student ID:** 2200765036  
+**Email:** <a.emreusta@hotmail.com>  
 **Instructor:** Güldén Olgun  
 **Course:** AIN413 Machine Learning For Healthcare  
-**Submission Date:** Spring 2025
+**Submission Date:** Spring 2025  
+**Repository:** [https://github.com/aemreusta/ehr-privacy-framework](https://github.com/aemreusta/ehr-privacy-framework)
+
+</div>
 
 ---
 
@@ -21,6 +31,8 @@ This study presents a comprehensive framework for privacy-preserving electronic 
 This project addresses the critical need for privacy-preserving strategies in healthcare data management, exploring techniques such as data anonymization, encryption, access control models, and differential privacy while focusing on maintaining data utility for medical research and analytics.
 
 **Keywords:** Electronic Health Records, Privacy-Preserving, k-anonymity, l-diversity, t-closeness, Differential Privacy, Homomorphic Encryption, RBAC, Healthcare Data Security
+
+**Repository URL:** <https://github.com/aemreusta/ehr-privacy-framework>
 
 ## 1. Introduction
 

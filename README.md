@@ -8,7 +8,7 @@
 
 **Student:** Ahmet Emre Usta  
 **Student ID:** 2200765036  
-**Instructor:** Güldén Olgun  
+**Instructor:** Gülden Olgun  
 **Course:** AIN413 Machine Learning For Healthcare  
 
 ---
@@ -49,10 +49,35 @@ The increasing number of cyberattacks on healthcare systems has led to significa
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/privacy-preserve-mimic-iii.git
-cd privacy-preserve-mimic-iii
+git clone https://github.com/aemreusta/ehr-privacy-framework.git
+cd ehr-privacy-framework
 pip install -r requirements.txt
 ```
+
+### Development Setup
+
+For contributors and developers:
+
+```bash
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Or install with optional development dependencies
+pip install -e ".[dev]"
+
+# Install pre-commit hooks
+pre-commit install
+
+# Run pre-commit on all files (optional)
+pre-commit run --all-files
+```
+
+**Development Tools Included:**
+
+- **Ruff**: Fast Python linter and formatter
+- **Pre-commit**: Git hooks for code quality
+- **Pytest**: Testing framework
+- **Coverage**: Code coverage reporting
 
 ### Interactive Streamlit Demo 🎥 **NEW!**
 
@@ -275,7 +300,7 @@ analysis.run_complete_analysis()
 ## 📁 Project Structure
 
 ```
-privacy-preserve-mimic-iii/
+ehr-privacy-framework/
 ├── 📄 README.md                           # This file - project overview
 ├── 📄 LICENSE                             # MIT license
 ├── 📄 requirements.txt                    # Python dependencies
@@ -355,80 +380,3 @@ seaborn>=0.11.0
 jupyterlab
 notebook
 ```
-
-### Optional Dependencies
-
-```
-# For homomorphic encryption (advanced feature)
-Pyfhel>=3.0.0  # Complex installation - see documentation
-```
-
-**Note**: The framework gracefully handles optional dependencies. Homomorphic encryption features are available when Pyfhel is installed, but the framework functions without it.
-
-## 🔬 Scientific Validation
-
-### Dataset
-
-- **Source**: MIMIC-III Clinical Database Demo v1.4
-- **Scale**: 129 patient admissions, 100 unique patients, 24 clinical variables
-- **Processing**: Comprehensive preprocessing with overflow protection
-
-### Performance Metrics
-
-- **Framework Completeness**: 100% of proposed novel contributions
-- **Privacy Protection**: 95% privacy score across all techniques
-- **Data Utility**: 84.5% retention after complete privacy pipeline
-- **Processing Efficiency**: <4 seconds for complete framework execution
-
-## 🏥 Healthcare Compliance
-
-- **✅ HIPAA**: Role-based access control with comprehensive audit trails
-- **✅ GDPR**: Complete anonymization + differential privacy technical safeguards  
-- **✅ FDA**: Statistical utility preservation for regulatory submissions
-- **✅ State Privacy Laws**: Framework exceeds most state requirements
-
-## 🎥 Demo Video
-
-📺 **[10-Minute Framework Demonstration](demo/README.md)**
-
-See the complete framework in action with all five privacy techniques demonstrated on real healthcare data.
-
-## 📚 Documentation
-
-- **[REPORT.md](REPORT.md)**: 50+ page comprehensive scientific report
-- **[STRUCTURE.md](STRUCTURE.md)**: Complete project structure and architecture
-- **[FINAL_SUMMARY.md](FINAL_SUMMARY.md)**: Implementation summary and results
-- **[IMPLEMENTATION_VALIDATION.md](IMPLEMENTATION_VALIDATION.md)**: Verification of all novel contributions
-
-## 🤝 Contributing
-
-This project is designed for healthcare organizations, researchers, and privacy engineers. Contributions welcome for:
-
-- Additional privacy techniques
-- Performance optimizations  
-- Healthcare-specific use cases
-- Regulatory compliance enhancements
-
-## 📄 License
-
-MIT License - See [LICENSE](LICENSE) for details.
-
-## 🔗 Citation
-
-If you use this framework in your research, please cite:
-
-```bibtex
-@software{privacy_ehr_framework,
-  title={Privacy-Preserving Electronic Health Records Framework},
-  author={Privacy-Preserving EHR Team},
-  year={2024},
-  url={https://github.com/your-username/privacy-preserve-mimic-iii},
-  note={Complete implementation of k-anonymity, l-diversity, t-closeness, differential privacy, and homomorphic encryption}
-}
-```
-
----
-
-**🎉 Framework Status**: ✅ **Production Ready** - All 5 novel contributions successfully implemented and validated on real healthcare data.
-
-**⭐ Star this repository** if you find it useful for your healthcare privacy research or deployment!
