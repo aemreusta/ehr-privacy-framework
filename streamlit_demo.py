@@ -150,6 +150,126 @@ st.markdown(
         border-radius: 0.5rem;
         margin: 1rem 0;
     }
+    .university-header {
+        background: transparent;
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+    }
+    .university-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #212529;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        font-family: 'Georgia', serif;
+    }
+    .department-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #495057;
+        text-align: center;
+        margin-bottom: 0.3rem;
+    }
+    .course-title {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #6c757d;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+    }
+    .info-item {
+        background: rgba(248, 249, 250, 0.8);
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(10px);
+    }
+    .info-label {
+        font-weight: 600;
+        color: #495057;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+        display: block;
+    }
+    .info-value {
+        color: #212529;
+        font-size: 1rem;
+        display: block;
+    }
+    .info-value a {
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .info-value a:hover {
+        text-decoration: underline;
+    }
+    .logo-container {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    .framework-header {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        margin: 2rem 0;
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+    }
+    .framework-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .framework-subtitle {
+        font-size: 1.3rem;
+        font-weight: 400;
+        opacity: 0.9;
+    }
+    .divider {
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #007bff, transparent);
+        margin: 1.5rem 0;
+        border-radius: 2px;
+    }
+    .university-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+        gap: 1.5rem;
+    }
+    .logo-left {
+        flex-shrink: 0;
+    }
+    .university-info {
+        flex-grow: 1;
+    }
+    .university-title-left {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 0.3rem;
+        font-family: 'Georgia', serif;
+    }
+    .department-title-left {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.2rem;
+    }
+    .course-title-left {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #6c757d;
+        font-style: italic;
+        margin-bottom: 0;
+    }
 </style>
 """,
     unsafe_allow_html=True,
@@ -375,59 +495,6 @@ def show_debug_panel():
 def main():
     logger.info("=== Demo session started ===")
 
-    # University Header with Logo - Centered
-    col1, col2, col3 = st.columns([1, 1, 1])
-
-    with col2:
-        try:
-            st.image("data/hu_logo.png", width=200)
-        except Exception:
-            logger.warning("Could not load university logo")
-            st.markdown("### 🎓 Hacettepe University")
-
-    st.markdown(
-        """
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <h2>🎓 Hacettepe University</h2>
-            <h3>Department of Artificial Intelligence Engineering</h3>
-            <h4>AIN413 Machine Learning For Healthcare - Course Project</h4>
-            <hr style="margin: 1rem 0;">
-            <p><strong>Student:</strong> Ahmet Emre Usta (2200765036)</p>
-            <p><strong>Email:</strong> a.emreusta@hotmail.com</p>
-            <p><strong>Instructor:</strong> Asst. Prof. Gülden Olgun</p>
-            <p><strong>Repository:</strong> <a href="https://github.com/aemreusta/ehr-privacy-framework" target="_blank">github.com/aemreusta/ehr-privacy-framework</a></p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Main Header
-    st.markdown(
-        '<div class="main-header">🏥 Privacy-Preserving EHR Framework</div>',
-        unsafe_allow_html=True,
-    )
-    st.markdown("### Interactive Demonstration of 5 Privacy Techniques")
-
-    # Project Overview from Report - Properly Structured
-    st.markdown(
-        """
-        <div class="success-box">
-            <h4>📋 Project Overview</h4>
-            <p><strong>Title:</strong> Privacy-Preserving Strategies for Electronic Health Records</p>
-            <p>A comprehensive, production-ready framework implementing <strong>five major privacy techniques</strong> for securing electronic health records while maintaining data utility for healthcare analytics and research. This project explores privacy-preserving strategies for securing EHRs to mitigate risks while maintaining the integrity and utility of the data.</p>
-
-            <p><strong>Novel Contributions:</strong></p>
-            <ul>
-                <li>✅ <strong>Complete Integration:</strong> All 5 privacy techniques working together</li>
-                <li>✅ <strong>Healthcare Specialization:</strong> Optimized for EHR data characteristics</li>
-                <li>✅ <strong>Production Readiness:</strong> Deployment-ready with regulatory compliance</li>
-                <li>✅ <strong>Scientific Rigor:</strong> Comprehensive evaluation methodology</li>
-            </ul>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
     # Load data
     logger.info("Loading dataset for demo")
     df = load_cached_data()
@@ -480,6 +547,154 @@ def show_framework_overview(df):
     """Show framework overview and dataset info"""
     logger.info("Displaying framework overview")
 
+    # University Header - Only shown on Framework Overview page
+    # Header with logo on left and text on right
+    col1, col2 = st.columns([1, 4])
+
+    with col1:
+        try:
+            st.image("data/hu_logo.png", width=120)
+        except Exception:
+            logger.warning("Could not load university logo")
+            st.markdown("## 🎓")
+
+    with col2:
+        st.markdown(
+            """
+            <div class="university-info">
+                <h1 class="university-title-left">🎓 Hacettepe University</h1>
+                <h2 class="department-title-left">Department of Artificial Intelligence Engineering</h2>
+                <p class="course-title-left">AIN413 Machine Learning For Healthcare - Course Project</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # Divider
+    st.markdown(
+        """
+        <div class="divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Information grid using Streamlit columns - Updated with report and video links
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown(
+            """
+            <div class="info-item">
+                <span class="info-label">👨‍🎓 Student</span>
+                <span class="info-value">Ahmet Emre Usta (2200765036)</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <div class="info-item">
+                <span class="info-label">👩‍🏫 Instructor</span>
+                <span class="info-value">Asst. Prof. Gülden Olgun</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <div class="info-item">
+                <span class="info-label">📊 Project Report</span>
+                <span class="info-value">
+                    <a href="https://github.com/aemreusta/ehr-privacy-framework/blob/master/REPORT.md" target="_blank">
+                        📄 Comprehensive Technical Report
+                    </a>
+                </span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col2:
+        st.markdown(
+            """
+            <div class="info-item">
+                <span class="info-label">📧 Email</span>
+                <span class="info-value">a.emreusta@hotmail.com</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <div class="info-item">
+                <span class="info-label">🔗 Repository</span>
+                <span class="info-value">
+                    <a href="https://github.com/aemreusta/ehr-privacy-framework" target="_blank">
+                        github.com/aemreusta/ehr-privacy-framework
+                    </a>
+                </span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <div class="info-item">
+                <span class="info-label">🎥 Demo Video</span>
+                <span class="info-value">
+                    <a href="https://youtu.be/YOUR_VIDEO_ID" target="_blank">
+                        🎬 Interactive Demo Walkthrough
+                    </a>
+                </span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # Enhanced Framework Header
+    st.markdown(
+        """
+        <div class="framework-header">
+            <h1 class="framework-title">🏥 Privacy-Preserving EHR Framework</h1>
+            <p class="framework-subtitle">Interactive Demonstration of 5 Privacy Techniques</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Project Overview from Report - Properly Structured
+    # st.markdown(
+    #     """
+    #     <div class="success-box">
+    #         <h4>📋 Project Overview</h4>
+    #         <p><strong>Title:</strong> Privacy-Preserving Strategies for Electronic Health Records</p>
+    #         <p>A comprehensive, production-ready framework implementing <strong>five major privacy techniques</strong> for securing electronic health records while maintaining data utility for healthcare analytics and research. This project explores privacy-preserving strategies for securing EHRs to mitigate risks while maintaining the integrity and utility of the data.</p>
+
+    #         <p><strong>Novel Contributions:</strong></p>
+    #         <ul>
+    #             <li>✅ <strong>Complete Integration:</strong> All 5 privacy techniques working together</li>
+    #             <li>✅ <strong>Healthcare Specialization:</strong> Optimized for EHR data characteristics</li>
+    #             <li>✅ <strong>Production Readiness:</strong> Deployment-ready with regulatory compliance</li>
+    #             <li>✅ <strong>Scientific Rigor:</strong> Comprehensive evaluation methodology</li>
+    #         </ul>
+    #     </div>
+    #     """,
+    #     unsafe_allow_html=True,
+    # )
+
+    st.markdown("""
+    #### 📋 Project Overview
+    **Title:** Privacy-Preserving Strategies for Electronic Health Records**
+
+    A comprehensive, production-ready framework implementing **five privacy techniques**…
+
+    **Novel Contributions:**
+    - ✅ **Complete Integration:** All 5 techniques work together
+    - ✅ **Healthcare Specialization:** Optimized for EHR data
+    - ✅ **Production Readiness:** Deployment-ready & compliant
+    - ✅ **Scientific Rigor:** Comprehensive evaluation methodology
+    """)
+
     st.markdown(
         '<div class="technique-header">📊 Framework Overview</div>',
         unsafe_allow_html=True,
@@ -500,21 +715,30 @@ def show_framework_overview(df):
         st.metric("Framework Score", "81.3%", help="Overall effectiveness")
 
     # Performance Summary from Report
-    st.markdown(
-        """
-        <div class="success-box">
-            <h4>📊 Framework Performance Summary</h4>
-            <ul>
-                <li><strong>Privacy Protection:</strong> 95% privacy score through 5-layer protection</li>
-                <li><strong>Data Utility:</strong> 84.5% retention rate maintaining clinical value</li>
-                <li><strong>Processing Speed:</strong> <4 seconds for complete privacy pipeline</li>
-                <li><strong>Dataset:</strong> Validated on 129 patient admissions, 24 clinical variables</li>
-                <li><strong>Compliance:</strong> HIPAA, GDPR, FDA compliant with real MIMIC-III validation</li>
-            </ul>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    # st.markdown(
+    #     """
+    #     <div class="success-box">
+    #         <h4>📊 Framework Performance Summary</h4>
+    #         <ul>
+    #             <li><strong>Privacy Protection:</strong> 95% privacy score through 5-layer protection</li>
+    #             <li><strong>Data Utility:</strong> 84.5% retention rate maintaining clinical value</li>
+    #             <li><strong>Processing Speed:</strong> <4 seconds for complete privacy pipeline</li>
+    #             <li><strong>Dataset:</strong> Validated on 129 patient admissions, 24 clinical variables</li>
+    #             <li><strong>Compliance:</strong> HIPAA, GDPR, FDA compliant with real MIMIC-III validation</li>
+    #         </ul>
+    #     </div>
+    #     """,
+    #     unsafe_allow_html=True,
+    # )
+
+    st.markdown("""
+    #### 📊 Framework Performance Summary
+    - **Privacy Protection:** 95 % (5-layer)
+    - **Data Utility:** 84.5 % retention
+    - **Processing Speed:** < 4 s full pipeline
+    - **Dataset:** 129 admissions · 24 variables
+    - **Compliance:** HIPAA · GDPR · FDA (MIMIC-III)
+    """)
 
     # Methodology Overview
     st.subheader("🔬 Methodology Overview")
