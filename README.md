@@ -29,6 +29,35 @@ cd privacy-preserve-mimic-iii
 pip install -r requirements.txt
 ```
 
+### Interactive Streamlit Demo 🎥 **NEW!**
+
+**Launch the professional interactive demo perfect for presentations and video recording:**
+
+```bash
+# Quick launch with launcher script
+./run_demo.sh
+
+# Or run directly  
+streamlit run streamlit_demo.py
+```
+
+**Demo Features:**
+
+- Interactive demonstration of all 5 privacy techniques
+- Real-time privacy-utility analysis with parameter controls
+- Professional UI optimized for video recording
+- Live data processing with immediate visual feedback
+- Complete framework evaluation in web interface
+
+**Perfect for:**
+
+- 10-minute video demonstrations
+- Live presentations and conferences
+- Interactive exploration of privacy techniques
+- Educational and training purposes
+
+See [DEMO_INSTRUCTIONS.md](DEMO_INSTRUCTIONS.md) for detailed video recording setup.
+
 ### Basic Usage
 
 ```python
