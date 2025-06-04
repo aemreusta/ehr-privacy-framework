@@ -375,12 +375,12 @@ def show_debug_panel():
 def main():
     logger.info("=== Demo session started ===")
 
-    # University Header with Logo
-    col1, col2, col3 = st.columns([1, 2, 1])
+    # University Header with Logo - Centered
+    col1, col2, col3 = st.columns([1, 1, 1])
 
     with col2:
         try:
-            st.image("data/hu_logo.png", width=200, caption="Hacettepe University")
+            st.image("data/hu_logo.png", width=200)
         except Exception:
             logger.warning("Could not load university logo")
             st.markdown("### 🎓 Hacettepe University")
@@ -394,7 +394,7 @@ def main():
             <hr style="margin: 1rem 0;">
             <p><strong>Student:</strong> Ahmet Emre Usta (2200765036)</p>
             <p><strong>Email:</strong> a.emreusta@hotmail.com</p>
-            <p><strong>Instructor:</strong> Güldén Olgun</p>
+            <p><strong>Instructor:</strong> Asst. Prof. Gülden Olgun</p>
             <p><strong>Repository:</strong> <a href="https://github.com/aemreusta/ehr-privacy-framework" target="_blank">github.com/aemreusta/ehr-privacy-framework</a></p>
         </div>
         """,
@@ -408,16 +408,13 @@ def main():
     )
     st.markdown("### Interactive Demonstration of 5 Privacy Techniques")
 
-    # Project Overview from Report
+    # Project Overview from Report - Properly Structured
     st.markdown(
         """
         <div class="success-box">
             <h4>📋 Project Overview</h4>
             <p><strong>Title:</strong> Privacy-Preserving Strategies for Electronic Health Records</p>
-            <p>A comprehensive, production-ready framework implementing <strong>five major privacy techniques</strong>
-            for securing electronic health records while maintaining data utility for healthcare analytics and research.
-            This project explores privacy-preserving strategies for securing EHRs to mitigate risks while maintaining
-            the integrity and utility of the data.</p>
+            <p>A comprehensive, production-ready framework implementing <strong>five major privacy techniques</strong> for securing electronic health records while maintaining data utility for healthcare analytics and research. This project explores privacy-preserving strategies for securing EHRs to mitigate risks while maintaining the integrity and utility of the data.</p>
 
             <p><strong>Novel Contributions:</strong></p>
             <ul>

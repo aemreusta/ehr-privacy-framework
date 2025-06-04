@@ -15,7 +15,7 @@
 **Student:** Ahmet Emre Usta  
 **Student ID:** 2200765036  
 **Email:** <a.emreusta@hotmail.com>  
-**Instructor:** Güldén Olgun  
+**Instructor:** Asst. Prof. Gülden Olgun  
 **Course:** AIN413 Machine Learning For Healthcare  
 **Submission Date:** Spring 2025  
 **Repository:** [https://github.com/aemreusta/ehr-privacy-framework](https://github.com/aemreusta/ehr-privacy-framework)

@@ -8,7 +8,7 @@
 
 **Student:** Ahmet Emre Usta  
 **Student ID:** 2200765036  
-**Instructor:** Güldén Olgun  
+**Instructor:** Asst. Prof. Gülden Olgun  
 **Project Title:** Privacy-Preserving Strategies for Electronic Health Records
 
 ---

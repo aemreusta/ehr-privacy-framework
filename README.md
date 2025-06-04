@@ -8,7 +8,7 @@
 
 **Student:** Ahmet Emre Usta  
 **Student ID:** 2200765036  
-**Instructor:** Gülden Olgun  
+**Instructor:** Asst. Prof. Gülden Olgun  
 **Course:** AIN413 Machine Learning For Healthcare  
 
 ---

@@ -8,7 +8,7 @@
 
 **Student:** Ahmet Emre Usta  
 **Student ID:** 2200765036  
-**Instructor:** Güldén Olgun  
+**Instructor:** Asst. Prof. Gülden Olgun  
 **Course:** AIN413 Machine Learning For Healthcare  
 
 ---
@@ -206,7 +206,7 @@ The framework represents a significant contribution to healthcare privacy resear
 - **Department:** Artificial Intelligence Engineering
 - **Semester:** Spring 2025
 - **Student:** Ahmet Emre Usta (ID: 2200765036)
-- **Instructor:** Güldén Olgun
+- **Instructor:** Asst. Prof. Gülden Olgun
 
 **Technical Details:**
 
