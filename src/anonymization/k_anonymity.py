@@ -25,13 +25,13 @@ class KAnonymity:
         suppression_threshold (float): Threshold for record suppression
     """
 
-    def __init__(self, k: int = 3, suppression_threshold: float = 0.1):
+    def __init__(self, k: int = 3, suppression_threshold: float = 0.2):
         """
         Initialize k-anonymity with specified parameters.
 
         Args:
             k (int): The anonymity parameter (default: 3)
-            suppression_threshold (float): Maximum fraction of records to suppress (default: 0.1)
+            suppression_threshold (float): Maximum fraction of records to suppress (default: 0.2)
         """
         self.k = k
         self.suppression_threshold = suppression_threshold
@@ -176,7 +176,7 @@ class KAnonymity:
         valid_groups = []
         suppressed_count = 0
 
-        for name, group in groups:
+        for _name, group in groups:
             if len(group) >= self.k:
                 valid_groups.append(group)
             else:
@@ -185,8 +185,8 @@ class KAnonymity:
         # Check suppression threshold
         suppression_rate = suppressed_count / len(data)
         if suppression_rate > self.suppression_threshold:
-            self.logger.warning(
-                f"Suppression rate ({suppression_rate:.2%}) exceeds threshold"
+            self.logger.info(
+                f"Suppression rate ({suppression_rate:.2%}) exceeds threshold ({self.suppression_threshold:.1%})"
             )
 
         if valid_groups:

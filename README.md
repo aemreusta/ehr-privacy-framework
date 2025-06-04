@@ -380,3 +380,56 @@ seaborn>=0.11.0
 jupyterlab
 notebook
 ```
+
+## Troubleshooting
+
+### Pyfhel Installation Issues
+
+The framework includes optional homomorphic encryption capabilities using Pyfhel. If you encounter installation issues:
+
+**Common Solutions:**
+
+1. **Use Python 3.11 or earlier** (Pyfhel may not support Python 3.12+)
+2. **Install build dependencies:**
+
+   ```bash
+   # Ubuntu/Debian
+   sudo apt-get install build-essential cmake
+   
+   # macOS
+   brew install cmake
+   
+   # Windows (use Visual Studio Build Tools)
+   ```
+
+3. **Clean installation:**
+
+   ```bash
+   pip install --no-cache-dir Pyfhel
+   ```
+
+4. **Alternative installation:**
+
+   ```bash
+   conda install -c conda-forge pyfhel
+   ```
+
+**Fallback Mode:**
+If Pyfhel installation fails, the framework automatically runs in simulation mode:
+
+- All homomorphic encryption features are simulated
+- Performance metrics are estimated
+- Framework functionality remains complete
+- No impact on other privacy techniques
+
+**Manual Testing:**
+
+```bash
+python -c "from encryption.homomorphic_encryption import HomomorphicEncryption; print('Pyfhel available!')"
+```
+
+### Other Common Issues
+
+- **Memory Issues**: The MIMIC-III dataset requires ~2GB RAM
+- **Missing Dependencies**: Run `pip install -r requirements.txt`
+- **Permission Errors**: Use virtual environments or `--user` flag

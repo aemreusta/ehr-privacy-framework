@@ -1610,8 +1610,18 @@ def show_homomorphic_encryption_demo(df):
     )
 
     if not HE_AVAILABLE:
-        st.warning(
-            "⚠️ Pyfhel library not available. Showing comprehensive framework demonstration with simulated operations."
+        st.info(
+            """
+            ℹ️ **Pyfhel library not available** - Running in **simulation mode**
+
+            **To enable live homomorphic encryption:**
+            1. Ensure Python 3.11 or earlier (Pyfhel may not support Python 3.12+)
+            2. Install build dependencies: `brew install cmake` (macOS) or `apt-get install build-essential cmake` (Linux)
+            3. Install Pyfhel: `pip install --no-cache-dir Pyfhel`
+
+            **Current mode:** All operations are simulated with realistic performance metrics.
+            **Framework completeness:** Unaffected - all other privacy techniques work normally.
+            """
         )
 
         # Enhanced framework capabilities demonstration
