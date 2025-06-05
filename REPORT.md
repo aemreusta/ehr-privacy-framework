@@ -28,6 +28,8 @@
 
 This study presents a comprehensive framework for privacy-preserving electronic health records (EHRs) that integrates five major privacy-enhancing technologies including **data anonymization (k-anonymity, l-diversity, t-closeness), differential privacy, and homomorphic encryption**, combined with role-based access control (RBAC). Our implementation on the MIMIC-III dataset demonstrates effective privacy protection while maintaining data utility for healthcare analytics. The integrated framework achieves strong privacy guarantees with acceptable utility trade-offs, providing a practical solution for secure healthcare data sharing and analysis.
 
+**Important Note**: Due to significant installation challenges with available Homomorphic Encryption libraries like Pyfhel in the project environment, the Homomorphic Encryption component is implemented as a simulation. This simulation demonstrates the conceptual workflow of encrypting data, performing mock 'encrypted' computations, and decrypting results, showcasing where HE would fit into the privacy-preserving pipeline. It does not provide actual cryptographic security but serves as a placeholder for a full HE implementation.
+
 This project addresses the critical need for privacy-preserving strategies in healthcare data management, exploring techniques such as data anonymization, encryption, access control models, and differential privacy while focusing on maintaining data utility for medical research and analytics.
 
 **Keywords:** Electronic Health Records, Privacy-Preserving, k-anonymity, l-diversity, t-closeness, Differential Privacy, Homomorphic Encryption, RBAC, Healthcare Data Security
@@ -105,12 +107,13 @@ Our integrated framework consists of five main components:
 - **Query Types**: Count, mean, histogram, correlation queries
 - **Sensitivity Analysis**: Calculated based on data characteristics
 
-#### 3.2.3 Homomorphic Encryption Layer
+#### 3.2.3 Homomorphic Encryption Layer (Simulation Mode)
 
-- **CKKS Scheme**: Floating-point arithmetic on encrypted data using Pyfhel
-- **Supported Operations**: Homomorphic addition, multiplication, secure aggregation
-- **Key Management**: Automatic key generation and secure storage
-- **Healthcare Applications**: Secure multi-institutional analytics
+- **CKKS Scheme (Simulated)**: Conceptual demonstration of floating-point arithmetic on encrypted data
+- **Supported Operations**: Simulated homomorphic addition, multiplication, secure aggregation  
+- **Workflow Demonstration**: Shows integration points and processing patterns
+- **Educational Value**: Illustrates HE principles without actual cryptographic operations
+- **Performance Simulation**: Realistic timing models for HE operation costs
 
 #### 3.2.4 Access Control Layer
 

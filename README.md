@@ -33,10 +33,21 @@ The increasing number of cyberattacks on healthcare systems has led to significa
 
 - **✅ Complete Anonymization Suite**: k-anonymity, l-diversity, t-closeness with Earth Mover's Distance
 - **✅ Statistical Privacy**: Differential privacy with Laplace mechanism and privacy budget management
-- **✅ Cryptographic Privacy**: Homomorphic encryption (CKKS scheme) for secure computation
+- **✅ Cryptographic Privacy**: Homomorphic encryption (CKKS scheme) for secure computation **(Simulation Mode)**
 - **✅ Access Control**: Role-based access control (RBAC) with 7 healthcare roles
 - **✅ Integrated Framework**: All techniques working together with comprehensive evaluation
 - **✅ Production Ready**: HIPAA, GDPR, FDA compliant with real MIMIC-III validation
+
+## ⚠️ Important Note: Homomorphic Encryption Simulation
+
+**Due to significant installation challenges with available Homomorphic Encryption libraries like Pyfhel in the project environment, the Homomorphic Encryption component is implemented as a simulation. This simulation demonstrates the conceptual workflow of encrypting data, performing mock 'encrypted' computations, and decrypting results, showcasing where HE would fit into the privacy-preserving pipeline. It does not provide actual cryptographic security but serves as a placeholder for a full HE implementation.**
+
+The simulation includes:
+
+- **Realistic performance metrics** simulating actual HE processing times
+- **Conceptual workflow demonstration** showing how HE would integrate
+- **Educational value** illustrating HE principles and use cases
+- **Framework completeness** allowing full system evaluation
 
 ## 📊 Framework Performance
 
@@ -72,8 +83,9 @@ Apply k-anonymity, l-diversity, and t-closeness to anonymize sensitive data whil
 
 Implement homomorphic encryption protocols allowing computations on encrypted data:
 
-- **CKKS Scheme**: Floating-point arithmetic on encrypted data using Pyfhel
-- **Healthcare Applications**: Secure multi-institutional analytics
+- **CKKS Scheme (Simulated)**: Floating-point arithmetic concepts demonstrated through simulation
+- **Healthcare Applications**: Conceptual framework for secure multi-institutional analytics
+- **Educational Purpose**: Demonstrates HE workflow and integration points without actual cryptographic security
 
 #### 3. Access Control Models
 
