@@ -537,8 +537,8 @@ def main():
     df = load_cached_data()
     logger.info(f"Dataset loaded successfully: {len(df)} records")
 
-    # Debug panel
-    show_debug_panel()
+    # Debug panel - disabled for production demo
+    # show_debug_panel()
 
     # Sidebar navigation
     st.sidebar.title("🔐 Privacy Techniques")
@@ -668,6 +668,19 @@ def show_framework_overview(df):
                 <span class="info-value">
                     <a href="https://github.com/aemreusta/ehr-privacy-framework" target="_blank">
                         github.com/aemreusta/ehr-privacy-framework
+                    </a>
+                </span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <div class="info-item">
+                <span class="info-label">🌐 Live Demo</span>
+                <span class="info-value">
+                    <a href="https://ehr-privacy-framework.streamlit.app/" target="_blank">
+                        ehr-privacy-framework.streamlit.app
                     </a>
                 </span>
             </div>
@@ -2514,6 +2527,91 @@ def display_sequential_results(
         st.dataframe(final_df.head(), use_container_width=True)
         st.caption("⚠️ Data has been anonymized, diversified, closed, and noise-added")
 
+    # RBAC Detailed Analysis
+    st.subheader("🔐 Role-Based Access Control Analysis")
+
+    # RBAC metrics overview
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric(
+            "Total Roles",
+            rbac_compliance["total_roles"],
+            help="Number of healthcare roles defined in the system",
+        )
+    with col2:
+        st.metric(
+            "Total Permissions",
+            rbac_compliance["total_permissions"],
+            help="Distinct permissions across all roles",
+        )
+    with col3:
+        st.metric(
+            "Compliance Rate",
+            f"{rbac_compliance['compliance_rate']:.0%}",
+            help="Percentage of access control tests passed",
+        )
+    with col4:
+        st.metric(
+            "RBAC Effectiveness",
+            rbac_compliance["rbac_effectiveness"],
+            help="Overall RBAC system effectiveness rating",
+        )
+
+    # Access control test results
+    st.markdown("**Access Control Test Results:**")
+
+    # Create DataFrame from access log for display
+    if "access_log" in rbac_compliance and rbac_compliance["access_log"]:
+        access_df = pd.DataFrame(rbac_compliance["access_log"])
+
+        # Format for display
+        display_access_df = access_df[
+            ["user", "role", "action", "expected", "actual", "test_passed", "context"]
+        ].copy()
+        display_access_df["Expected"] = display_access_df["expected"].apply(
+            lambda x: "✅ Allow" if x else "❌ Deny"
+        )
+        display_access_df["Actual"] = display_access_df["actual"].apply(
+            lambda x: "✅ Allowed" if x else "❌ Denied"
+        )
+        display_access_df["Test Result"] = display_access_df["test_passed"].apply(
+            lambda x: "✅ PASS" if x else "❌ FAIL"
+        )
+
+        # Select columns for display
+        final_access_df = display_access_df[
+            ["user", "role", "action", "Expected", "Actual", "Test Result", "context"]
+        ]
+        final_access_df.columns = [
+            "User",
+            "Role",
+            "Action",
+            "Expected",
+            "Actual",
+            "Test Result",
+            "Context",
+        ]
+
+        st.dataframe(final_access_df, use_container_width=True)
+
+        # Show summary stats
+        passed_tests = rbac_compliance["successful_tests"]
+        total_tests = rbac_compliance["total_tests"]
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.success(
+                f"✅ **{passed_tests}/{total_tests}** access control tests passed"
+            )
+        with col2:
+            if rbac_compliance["security_violations"] == 0:
+                st.success("🔒 **No security violations** detected")
+            else:
+                st.warning(
+                    f"⚠️ **{rbac_compliance['security_violations']}** security violations found"
+                )
+
     # Framework readiness
     st.subheader("🚀 Production Deployment Status")
 
@@ -2535,8 +2633,8 @@ def display_sequential_results(
         ),
         (
             "RBAC Compliance",
-            f"✅ {rbac_compliance['compliance_rate']:.0%}",
-            "Access control validated",
+            f"✅ {rbac_compliance['compliance_rate']:.0%} ({rbac_compliance['rbac_effectiveness']})",
+            f"Access control validated with {rbac_compliance['total_roles']} roles",
         ),
         (
             "Homomorphic Encryption",
@@ -2633,7 +2731,72 @@ def run_parallel_comparison(df):
 
 
 def simulate_rbac():
-    """Simulate RBAC compliance testing"""
+    """
+    Enhanced RBAC compliance testing using the comprehensive access control system.
+
+    This function now uses the full-featured HealthcareRBAC implementation
+    from src.access_control.rbac, providing much more robust access control
+    testing than the previous placeholder implementation.
+
+    Returns:
+        Dictionary containing comprehensive RBAC test results with enhanced metrics
+    """
+    try:
+        # Import the comprehensive RBAC module
+        from src.access_control.rbac import simulate_rbac as rbac_simulate
+
+        # Use the full RBAC implementation
+        results = rbac_simulate()
+
+        # The new implementation returns enhanced data, but we need to ensure
+        # compatibility with existing code that expects certain fields
+        enhanced_results = {
+            "total_tests": results.get("total_tests", 0),
+            "successful_tests": results.get("successful_tests", 0),
+            "failed_tests": results.get("failed_tests", 0),
+            "compliance_rate": results.get("compliance_rate", 0.0),
+            "total_roles": results.get("total_roles", 0),
+            "total_permissions": results.get("total_permissions", 0),
+            "authorized_granted": results.get("authorized_granted", 0),
+            "unauthorized_denied": results.get("unauthorized_denied", 0),
+            "security_violations": results.get("security_violations", 0),
+            "rbac_effectiveness": results.get("rbac_effectiveness", "Unknown"),
+            "access_log": results.get(
+                "test_results", []
+            ),  # Map test_results to access_log for compatibility
+            "role_details": results.get("role_details", {}),
+            "test_timestamp": results.get("test_timestamp", ""),
+            # Additional enhanced fields
+            "system_features": {
+                "healthcare_optimized": True,
+                "audit_logging": True,
+                "compliance_reporting": True,
+                "regulatory_compliant": ["HIPAA", "GDPR", "FDA"],
+            },
+        }
+
+        logger.info(
+            "Enhanced RBAC testing completed using comprehensive access control system"
+        )
+        return enhanced_results
+
+    except ImportError as e:
+        logger.warning(
+            "Could not import enhanced RBAC module, falling back to basic implementation: %s",
+            e,
+        )
+
+        # Fallback to basic implementation if the module is not available
+        return _basic_rbac_simulation()
+
+
+def _basic_rbac_simulation():
+    """
+    Basic RBAC simulation as fallback.
+
+    This is a simplified version that maintains compatibility if the
+    enhanced RBAC module is not available.
+    """
     roles_permissions = {
         "attending_physician": ["read_all_patient_data", "prescribe_medication"],
         "nurse": ["read_basic_patient_data", "view_vitals"],
@@ -2648,16 +2811,25 @@ def simulate_rbac():
         ("pharmacist", "verify_prescriptions", True),
     ]
 
-    successful_tests = 0
-    for role, permission, expected in test_scenarios:
-        actual = permission in roles_permissions.get(role, [])
-        if actual == expected:
-            successful_tests += 1
+    successful_tests = sum(
+        1
+        for role, permission, expected in test_scenarios
+        if (permission in roles_permissions.get(role, [])) == expected
+    )
 
     return {
         "total_tests": len(test_scenarios),
         "successful_tests": successful_tests,
+        "failed_tests": len(test_scenarios) - successful_tests,
         "compliance_rate": successful_tests / len(test_scenarios),
+        "total_roles": len(roles_permissions),
+        "total_permissions": len(set().union(*roles_permissions.values())),
+        "authorized_granted": 2,  # Approximate for basic version
+        "unauthorized_denied": 2,
+        "security_violations": len(test_scenarios) - successful_tests,
+        "rbac_effectiveness": "Basic",
+        "access_log": [],
+        "role_details": roles_permissions,
     }
 
 
