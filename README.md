@@ -108,6 +108,55 @@ cd ehr-privacy-framework
 pip install -r requirements.txt
 ```
 
+### Docker
+
+For easy deployment and testing, use the provided Docker container:
+
+#### Quick Start
+
+```bash
+# Build the container
+docker build -t ehr-demo .
+
+# Run the demo
+docker run --rm -p 8501:8501 ehr-demo
+```
+
+The application will be available at `http://localhost:8501`
+
+#### Docker Features
+
+- **Production-ready**: Optimized Python 3.10 slim image
+- **Health monitoring**: Built-in health checks for container orchestration
+- **Complete framework**: All privacy techniques except Pyfhel (see note below)
+- **Easy deployment**: Single command deployment to any Docker-compatible platform
+
+#### Pyfhel Support
+
+The Docker container runs the framework without Pyfhel due to complex C++17 compilation requirements. The framework gracefully handles this and provides:
+
+- Full functionality for k-anonymity, l-diversity, t-closeness, and differential privacy
+- Simulated homomorphic encryption demonstrations
+- Clear indicators when Pyfhel is not available
+
+To use Pyfhel in production:
+
+1. Install on host system with proper C++17 toolchain
+2. Use specialized Pyfhel-enabled container (requires custom build with SEAL backend)
+
+#### Container Management
+
+```bash
+# Check health
+curl http://localhost:8501/_stcore/health
+
+# View logs
+docker logs <container_id>
+
+# Stop container
+docker stop <container_id>
+```
+
 ### Development Setup
 
 For contributors and developers:

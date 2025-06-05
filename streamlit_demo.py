@@ -2483,7 +2483,7 @@ def display_sequential_results(
             line={"color": "red", "width": 3},
             marker={
                 "size": 10,
-                "color": range(len(pipeline_df)),
+                "color": list(range(len(pipeline_df))),
                 "colorscale": "Viridis",
             },
             name="Pipeline Progression",
