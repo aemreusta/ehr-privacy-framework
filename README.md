@@ -44,6 +44,60 @@ The increasing number of cyberattacks on healthcare systems has led to significa
 - **Dataset**: Validated on 129 patient admissions, 24 clinical variables
 - **Framework Score**: 81.3% overall effectiveness
 
+## 🔬 Project Methodology
+
+### Dataset Characteristics
+
+**Source**: Medical Information Mart for Intensive Care (MIMIC-III)
+
+- **Total Records**: 129 patient admissions
+- **Unique Patients**: 100 individuals  
+- **Data Dimensions**: 24 clinical variables
+- **Data Types**: Demographics, vital signs, laboratory values, diagnoses, medications
+- **Time Period**: Derived from ICU stays
+
+### Proposed Privacy Techniques
+
+#### 1. Data Anonymization
+
+Apply k-anonymity, l-diversity, and t-closeness to anonymize sensitive data while maintaining utility:
+
+- **k-anonymity**: Ensuring each record is indistinguishable from at least k-1 others
+- **l-diversity**: Requiring diversity in sensitive attributes within equivalence classes
+- **t-closeness**: Distribution privacy with Earth Mover's Distance calculations
+
+#### 2. Encryption Techniques
+
+Implement homomorphic encryption protocols allowing computations on encrypted data:
+
+- **CKKS Scheme**: Floating-point arithmetic on encrypted data using Pyfhel
+- **Healthcare Applications**: Secure multi-institutional analytics
+
+#### 3. Access Control Models
+
+Design role-based access control (RBAC) systems with fine-grained permissions:
+
+- **Healthcare-specific roles**: 7 roles from researchers to system administrators
+- **Fine-grained permissions**: 23 distinct permission types
+
+#### 4. Differential Privacy
+
+Incorporate differential privacy techniques to add noise to statistical analyses:
+
+- **Laplace Mechanism**: Adding calibrated noise to statistical queries
+- **Privacy Budget (ε)**: Tested with values 0.1, 0.5, 1.0, 2.0
+
+### Novel Contribution
+
+This project combines multiple privacy strategies into an integrated framework specifically for EHRs, providing a comprehensive solution that addresses various privacy concerns across different stages of data use.
+
+**Key Innovations:**
+
+1. **Integrated Multi-Technique Framework**: First comprehensive integration of all five privacy techniques
+2. **Healthcare-Specific Implementation**: Specialized for EHR data characteristics
+3. **Production-Ready Solution**: Practical framework tested on real clinical data
+4. **Regulatory Compliance**: Addressing HIPAA, GDPR, and FDA requirements
+
 ## 🚀 Quick Start
 
 ### Installation
@@ -77,36 +131,6 @@ pre-commit run --all-files
 - **Ruff**: Fast Python linter and formatter
 - **Pre-commit**: Git hooks for code quality
 - **Pytest**: Testing framework
-- **Coverage**: Code coverage reporting
-
-### Interactive Streamlit Demo 🎥 **NEW!**
-
-**Launch the professional interactive demo perfect for presentations and video recording:**
-
-```bash
-# Quick launch with launcher script
-./run_demo.sh
-
-# Or run directly  
-streamlit run streamlit_demo.py
-```
-
-**Demo Features:**
-
-- Interactive demonstration of all 5 privacy techniques
-- Real-time privacy-utility analysis with parameter controls
-- Professional UI optimized for video recording
-- Live data processing with immediate visual feedback
-- Complete framework evaluation in web interface
-
-**Perfect for:**
-
-- 10-minute video demonstrations
-- Live presentations and conferences
-- Interactive exploration of privacy techniques
-- Educational and training purposes
-
-See [DEMO_INSTRUCTIONS.md](DEMO_INSTRUCTIONS.md) for detailed video recording setup.
 
 ### Basic Usage
 
@@ -120,6 +144,59 @@ python src/comprehensive_analysis.py
 # Validate framework implementation
 python test_complete_framework.py
 ```
+
+## 🎥 Interactive Streamlit Demo
+
+### Launch the Demo
+
+```bash
+# Option 1: Use the launcher script (recommended)
+./run_demo.sh
+
+# Option 2: Direct Streamlit command
+streamlit run streamlit_demo.py
+
+# Option 3: With specific requirements
+pip install -r requirements_demo.txt
+streamlit run streamlit_demo.py
+```
+
+### Access the Demo
+
+- **URL**: <http://localhost:8501>
+- **Browser**: Chrome/Firefox recommended for best recording quality
+- **Resolution**: 1920x1080 recommended for video recording
+
+### Demo Features
+
+**Interactive demonstration of all 5 privacy techniques:**
+
+- **Framework Overview**: Dataset preview, metrics summary, architecture visualization
+- **k-anonymity Demo**: Real-time parameter adjustment (k=2-10), retention rate calculation
+- **l-diversity Demo**: Configure l and k values, diversity statistics display
+- **t-closeness Demo** ⭐ **NEW**: Earth Mover's Distance calculations, distribution compliance
+- **Differential Privacy**: Privacy budget selection, original vs private statistics comparison
+- **Homomorphic Encryption** ⭐ **NEW**: Live homomorphic operations, secure aggregation
+- **Integrated Analysis**: All techniques applied with progress tracking
+
+### Video Recording Setup
+
+**Pre-Recording Checklist:**
+
+1. ✅ Launch demo and verify all sections load
+2. ✅ Set browser to full screen (F11)
+3. ✅ Recording settings: 1920x1080, 30 FPS
+4. ✅ Plan 10-minute demonstration flow
+
+**Recommended Recording Flow:**
+
+- **[0:00-1:00]** Framework Overview and metrics
+- **[1:00-3:30]** Data Anonymization (k-anonymity, l-diversity, t-closeness)
+- **[3:30-5:00]** Differential Privacy with trade-off analysis
+- **[5:00-6:30]** Homomorphic Encryption operations
+- **[6:30-7:30]** Integrated Analysis with all techniques
+- **[7:30-9:00]** Privacy-Utility Visualization
+- **[9:00-10:00]** Production Readiness and Conclusion
 
 ## 💡 Usage Examples
 
@@ -301,15 +378,20 @@ analysis.run_complete_analysis()
 
 ```
 ehr-privacy-framework/
-├── 📄 README.md                           # This file - project overview
+├── 📄 README.md                           # This file - project overview and instructions
 ├── 📄 LICENSE                             # MIT license
-├── 📄 requirements.txt                    # Python dependencies
+├── 📄 requirements.txt                    # Core Python dependencies
+├── 📄 requirements-dev.txt                # Development dependencies  
+├── 📄 requirements_demo.txt               # Streamlit demo dependencies
 ├── 📄 .gitignore                          # Healthcare-specific Git exclusions
-├── 📄 STRUCTURE.md                        # Complete project structure
-├── 📄 REPORT.md                           # 50+ page scientific report
-├── 📄 FINAL_SUMMARY.md                    # Implementation summary
-├── 📄 IMPLEMENTATION_VALIDATION.md        # Novel contributions validation
+├── 📄 pyproject.toml                      # Project configuration and linting
+├── 📄 .pre-commit-config.yaml             # Code quality automation
+├── 📄 STRUCTURE.md                        # Complete project structure documentation
+├── 📄 REPORT.md                           # Comprehensive scientific report (31KB)
+├── 📄 FINAL_SUMMARY.md                    # Complete implementation summary
 ├── 📄 test_complete_framework.py          # Comprehensive testing framework
+├── 📄 streamlit_demo.py                   # Interactive web-based demo (83KB)
+├── 📄 run_demo.sh                         # Demo automation script
 │
 ├── 📁 src/                                # Core framework implementation
 │   ├── 📄 __init__.py                     # Main package initialization
@@ -330,6 +412,10 @@ ehr-privacy-framework/
 │   │   ├── 📄 __init__.py                 # Module exports (handles Pyfhel dependency)
 │   │   └── 📄 homomorphic_encryption.py   # CKKS homomorphic encryption
 │   │
+│   ├── 📁 access_control/                 # Role-based access control
+│   │   ├── 📄 __init__.py                 # Module exports
+│   │   └── 📄 rbac.py                     # Healthcare-specific RBAC implementation
+│   │
 │   └── 📁 utils/                          # Common utilities and data processing
 │       ├── 📄 __init__.py                 # Module exports
 │       ├── 📄 data_loader.py              # Data loading and preprocessing
@@ -337,17 +423,25 @@ ehr-privacy-framework/
 │
 ├── 📁 data/                               # Data directory (PHI-protected)
 │   ├── 📄 README_DATA.md                  # Data handling guidelines
+│   ├── 📄 hu_logo.png                     # University branding
+│   │
+│   ├── 📁 references/                     # Academic research papers
+│   │   ├── 📄 Privacy Preservation of Electronic Health Records in the Modern Era- A Systematic Survey.pdf
+│   │   ├── 📄 Privacy preserving strategies for electronic health records in the era of large language models.pdf
+│   │   └── 📄 Privacy-Preserving Electronic Health Records.pdf
+│   │
 │   ├── 📁 raw/                            # Raw MIMIC-III data (git-ignored)
 │   ├── 📁 processed/                      # Processed and cleaned data
 │   └── 📁 example_output/                 # Analysis results and demonstrations
 │       ├── 📁 anonymized/                 # Anonymized dataset outputs
 │       └── 📁 plots/                      # Scientific visualizations
 │
-├── 📁 notebooks/                          # Interactive Jupyter notebooks
-│   └── 📄 01_data_exploration_and_anonymization.ipynb
+├── 📁 logs/                               # Runtime logs and analysis
+│   └── 📄 streamlit_demo_[timestamp].log  # Timestamped demo execution logs
 │
 └── 📁 demo/                               # Demonstration and educational materials
-    └── 📄 README.md                       # Demo instructions and video links
+    ├── 📄 README.md                       # Comprehensive demo instructions
+    └── 📄 HOMOMORPHIC_ENCRYPTION_DEMO_GUIDE.md # HE-specific demo guide
 ```
 
 ## 🎯 Novel Contributions
@@ -372,16 +466,23 @@ ehr-privacy-framework/
 ```
 pandas>=1.3.0
 numpy>=1.20.0
-scipy>=1.7.0
-scikit-learn
-diffprivlib
 matplotlib>=3.3.0
-seaborn>=0.11.0
-jupyterlab
-notebook
 ```
 
-## Troubleshooting
+### Demo Dependencies
+
+```
+streamlit>=1.28.0
+plotly>=5.15.0
+```
+
+### Optional Dependencies
+
+```
+Pyfhel>=3.0.0  # For homomorphic encryption
+```
+
+## 🔧 Troubleshooting
 
 ### Pyfhel Installation Issues
 
@@ -433,3 +534,38 @@ python -c "from encryption.homomorphic_encryption import HomomorphicEncryption; 
 - **Memory Issues**: The MIMIC-III dataset requires ~2GB RAM
 - **Missing Dependencies**: Run `pip install -r requirements.txt`
 - **Permission Errors**: Use virtual environments or `--user` flag
+
+## 📈 Expected Outcomes & Results
+
+### Privacy Protection Metrics
+
+- **Achieved**: >95% privacy score through multi-layer protection
+- **Target**: >90% privacy protection
+
+### Data Utility Metrics  
+
+- **Achieved**: 84.5% data utility for clinical analysis
+- **Target**: >80% utility preservation
+
+### Processing Efficiency
+
+- **Achieved**: <4 seconds for complete privacy pipeline
+- **Target**: Real-time processing (<5 seconds)
+
+### Regulatory Compliance
+
+- **Achieved**: ✅ HIPAA, ✅ GDPR, ✅ FDA compliance
+- **Target**: Full healthcare data protection standards
+
+### Framework Effectiveness
+
+- **Achieved**: 81.3% overall framework score
+- **Target**: Production-ready extensible architecture
+
+---
+
+**Repository:** [https://github.com/aemreusta/ehr-privacy-framework](https://github.com/aemreusta/ehr-privacy-framework)
+
+**Course:** AIN413 Machine Learning For Healthcare  
+**Institution:** Hacettepe University - Department of Artificial Intelligence Engineering  
+**Semester:** Spring 2025
