@@ -841,10 +841,10 @@ def show_framework_overview(df):
         - Privacy Budget (ε) tested with values 0.1, 0.5, 1.0, 2.0
         - Query Types: Count, mean, histogram, correlation queries
 
-        **3. Homomorphic Encryption Layer**
-        - CKKS Scheme for floating-point arithmetic on encrypted data using Pyfhel
-        - Supported Operations: Homomorphic addition, multiplication, secure aggregation
-        - Healthcare Applications: Secure multi-institutional analytics
+        **3. Homomorphic Encryption Layer (Simulation)**
+        - CKKS Scheme simulation for floating-point arithmetic concepts
+        - Supported Operations: Simulated homomorphic addition, multiplication, secure aggregation
+        - Healthcare Applications: Conceptual framework for secure multi-institutional analytics
 
         **4. Access Control Layer**
         - Role-Based Access Control with healthcare-specific roles and permissions
@@ -1695,20 +1695,6 @@ def show_homomorphic_encryption_demo(df):
     )
 
     if not HE_AVAILABLE:
-        st.info(
-            """
-            ℹ️ **Pyfhel library not available** - Running in **simulation mode**
-
-            **To enable live homomorphic encryption:**
-            1. Ensure Python 3.11 or earlier (Pyfhel may not support Python 3.12+)
-            2. Install build dependencies: `brew install cmake` (macOS) or `apt-get install build-essential cmake` (Linux)
-            3. Install Pyfhel: `pip install --no-cache-dir Pyfhel`
-
-            **Current mode:** All operations are simulated with realistic performance metrics.
-            **Framework completeness:** Unaffected - all other privacy techniques work normally.
-            """
-        )
-
         # Enhanced framework capabilities demonstration
         st.subheader("🔧 Homomorphic Encryption Framework")
 
@@ -1949,10 +1935,6 @@ def show_homomorphic_encryption_demo(df):
         }
 
         st.dataframe(pd.DataFrame(integration_info), use_container_width=True)
-
-        st.info(
-            "💡 **Installation Note**: For live homomorphic encryption, install Pyfhel with Python 3.11 or earlier: `pip install Pyfhel`"
-        )
 
         # Log the simulation
         log_user_interaction(
