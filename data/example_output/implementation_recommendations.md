@@ -6,7 +6,7 @@ Analysis of 129 patient records demonstrates effective privacy-preserving techni
 ## Key Findings
 - **Optimal k-anonymity level**: k=2 provides best privacy-utility balance
 - **Data retention**: 115 records (89.1% retention rate)
-- **Processing efficiency**: Average 0.01s per anonymization
+- **Processing efficiency**: Average 0.00s per anonymization
 
 ## Implementation Recommendations
 1. **Deploy k-anonymity with k=3-5** for routine analytics

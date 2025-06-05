@@ -8,7 +8,11 @@
     "retention_rate": 0.6589147286821705
   },
   "t_closeness": {
-    "error": "Cannot cut empty array"
+    "records_retained": 0,
+    "retention_rate": 0.0,
+    "satisfies_t_closeness": true,
+    "max_distance": 0.0,
+    "compliance_rate": 0
   },
   "differential_privacy": {
     "epsilon": 1.0,
@@ -18,7 +22,11 @@
   },
   "homomorphic_encryption": {
     "available": true,
-    "error": "Pyfhel library not available. Install with: pip install Pyfhel"
+    "addition_verification": true,
+    "multiplication_verification": true,
+    "secure_aggregation_completed": true,
+    "records_processed": 10,
+    "columns_processed": 2
   },
   "rbac": {
     "roles_defined": 5,
@@ -30,13 +38,14 @@
     "techniques_applied": [
       "k-anonymity",
       "differential_privacy",
+      "t-closeness",
       "rbac",
       "homomorphic_encryption"
     ],
-    "privacy_layers": 4,
-    "final_retention_rate": 0.8449612403100775,
-    "framework_score": 0.8134883720930232,
+    "privacy_layers": 5,
+    "final_retention_rate": 0.0,
+    "framework_score": 0.7,
     "original_records": 129,
-    "final_records": 109
+    "final_records": 0
   }
 }

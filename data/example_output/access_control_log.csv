@@ -1,25 +1,9 @@
-timestamp,user,role,action,granted,ip_address
-2025-06-05T10:14:35.405309,dr_alice_smith,attending_physician,prescribe_medication,True,localhost
-2025-06-05T10:14:35.405323,nurse_carol_williams,nurse,prescribe_medication,False,localhost
-2025-06-05T10:14:35.405378,researcher_frank_chen,researcher,read_anonymized_data,True,localhost
-2025-06-05T10:14:35.405383,researcher_frank_chen,researcher,read_all_patient_data,False,localhost
-2025-06-05T10:14:35.405409,pharmacist_eve_davis,pharmacist,verify_prescriptions,True,localhost
-2025-06-05T10:14:35.405414,admin_henry_taylor,system_admin,manage_users,True,localhost
-2025-06-05T10:14:35.405419,admin_henry_taylor,system_admin,read_all_patient_data,False,localhost
-2025-06-05T10:14:35.405437,dr_bob_jones,resident_physician,modify_diagnosis,False,localhost
-2025-06-05T10:14:35.405451,dr_alice_smith,attending_physician,access_sensitive_data,True,localhost
-2025-06-05T10:14:35.405489,dr_smith,attending_physician,read_all_patient_data,True,localhost
-2025-06-05T10:14:35.405492,nurse_williams,nurse,prescribe_medication,False,localhost
-2025-06-05T10:14:35.405504,researcher_chen,researcher,read_patient_data,False,localhost
-2025-06-05T10:14:35.405516,researcher_chen,researcher,read_anonymized_data,True,localhost
-2025-06-05T10:14:35.405517,pharm_davis,pharmacist,verify_prescriptions,True,localhost
-2025-06-05T10:14:35.405519,dr_jones,resident_physician,modify_diagnosis,False,localhost
-2025-06-05T10:14:35.405527,dr_smith,attending_physician,modify_diagnosis,True,localhost
-2025-06-05T10:14:35.405529,analyst_garcia,data_analyst,generate_reports,True,localhost
-2025-06-05T10:14:35.405530,admin_taylor,system_admin,audit_access_logs,True,localhost
-2025-06-05T10:14:35.405535,nurse_brown,nurse,access_radiology,False,localhost
-2025-06-05T10:14:35.405543,pharm_davis,pharmacist,check_drug_interactions,True,localhost
-2025-06-05T10:14:35.405545,admin_taylor,system_admin,read_patient_data,False,localhost
-2025-06-05T10:14:35.405551,researcher_chen,researcher,access_sensitive_data,False,localhost
-2025-06-05T10:14:35.405557,dr_smith,attending_physician,access_sensitive_data,True,localhost
-2025-06-05T10:14:35.405558,pharm_davis,pharmacist,access_allergy_data,True,localhost
+timestamp,user,role,action,context,result
+2025-06-05 12:35:50,dr_smith,attending_physician,read_all_patient_data,Emergency patient consultation,GRANTED
+2025-06-05 12:35:50,nurse_williams,nurse,prescribe_medication,Routine medication administration,DENIED
+2025-06-05 12:35:50,researcher_chen,researcher,read_patient_data,Clinical research study,DENIED
+2025-06-05 12:35:50,researcher_chen,researcher,read_anonymized_data,Population health analysis,GRANTED
+2025-06-05 12:35:50,pharm_davis,pharmacist,verify_prescriptions,Medication safety check,GRANTED
+2025-06-05 12:35:50,dr_jones,resident_physician,modify_diagnosis,Diagnosis update attempt,DENIED
+2025-06-05 12:35:50,analyst_garcia,data_analyst,generate_reports,Monthly utilization report,GRANTED
+2025-06-05 12:35:50,admin_taylor,system_admin,audit_access_logs,Security audit,GRANTED

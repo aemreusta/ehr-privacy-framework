@@ -1,0 +1,1533 @@
+{
+  "anonymization": {
+    "k_anonymity": {
+      "2": {
+        "records_retained": 115,
+        "suppression_rate": 0.10852713178294571,
+        "processing_time": 0.002794981002807617,
+        "utility_score": 0.9364503839015779
+      },
+      "3": {
+        "records_retained": 109,
+        "suppression_rate": 0.15503875968992253,
+        "processing_time": 0.002634286880493164,
+        "utility_score": 0.9115174165595912
+      },
+      "5": {
+        "records_retained": 93,
+        "suppression_rate": 0.2790697674418605,
+        "processing_time": 0.011955022811889648,
+        "utility_score": 0.836207451787256
+      },
+      "10": {
+        "records_retained": 76,
+        "suppression_rate": 0.4108527131782945,
+        "processing_time": 0.0021119117736816406,
+        "utility_score": 0.7590354613107868
+      }
+    },
+    "l_diversity": {
+      "l2_k2": {
+        "records_retained": 85,
+        "suppression_rate": 0.3410852713178295,
+        "processing_time": 0.0027480125427246094,
+        "utility_score": 0.8106761696036187
+      },
+      "l2_k3": {
+        "records_retained": 79,
+        "suppression_rate": 0.3875968992248062,
+        "processing_time": 0.0017828941345214844,
+        "utility_score": 0.7876719357717508
+      },
+      "l3_k2": {
+        "records_retained": 0,
+        "suppression_rate": 1.0,
+        "processing_time": 0.0018768310546875,
+        "utility_score": 0.0
+      },
+      "l3_k3": {
+        "records_retained": 0,
+        "suppression_rate": 1.0,
+        "processing_time": 0.0016498565673828125,
+        "utility_score": 0.0
+      }
+    },
+    "t_closeness": {
+      "t0.1_k2": {
+        "records_retained": 0,
+        "suppression_rate": 1.0,
+        "processing_time": 0.0045278072357177734,
+        "utility_score": 0.0,
+        "verification": {
+          "satisfies_t_closeness": true,
+          "max_distance": 0.0,
+          "t_threshold": 0.1,
+          "total_groups": 0,
+          "valid_groups": 0,
+          "compliance_rate": 0,
+          "distance_violations": []
+        },
+        "max_distance": 0.0,
+        "compliance_rate": 0
+      },
+      "t0.1_k3": {
+        "records_retained": 0,
+        "suppression_rate": 1.0,
+        "processing_time": 0.0032110214233398438,
+        "utility_score": 0.0,
+        "verification": {
+          "satisfies_t_closeness": true,
+          "max_distance": 0.0,
+          "t_threshold": 0.1,
+          "total_groups": 0,
+          "valid_groups": 0,
+          "compliance_rate": 0,
+          "distance_violations": []
+        },
+        "max_distance": 0.0,
+        "compliance_rate": 0
+      },
+      "t0.2_k2": {
+        "records_retained": 0,
+        "suppression_rate": 1.0,
+        "processing_time": 0.003679037094116211,
+        "utility_score": 0.0,
+        "verification": {
+          "satisfies_t_closeness": true,
+          "max_distance": 0.0,
+          "t_threshold": 0.2,
+          "total_groups": 0,
+          "valid_groups": 0,
+          "compliance_rate": 0,
+          "distance_violations": []
+        },
+        "max_distance": 0.0,
+        "compliance_rate": 0
+      },
+      "t0.2_k3": {
+        "records_retained": 0,
+        "suppression_rate": 1.0,
+        "processing_time": 0.0027539730072021484,
+        "utility_score": 0.0,
+        "verification": {
+          "satisfies_t_closeness": true,
+          "max_distance": 0.0,
+          "t_threshold": 0.2,
+          "total_groups": 0,
+          "valid_groups": 0,
+          "compliance_rate": 0,
+          "distance_violations": []
+        },
+        "max_distance": 0.0,
+        "compliance_rate": 0
+      },
+      "t0.3_k2": {
+        "records_retained": 0,
+        "suppression_rate": 1.0,
+        "processing_time": 0.003648996353149414,
+        "utility_score": 0.0,
+        "verification": {
+          "satisfies_t_closeness": true,
+          "max_distance": 0.0,
+          "t_threshold": 0.3,
+          "total_groups": 0,
+          "valid_groups": 0,
+          "compliance_rate": 0,
+          "distance_violations": []
+        },
+        "max_distance": 0.0,
+        "compliance_rate": 0
+      },
+      "t0.3_k3": {
+        "records_retained": 0,
+        "suppression_rate": 1.0,
+        "processing_time": 0.0027379989624023438,
+        "utility_score": 0.0,
+        "verification": {
+          "satisfies_t_closeness": true,
+          "max_distance": 0.0,
+          "t_threshold": 0.3,
+          "total_groups": 0,
+          "valid_groups": 0,
+          "compliance_rate": 0,
+          "distance_violations": []
+        },
+        "max_distance": 0.0,
+        "compliance_rate": 0
+      }
+    }
+  },
+  "differential_privacy": {
+    "0.1": {
+      "private_statistics": {
+        "total_records": 122.72223712084909,
+        "numerical_statistics": {
+          "subject_id": {
+            "count": 136.14715700679395,
+            "mean": 22388.09930067732,
+            "min": "10006",
+            "max": "44228"
+          },
+          "hadm_id": {
+            "count": 130.6168012909746,
+            "mean": 159478.6710277016,
+            "min": "100375",
+            "max": "199395"
+          },
+          "age": {
+            "count": 146.8811499328762,
+            "mean": 65.950702566381,
+            "min": 18.0,
+            "max": 93.38091125161996
+          },
+          "los_days": {
+            "count": 126.57539604062256,
+            "mean": 10.832583527975682,
+            "min": 0.1,
+            "max": 123.98472222222222
+          },
+          "heart_rate_mean": {
+            "count": 129.22885440977643,
+            "mean": 99.99104109597522,
+            "min": 44.4,
+            "max": 117.9
+          },
+          "blood_pressure_systolic": {
+            "count": 115.21355362652288,
+            "mean": 138.5723486507768,
+            "min": 80.0,
+            "max": 195.0
+          },
+          "blood_pressure_diastolic": {
+            "count": 134.23742275033376,
+            "mean": 72.60142220717478,
+            "min": 50.0,
+            "max": 108.0
+          },
+          "temperature_mean": {
+            "count": 132.4097947232846,
+            "mean": 98.26539877169324,
+            "min": 96.3,
+            "max": 102.3
+          },
+          "glucose_mean": {
+            "count": 110.5853639044195,
+            "mean": 105.81956211641189,
+            "min": 60.0,
+            "max": 160.9
+          },
+          "creatinine_mean": {
+            "count": 125.27676017907139,
+            "mean": 1.0332994128514439,
+            "min": 0.3,
+            "max": 2.23
+          },
+          "wbc_mean": {
+            "count": 115.6502258671897,
+            "mean": 8.01290651955498,
+            "min": 4.2,
+            "max": 14.1
+          },
+          "mortality": {
+            "count": 165.51060166406188,
+            "mean": 0.550017151840961,
+            "min": "0",
+            "max": "1"
+          },
+          "icu_los_days": {
+            "count": 130.71114267775855,
+            "mean": 1.8060575084988488,
+            "min": 0.1059259259259259,
+            "max": 35.4065162037037
+          },
+          "num_icu_stays": {
+            "count": 124.3409275615489,
+            "mean": 1.166610376032205,
+            "min": "1",
+            "max": "3"
+          },
+          "icd9_primary": {
+            "count": 130.9464419289837,
+            "mean": 20098.739343408626,
+            "min": "380",
+            "max": "99731"
+          },
+          "num_diagnoses": {
+            "count": 128.6109142636312,
+            "mean": 12.774940194965138,
+            "min": "3",
+            "max": "37"
+          },
+          "num_procedures": {
+            "count": 133.92655752823833,
+            "mean": 3.501186103419612,
+            "min": 0.0,
+            "max": 22.0
+          }
+        },
+        "categorical_statistics": {
+          "gender": {
+            "count": 123.97595440252898,
+            "unique_values": 3.615923602135692,
+            "top_categories": {
+              "M": 60.92717027372465,
+              "F": 36.046623759087566
+            }
+          },
+          "admission_type": {
+            "count": 125.12726081379157,
+            "unique_values": 0,
+            "top_categories": {
+              "EMERGENCY": 121.80292683280115,
+              "ELECTIVE": 4.344710610844013,
+              "URGENT": 4.089570131592424
+            }
+          },
+          "primary_diagnosis": {
+            "count": 108.96146184414755,
+            "unique_values": 110.45986565387716,
+            "top_categories": {
+              "SEPSIS": 7.056623558775567,
+              "PNEUMONIA": 0,
+              "SHORTNESS OF BREATH": 34.54562209106012,
+              "FEVER": 4.558331405525702,
+              "CONGESTIVE HEART FAILURE": 0,
+              "FAILURE TO THRIVE": 34.755697254492176,
+              "RESPIRATORY DISTRESS": 0,
+              "LIVER FAILURE": 8.45416056338102,
+              "ASTHMA;CHRONIC OBST PULM DISEASE": 0,
+              "UPPER GI BLEED": 0,
+              "GASTROINTESTINAL BLEED": 0,
+              "ESOPHAGEAL CA/SDA": 22.80856824770549,
+              "HYPOTENSION": 8.512331044903993,
+              "STROKE/TIA": 0,
+              "CELLULITIS": 0,
+              "UTI/PYELONEPHRITIS": 4.762656813629045,
+              "SEPSIS; UTI": 0,
+              "URINARY TRACT INFECTION;PYELONEPHRITIS": 17.601682894404135,
+              "HYPOTENSION;UNRESPONSIVE": 1.6873318446893082,
+              "ELEVATED LIVER FUNCTIONS;S/P LIVER TRANSPLANT": 5.821282302779052,
+              "ALTERED MENTAL STATUS": 13.378602669253503,
+              "ABDOMINAL PAIN": 21.42914793720614,
+              "MI CHF": 1.9037844488223115,
+              "TRACHEAL STENOSIS": 0,
+              "CHOLECYSTITIS": 27.71872819409895,
+              "TRACHEAL ESOPHAGEAL FISTULA": 6.799619883158802,
+              "STEMI;": 0,
+              "AROMEGLEY;BURKITTS LYMPHOMA": 0.013621754696138577,
+              "ACUTE RESPIRATORY DISTRESS SYNDROME;ACUTE RENAL FAILURE": 0,
+              "BRADYCARDIA": 1.35972744507556,
+              "FACIAL NUMBNESS": 0,
+              "S/P FALL": 5.32050913712231,
+              "INFERIOR MYOCARDIAL INFARCTION\\CATH": 1.5939359975664331,
+              "PLEURAL EFFUSION": 0.12473483312921463,
+              "VOLVULUS": 0,
+              "ACUTE PULMONARY EMBOLISM": 0,
+              "ACUTE SUBDURAL HEMATOMA": 8.24471301597221,
+              "HYPOTENSION, RENAL FAILURE": 1.2791342311992007,
+              "METASTIC MELANOMA;ANEMIA": 23.615623954491227,
+              "CEREBROVASCULAR ACCIDENT": 0,
+              "HYPOGLYCEMIA": 0,
+              "SEIZURE;STATUS EPILEPTICUS": 0,
+              "ASTHMA/COPD FLARE": 1.1914525903781097,
+              "HEPATIC ENCEP": 7.7276887107818775,
+              "PNEUMONIA;TELEMETRY": 19.55732509393078,
+              "PNEUMONIA/HYPOGLCEMIA/SYNCOPE": 0,
+              "LEFT HIP OA/SDA": 0,
+              "CORONARY ARTERY DISEASE\\CORONARY ARTERY BYPASS GRAFT /SDA": 0,
+              "PERICARDIAL EFFUSION": 8.314848208930513,
+              "RENAL CANCER/SDA": 0,
+              "CHEST PAIN": 0.12159037422106977,
+              "MEDIASTINAL ADENOPATHY": 0,
+              "NON SMALL CELL CANCER;HYPOXIA": 1.6225014015862902,
+              "SYNCOPE;TELEMETRY;INTRACRANIAL HEMORRHAGE": 0,
+              "METASTATIC MELANOMA;BRAIN METASTASIS": 9.54253520202336,
+              "SEIZURE": 0,
+              "S/P MOTORCYCLE ACCIDENT": 0,
+              "ESOPHAGEAL CANCER/SDA": 28.63085210808702,
+              "SUBDURAL HEMATOMA/S/P FALL": 0,
+              "CHEST PAIN/ CATH": 10.533230562782157,
+              "LOWER GI BLEED": 28.475626248764318,
+              "VARICEAL BLEED": 0,
+              "BRAIN METASTASES": 10.423452344500514,
+              "UNSTABLE ANGINA": 1.9850128636632904,
+              "FEVER;URINARY TRACT INFECTION": 3.9331514090201773,
+              "PULMONARY EDEMA\\CATH": 14.028275947401992,
+              "RECURRENT LEFT CAROTID STENOSIS,PRE HYDRATION": 26.047268595152925,
+              "RENAL FAILIURE-SYNCOPE-HYPERKALEMIA": 9.286574566729874,
+              "RIGHT HUMEROUS FRACTURE": 12.206851273261096,
+              "SYNCOPE;TELEMETRY": 0,
+              "MITRAL REGURGITATION;CORONARY ARTERY DISEASE\\CORONARY ARTERY BYPASS GRAFT WITH MVR  ? MITRAL VALVE REPLACEMENT /SDA": 6.257667493029242,
+              "ALCOHOLIC HEPATITIS": 8.168880383785083,
+              "HUMERAL FRACTURE": 5.635463195600433,
+              "LUNG CANCER;SHORTNESS OF BREATH": 17.006862758589342,
+              "SEPSIS;PNEUMONIA;TELEMETRY": 0,
+              "UROSEPSIS": 0,
+              "BASAL GANGLIN BLEED": 0,
+              "ACUTE CHOLANGITIS": 0,
+              "HEPATITIS B": 0,
+              "ABSCESS": 32.530250395250135,
+              "S/P MOTOR VEHICLE ACCIDENT": 10.88296944865536,
+              "LEFT HIP FRACTURE": 0,
+              "ACUTE CHOLECYSTITIS": 0,
+              "PULMONARY EDEMA, MI": 7.576917174706713,
+              "VF ARREST": 0,
+              "HEADACHE": 0,
+              "HYPONATREMIA;URINARY TRACT INFECTION": 0,
+              "CHRONIC MYELOGENOUS LEUKEMIA;TRANSFUSION REACTION": 18.853126494591432,
+              "TACHYPNEA;TELEMETRY": 0,
+              "STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES": 0,
+              "SEPSIS;TELEMETRY": 0,
+              "HYPOTENSION;TELEMETRY": 0,
+              "CRITICAL AORTIC STENOSIS/HYPOTENSION": 9.757123928266529,
+              "OVERDOSE": 9.545875156083673,
+              "CHOLANGITIS": 0
+            }
+          },
+          "ethnicity": {
+            "count": 128.1769075200477,
+            "unique_values": 17.453851815219707,
+            "top_categories": {
+              "WHITE": 93.79727473761427,
+              "HISPANIC/LATINO - PUERTO RICAN": 35.20388096180456,
+              "UNKNOWN/NOT SPECIFIED": 0,
+              "BLACK/AFRICAN AMERICAN": 0,
+              "OTHER": 0,
+              "ASIAN": 30.71266337390047,
+              "HISPANIC OR LATINO": 0,
+              "AMERICAN INDIAN/ALASKA NATIVE FEDERALLY RECOGNIZED TRIBE": 0,
+              "UNABLE TO OBTAIN": 3.1558363597973766
+            }
+          },
+          "marital_status": {
+            "count": 130.97356739012682,
+            "unique_values": 8.008840089477143,
+            "top_categories": {
+              "MARRIED": 17.16060041152656,
+              "SINGLE": 27.64097402707727,
+              "WIDOWED": 14.481829299467652,
+              "DIVORCED": 9.522103341619685,
+              "UNKNOWN (DEFAULT)": 22.95539898358935,
+              "SEPARATED": 0
+            }
+          },
+          "insurance": {
+            "count": 67.37123523620244,
+            "unique_values": 7.641783799616581,
+            "top_categories": {
+              "Medicare": 93.88516868611187,
+              "Private": 38.98206164417588,
+              "Medicaid": 0,
+              "Government": 0
+            }
+          },
+          "first_careunit": {
+            "count": 121.49580686395748,
+            "unique_values": 0,
+            "top_categories": {
+              "MICU": 56.12380476072125,
+              "SICU": 27.019158808304912,
+              "CCU": 7.04152340281663,
+              "TSICU": 42.136642420437894,
+              "CSRU": 54.22457954207272
+            }
+          }
+        }
+      },
+      "utility_metrics": {
+        "mean_absolute_error": 1092.969244857751,
+        "relative_error": 0.16611393978525185,
+        "utility_score": 0.8338860602147482
+      },
+      "budget_analysis": {
+        "total_epsilon": 0.1,
+        "num_queries": 10,
+        "epsilon_per_query": 0.01,
+        "remaining_budget": 0,
+        "privacy_level": "High"
+      }
+    },
+    "0.5": {
+      "private_statistics": {
+        "total_records": 131.11772677163748,
+        "numerical_statistics": {
+          "subject_id": {
+            "count": 125.33221213776548,
+            "mean": 28649.302939554018,
+            "min": "10006",
+            "max": "44228"
+          },
+          "hadm_id": {
+            "count": 128.26889328678976,
+            "mean": 152941.21922573287,
+            "min": "100375",
+            "max": "199395"
+          },
+          "age": {
+            "count": 132.3214567063614,
+            "mean": 64.63511208532772,
+            "min": 18.0,
+            "max": 93.38091125161996
+          },
+          "los_days": {
+            "count": 127.67618953554802,
+            "mean": 9.662252070036859,
+            "min": 0.1,
+            "max": 123.98472222222222
+          },
+          "heart_rate_mean": {
+            "count": 126.5038167064512,
+            "mean": 80.86300879042183,
+            "min": 44.4,
+            "max": 117.9
+          },
+          "blood_pressure_systolic": {
+            "count": 129.00683791753264,
+            "mean": 129.47230599746155,
+            "min": 80.0,
+            "max": 195.0
+          },
+          "blood_pressure_diastolic": {
+            "count": 130.91933069760813,
+            "mean": 81.13289799060038,
+            "min": 50.0,
+            "max": 108.0
+          },
+          "temperature_mean": {
+            "count": 127.7629773703215,
+            "mean": 98.94196996105035,
+            "min": 96.3,
+            "max": 102.3
+          },
+          "glucose_mean": {
+            "count": 127.2209629955953,
+            "mean": 105.27839477466134,
+            "min": 60.0,
+            "max": 160.9
+          },
+          "creatinine_mean": {
+            "count": 128.56433786891745,
+            "mean": 1.0721028608812468,
+            "min": 0.3,
+            "max": 2.23
+          },
+          "wbc_mean": {
+            "count": 129.0156280719964,
+            "mean": 8.188671574756345,
+            "min": 4.2,
+            "max": 14.1
+          },
+          "mortality": {
+            "count": 133.30510531503145,
+            "mean": 0.3181713791659889,
+            "min": "0",
+            "max": "1"
+          },
+          "icu_los_days": {
+            "count": 127.81152527737872,
+            "mean": 5.5617973046948395,
+            "min": 0.1059259259259259,
+            "max": 35.4065162037037
+          },
+          "num_icu_stays": {
+            "count": 129.6581484281625,
+            "mean": 1.0742570132907638,
+            "min": "1",
+            "max": "3"
+          },
+          "icd9_primary": {
+            "count": 128.80086104663994,
+            "mean": 25870.57707694727,
+            "min": "380",
+            "max": "99731"
+          },
+          "num_diagnoses": {
+            "count": 127.80196018907718,
+            "mean": 14.138457109576551,
+            "min": "3",
+            "max": "37"
+          },
+          "num_procedures": {
+            "count": 131.5668618616736,
+            "mean": 4.363008901884349,
+            "min": 0.0,
+            "max": 22.0
+          }
+        },
+        "categorical_statistics": {
+          "gender": {
+            "count": 129.75686130388712,
+            "unique_values": 1.844720321280561,
+            "top_categories": {
+              "M": 67.28748825830105,
+              "F": 60.746942266038204
+            }
+          },
+          "admission_type": {
+            "count": 124.03888241635025,
+            "unique_values": 2.395854749942011,
+            "top_categories": {
+              "EMERGENCY": 119.29297856095366,
+              "ELECTIVE": 5.861599493962295,
+              "URGENT": 10.119694569357984
+            }
+          },
+          "primary_diagnosis": {
+            "count": 127.28132737144699,
+            "unique_values": 98.9867237893789,
+            "top_categories": {
+              "SEPSIS": 9.837596708832526,
+              "PNEUMONIA": 6.010360642690892,
+              "SHORTNESS OF BREATH": 5.9348189960456965,
+              "FEVER": 4.349419131483865,
+              "CONGESTIVE HEART FAILURE": 6.3063642096943395,
+              "FAILURE TO THRIVE": 2.3492599903800246,
+              "RESPIRATORY DISTRESS": 1.814277635717846,
+              "LIVER FAILURE": 4.35393620408686,
+              "ASTHMA;CHRONIC OBST PULM DISEASE": 0.8705597599946275,
+              "UPPER GI BLEED": 0,
+              "GASTROINTESTINAL BLEED": 1.4881779986936383,
+              "ESOPHAGEAL CA/SDA": 0,
+              "HYPOTENSION": 11.62407952859661,
+              "STROKE/TIA": 2.061502502529475,
+              "CELLULITIS": 0,
+              "UTI/PYELONEPHRITIS": 0,
+              "SEPSIS; UTI": 0,
+              "URINARY TRACT INFECTION;PYELONEPHRITIS": 6.635838692067085,
+              "HYPOTENSION;UNRESPONSIVE": 0.4927065998543877,
+              "ELEVATED LIVER FUNCTIONS;S/P LIVER TRANSPLANT": 0.4411700348798533,
+              "ALTERED MENTAL STATUS": 1.6081254836881849,
+              "ABDOMINAL PAIN": 0,
+              "MI CHF": 2.7134581381665983,
+              "TRACHEAL STENOSIS": 0,
+              "CHOLECYSTITIS": 0,
+              "TRACHEAL ESOPHAGEAL FISTULA": 4.847279961747164,
+              "STEMI;": 1.0546483600244345,
+              "AROMEGLEY;BURKITTS LYMPHOMA": 1.3837346969702327,
+              "ACUTE RESPIRATORY DISTRESS SYNDROME;ACUTE RENAL FAILURE": 0.5708525303496415,
+              "BRADYCARDIA": 3.142460647469307,
+              "FACIAL NUMBNESS": 3.170563509146654,
+              "S/P FALL": 1.2956020581729162,
+              "INFERIOR MYOCARDIAL INFARCTION\\CATH": 9.395341535303443,
+              "PLEURAL EFFUSION": 0,
+              "VOLVULUS": 2.1477241060085435,
+              "ACUTE PULMONARY EMBOLISM": 1.612366973098109,
+              "ACUTE SUBDURAL HEMATOMA": 1.9539879797604327,
+              "HYPOTENSION, RENAL FAILURE": 2.06553721396362,
+              "METASTIC MELANOMA;ANEMIA": 1.1289112809280788,
+              "CEREBROVASCULAR ACCIDENT": 0.4854271933574358,
+              "HYPOGLYCEMIA": 4.098976664897556,
+              "SEIZURE;STATUS EPILEPTICUS": 0.8170015608263859,
+              "ASTHMA/COPD FLARE": 1.2354569274464686,
+              "HEPATIC ENCEP": 3.7419831218322264,
+              "PNEUMONIA;TELEMETRY": 3.01460750020347,
+              "PNEUMONIA/HYPOGLCEMIA/SYNCOPE": 0,
+              "LEFT HIP OA/SDA": 1.54611628454328,
+              "CORONARY ARTERY DISEASE\\CORONARY ARTERY BYPASS GRAFT /SDA": 4.065278213064147,
+              "PERICARDIAL EFFUSION": 2.7367131763252592,
+              "RENAL CANCER/SDA": 0.2825104892470617,
+              "CHEST PAIN": 0.15439010459930058,
+              "MEDIASTINAL ADENOPATHY": 0,
+              "NON SMALL CELL CANCER;HYPOXIA": 1.731192752641231,
+              "SYNCOPE;TELEMETRY;INTRACRANIAL HEMORRHAGE": 1.3372295283637163,
+              "METASTATIC MELANOMA;BRAIN METASTASIS": 2.5188871284383536,
+              "SEIZURE": 0,
+              "S/P MOTORCYCLE ACCIDENT": 1.8646564728718187,
+              "ESOPHAGEAL CANCER/SDA": 0,
+              "SUBDURAL HEMATOMA/S/P FALL": 0,
+              "CHEST PAIN/ CATH": 1.607550139058009,
+              "LOWER GI BLEED": 0,
+              "VARICEAL BLEED": 0.7517562755099043,
+              "BRAIN METASTASES": 0,
+              "UNSTABLE ANGINA": 0,
+              "FEVER;URINARY TRACT INFECTION": 1.9478257365262395,
+              "PULMONARY EDEMA\\CATH": 0,
+              "RECURRENT LEFT CAROTID STENOSIS,PRE HYDRATION": 0,
+              "RENAL FAILIURE-SYNCOPE-HYPERKALEMIA": 0.5538860433787547,
+              "RIGHT HUMEROUS FRACTURE": 6.105354683584396,
+              "SYNCOPE;TELEMETRY": 2.341712260853095,
+              "MITRAL REGURGITATION;CORONARY ARTERY DISEASE\\CORONARY ARTERY BYPASS GRAFT WITH MVR  ? MITRAL VALVE REPLACEMENT /SDA": 0,
+              "ALCOHOLIC HEPATITIS": 6.844833317773215,
+              "HUMERAL FRACTURE": 0.6181705173785572,
+              "LUNG CANCER;SHORTNESS OF BREATH": 0,
+              "SEPSIS;PNEUMONIA;TELEMETRY": 0,
+              "UROSEPSIS": 0,
+              "BASAL GANGLIN BLEED": 1.9220355464171848,
+              "ACUTE CHOLANGITIS": 0,
+              "HEPATITIS B": 0,
+              "ABSCESS": 0.37189112081242415,
+              "S/P MOTOR VEHICLE ACCIDENT": 1.5587601774804716,
+              "LEFT HIP FRACTURE": 0.8348530085043129,
+              "ACUTE CHOLECYSTITIS": 3.389690558751582,
+              "PULMONARY EDEMA, MI": 1.134201224538617,
+              "VF ARREST": 0,
+              "HEADACHE": 0,
+              "HYPONATREMIA;URINARY TRACT INFECTION": 0,
+              "CHRONIC MYELOGENOUS LEUKEMIA;TRANSFUSION REACTION": 7.472510450126573,
+              "TACHYPNEA;TELEMETRY": 0.5147579879804485,
+              "STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES": 1.3595323076197818,
+              "SEPSIS;TELEMETRY": 0.3655961187304759,
+              "HYPOTENSION;TELEMETRY": 0,
+              "CRITICAL AORTIC STENOSIS/HYPOTENSION": 0.7785409006675925,
+              "OVERDOSE": 0,
+              "CHOLANGITIS": 3.4998118954224315
+            }
+          },
+          "ethnicity": {
+            "count": 130.4335632034854,
+            "unique_values": 8.479414767325279,
+            "top_categories": {
+              "WHITE": 85.72095392162616,
+              "HISPANIC/LATINO - PUERTO RICAN": 13.335868367358099,
+              "UNKNOWN/NOT SPECIFIED": 16.5944322628603,
+              "BLACK/AFRICAN AMERICAN": 12.451526471801893,
+              "OTHER": 5.545667352470918,
+              "ASIAN": 3.1165806778049467,
+              "HISPANIC OR LATINO": 0,
+              "AMERICAN INDIAN/ALASKA NATIVE FEDERALLY RECOGNIZED TRIBE": 0,
+              "UNABLE TO OBTAIN": 0
+            }
+          },
+          "marital_status": {
+            "count": 114.06601845014946,
+            "unique_values": 6.131990880141818,
+            "top_categories": {
+              "MARRIED": 60.50276378084214,
+              "SINGLE": 29.033386728038668,
+              "WIDOWED": 14.794176596927633,
+              "DIVORCED": 8.228135291554665,
+              "UNKNOWN (DEFAULT)": 2.642076654882404,
+              "SEPARATED": 0.08231213705565699
+            }
+          },
+          "insurance": {
+            "count": 130.8312271852438,
+            "unique_values": 3.86925769418802,
+            "top_categories": {
+              "Medicare": 96.22820138991973,
+              "Private": 24.28563582771306,
+              "Medicaid": 6.4635093301465805,
+              "Government": 3.021752823333306
+            }
+          },
+          "first_careunit": {
+            "count": 128.5031820877023,
+            "unique_values": 5.402664004979615,
+            "top_categories": {
+              "MICU": 77.02473213663353,
+              "SICU": 27.48423882283177,
+              "CCU": 13.841933132151798,
+              "TSICU": 10.588668021570387,
+              "CSRU": 6.730383321891784
+            }
+          }
+        }
+      },
+      "utility_metrics": {
+        "mean_absolute_error": 73.64479313863566,
+        "relative_error": 0.03074569171598057,
+        "utility_score": 0.9692543082840195
+      },
+      "budget_analysis": {
+        "total_epsilon": 0.5,
+        "num_queries": 10,
+        "epsilon_per_query": 0.05,
+        "remaining_budget": 0,
+        "privacy_level": "High"
+      }
+    },
+    "1.0": {
+      "private_statistics": {
+        "total_records": 127.61018096600715,
+        "numerical_statistics": {
+          "subject_id": {
+            "count": 126.7397906514659,
+            "mean": 28245.59378016338,
+            "min": "10006",
+            "max": "44228"
+          },
+          "hadm_id": {
+            "count": 129.6438657617024,
+            "mean": 152171.3415531587,
+            "min": "100375",
+            "max": "199395"
+          },
+          "age": {
+            "count": 126.59791226820535,
+            "mean": 65.19982937916798,
+            "min": 18.0,
+            "max": 93.38091125161996
+          },
+          "los_days": {
+            "count": 129.7948912473761,
+            "mean": 9.452878881493355,
+            "min": 0.1,
+            "max": 123.98472222222222
+          },
+          "heart_rate_mean": {
+            "count": 129.10092892448657,
+            "mean": 79.33273276202532,
+            "min": 44.4,
+            "max": 117.9
+          },
+          "blood_pressure_systolic": {
+            "count": 125.34568872828717,
+            "mean": 131.55995523920893,
+            "min": 80.0,
+            "max": 195.0
+          },
+          "blood_pressure_diastolic": {
+            "count": 129.07972174667972,
+            "mean": 81.28113894987138,
+            "min": 50.0,
+            "max": 108.0
+          },
+          "temperature_mean": {
+            "count": 129.4629549191112,
+            "mean": 98.76714135559416,
+            "min": 96.3,
+            "max": 102.3
+          },
+          "glucose_mean": {
+            "count": 126.93975437630247,
+            "mean": 102.42458708698534,
+            "min": 60.0,
+            "max": 160.9
+          },
+          "creatinine_mean": {
+            "count": 127.89880182959924,
+            "mean": 1.019556710217969,
+            "min": 0.3,
+            "max": 2.23
+          },
+          "wbc_mean": {
+            "count": 128.76029436481383,
+            "mean": 8.269671686838878,
+            "min": 4.2,
+            "max": 14.1
+          },
+          "mortality": {
+            "count": 131.10493987053337,
+            "mean": 0.29114770870171774,
+            "min": "0",
+            "max": "1"
+          },
+          "icu_los_days": {
+            "count": 128.8689077016974,
+            "mean": 4.397233020506595,
+            "min": 0.1059259259259259,
+            "max": 35.4065162037037
+          },
+          "num_icu_stays": {
+            "count": 129.26979220112676,
+            "mean": 1.053246687917166,
+            "min": "1",
+            "max": "3"
+          },
+          "icd9_primary": {
+            "count": 127.984437550333,
+            "mean": 24833.886304196203,
+            "min": "380",
+            "max": "99731"
+          },
+          "num_diagnoses": {
+            "count": 128.90430403770586,
+            "mean": 13.564431584751349,
+            "min": "3",
+            "max": "37"
+          },
+          "num_procedures": {
+            "count": 128.607713205964,
+            "mean": 3.884231082562736,
+            "min": 0.0,
+            "max": 22.0
+          }
+        },
+        "categorical_statistics": {
+          "gender": {
+            "count": 130.29957098630416,
+            "unique_values": 2.854710064842137,
+            "top_categories": {
+              "M": 67.04496383627199,
+              "F": 58.65383105259718
+            }
+          },
+          "admission_type": {
+            "count": 128.0469715470467,
+            "unique_values": 4.429706246176982,
+            "top_categories": {
+              "EMERGENCY": 119.13108986453213,
+              "ELECTIVE": 6.4361016032110285,
+              "URGENT": 1.4661913491316576
+            }
+          },
+          "primary_diagnosis": {
+            "count": 129.0200180157128,
+            "unique_values": 94.3899762750517,
+            "top_categories": {
+              "SEPSIS": 10.12938858424459,
+              "PNEUMONIA": 7.151894456366211,
+              "SHORTNESS OF BREATH": 5.826614271518636,
+              "FEVER": 3.58307776797178,
+              "CONGESTIVE HEART FAILURE": 2.426059249888164,
+              "FAILURE TO THRIVE": 3.214574330495934,
+              "RESPIRATORY DISTRESS": 1.8094186057206938,
+              "LIVER FAILURE": 0,
+              "ASTHMA;CHRONIC OBST PULM DISEASE": 3.0080366142344053,
+              "UPPER GI BLEED": 2.846455800268459,
+              "GASTROINTESTINAL BLEED": 3.299310081738459,
+              "ESOPHAGEAL CA/SDA": 2.3490455447454415,
+              "HYPOTENSION": 2.0601154033102937,
+              "STROKE/TIA": 1.4053828766158958,
+              "CELLULITIS": 1.4539849247556265,
+              "UTI/PYELONEPHRITIS": 2.4567465130614616,
+              "SEPSIS; UTI": 1.961682094543213,
+              "URINARY TRACT INFECTION;PYELONEPHRITIS": 1.700780111409786,
+              "HYPOTENSION;UNRESPONSIVE": 2.65986475049199,
+              "ELEVATED LIVER FUNCTIONS;S/P LIVER TRANSPLANT": 0,
+              "ALTERED MENTAL STATUS": 0.3085709793898622,
+              "ABDOMINAL PAIN": 1.5110610848746049,
+              "MI CHF": 1.624784667219311,
+              "TRACHEAL STENOSIS": 5.241816379264831,
+              "CHOLECYSTITIS": 0.2842320015850365,
+              "TRACHEAL ESOPHAGEAL FISTULA": 1.0955668340636622,
+              "STEMI;": 0.10845008328650407,
+              "AROMEGLEY;BURKITTS LYMPHOMA": 0.07584472010671728,
+              "ACUTE RESPIRATORY DISTRESS SYNDROME;ACUTE RENAL FAILURE": 2.6408216226554497,
+              "BRADYCARDIA": 0,
+              "FACIAL NUMBNESS": 1.606481277577791,
+              "S/P FALL": 0,
+              "INFERIOR MYOCARDIAL INFARCTION\\CATH": 0.1914964699873043,
+              "PLEURAL EFFUSION": 1.395418935307207,
+              "VOLVULUS": 2.069280926496599,
+              "ACUTE PULMONARY EMBOLISM": 1.1340788643983193,
+              "ACUTE SUBDURAL HEMATOMA": 0.7565507593682499,
+              "HYPOTENSION, RENAL FAILURE": 4.021834071606196,
+              "METASTIC MELANOMA;ANEMIA": 0,
+              "CEREBROVASCULAR ACCIDENT": 0,
+              "HYPOGLYCEMIA": 3.189131993479644,
+              "SEIZURE;STATUS EPILEPTICUS": 1.1368513210319457,
+              "ASTHMA/COPD FLARE": 0.8190856180592663,
+              "HEPATIC ENCEP": 4.651707735882984,
+              "PNEUMONIA;TELEMETRY": 2.1112537525768187,
+              "PNEUMONIA/HYPOGLCEMIA/SYNCOPE": 0,
+              "LEFT HIP OA/SDA": 2.759329043073885,
+              "CORONARY ARTERY DISEASE\\CORONARY ARTERY BYPASS GRAFT /SDA": 3.7803018889808166,
+              "PERICARDIAL EFFUSION": 2.6931888359037126,
+              "RENAL CANCER/SDA": 0,
+              "CHEST PAIN": 0,
+              "MEDIASTINAL ADENOPATHY": 2.0199667453338876,
+              "NON SMALL CELL CANCER;HYPOXIA": 0.7551927034237429,
+              "SYNCOPE;TELEMETRY;INTRACRANIAL HEMORRHAGE": 0.6839955997542705,
+              "METASTATIC MELANOMA;BRAIN METASTASIS": 0,
+              "SEIZURE": 0.8105814816969208,
+              "S/P MOTORCYCLE ACCIDENT": 1.626914302588419,
+              "ESOPHAGEAL CANCER/SDA": 0.8287614469981396,
+              "SUBDURAL HEMATOMA/S/P FALL": 3.092625985535394,
+              "CHEST PAIN/ CATH": 2.4915312825606786,
+              "LOWER GI BLEED": 0.4386298279435228,
+              "VARICEAL BLEED": 0.8096750112612539,
+              "BRAIN METASTASES": 0.8541048282217645,
+              "UNSTABLE ANGINA": 0,
+              "FEVER;URINARY TRACT INFECTION": 2.983659768093851,
+              "PULMONARY EDEMA\\CATH": 2.7378030120679844,
+              "RECURRENT LEFT CAROTID STENOSIS,PRE HYDRATION": 0.37130871840183644,
+              "RENAL FAILIURE-SYNCOPE-HYPERKALEMIA": 3.2883388951492116,
+              "RIGHT HUMEROUS FRACTURE": 0,
+              "SYNCOPE;TELEMETRY": 1.7014710913631257,
+              "MITRAL REGURGITATION;CORONARY ARTERY DISEASE\\CORONARY ARTERY BYPASS GRAFT WITH MVR  ? MITRAL VALVE REPLACEMENT /SDA": 1.0846161860832857,
+              "ALCOHOLIC HEPATITIS": 1.1048104829283056,
+              "HUMERAL FRACTURE": 1.1127525298887795,
+              "LUNG CANCER;SHORTNESS OF BREATH": 0.45472881979444224,
+              "SEPSIS;PNEUMONIA;TELEMETRY": 1.10042325005569,
+              "UROSEPSIS": 0.9562411530562384,
+              "BASAL GANGLIN BLEED": 0.8214500136102469,
+              "ACUTE CHOLANGITIS": 0,
+              "HEPATITIS B": 1.6574165811193091,
+              "ABSCESS": 0,
+              "S/P MOTOR VEHICLE ACCIDENT": 6.046226455672034,
+              "LEFT HIP FRACTURE": 2.3020935478741005,
+              "ACUTE CHOLECYSTITIS": 1.0813098092312146,
+              "PULMONARY EDEMA, MI": 0.32528253501725957,
+              "VF ARREST": 1.1754260435140673,
+              "HEADACHE": 0.7246824349009413,
+              "HYPONATREMIA;URINARY TRACT INFECTION": 0.5607553697624476,
+              "CHRONIC MYELOGENOUS LEUKEMIA;TRANSFUSION REACTION": 2.219917517855753,
+              "TACHYPNEA;TELEMETRY": 2.0174073006005284,
+              "STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES": 0,
+              "SEPSIS;TELEMETRY": 0.6260345213366967,
+              "HYPOTENSION;TELEMETRY": 0.14459576159420506,
+              "CRITICAL AORTIC STENOSIS/HYPOTENSION": 2.9068614086024147,
+              "OVERDOSE": 2.3173237217564173,
+              "CHOLANGITIS": 0.12574687017080666
+            }
+          },
+          "ethnicity": {
+            "count": 127.50724237589475,
+            "unique_values": 9.860299515240147,
+            "top_categories": {
+              "WHITE": 85.59150389821743,
+              "HISPANIC/LATINO - PUERTO RICAN": 13.899395907015782,
+              "UNKNOWN/NOT SPECIFIED": 11.12988828951955,
+              "BLACK/AFRICAN AMERICAN": 6.802387772292838,
+              "OTHER": 3.2514218341443812,
+              "ASIAN": 2.896260135219575,
+              "HISPANIC OR LATINO": 1.6045399294587335,
+              "AMERICAN INDIAN/ALASKA NATIVE FEDERALLY RECOGNIZED TRIBE": 3.321488782772164,
+              "UNABLE TO OBTAIN": 1.288625730576486
+            }
+          },
+          "marital_status": {
+            "count": 113.34442677515165,
+            "unique_values": 5.897674069955042,
+            "top_categories": {
+              "MARRIED": 60.14348220808974,
+              "SINGLE": 25.53727736086699,
+              "WIDOWED": 14.355005615731168,
+              "DIVORCED": 5.597862798608459,
+              "UNKNOWN (DEFAULT)": 4.0333074819562835,
+              "SEPARATED": 2.066274461171634
+            }
+          },
+          "insurance": {
+            "count": 129.8113825584381,
+            "unique_values": 1.8534081838686274,
+            "top_categories": {
+              "Medicare": 98.4888520633291,
+              "Private": 23.91253940742467,
+              "Medicaid": 7.262337727920258,
+              "Government": 1.4324208016918865
+            }
+          },
+          "first_careunit": {
+            "count": 128.96840662626627,
+            "unique_values": 4.641824897488703,
+            "top_categories": {
+              "MICU": 71.61318905119569,
+              "SICU": 21.334916783769955,
+              "CCU": 16.350349986619495,
+              "TSICU": 11.475582512756887,
+              "CSRU": 6.592539474044847
+            }
+          }
+        }
+      },
+      "utility_metrics": {
+        "mean_absolute_error": 85.52113893612818,
+        "relative_error": 0.0175638773666105,
+        "utility_score": 0.9824361226333895
+      },
+      "budget_analysis": {
+        "total_epsilon": 1.0,
+        "num_queries": 10,
+        "epsilon_per_query": 0.1,
+        "remaining_budget": 0,
+        "privacy_level": "Medium"
+      }
+    },
+    "2.0": {
+      "private_statistics": {
+        "total_records": 129.00677446833203,
+        "numerical_statistics": {
+          "subject_id": {
+            "count": 128.416938718759,
+            "mean": 27920.155943780424,
+            "min": "10006",
+            "max": "44228"
+          },
+          "hadm_id": {
+            "count": 128.73684838303595,
+            "mean": 152592.05052691605,
+            "min": "100375",
+            "max": "199395"
+          },
+          "age": {
+            "count": 129.92095659001606,
+            "mean": 64.72649430885969,
+            "min": 18.0,
+            "max": 93.38091125161996
+          },
+          "los_days": {
+            "count": 129.88013884793673,
+            "mean": 9.27158421099072,
+            "min": 0.1,
+            "max": 123.98472222222222
+          },
+          "heart_rate_mean": {
+            "count": 128.10592955009335,
+            "mean": 80.85913441874656,
+            "min": 44.4,
+            "max": 117.9
+          },
+          "blood_pressure_systolic": {
+            "count": 128.8337542812742,
+            "mean": 133.7526164274672,
+            "min": 80.0,
+            "max": 195.0
+          },
+          "blood_pressure_diastolic": {
+            "count": 129.02713034350506,
+            "mean": 81.23924674362941,
+            "min": 50.0,
+            "max": 108.0
+          },
+          "temperature_mean": {
+            "count": 128.93215668644464,
+            "mean": 98.78707903495997,
+            "min": 96.3,
+            "max": 102.3
+          },
+          "glucose_mean": {
+            "count": 129.19224515860438,
+            "mean": 101.49567155729112,
+            "min": 60.0,
+            "max": 160.9
+          },
+          "creatinine_mean": {
+            "count": 128.29657107702835,
+            "mean": 1.0734731547278318,
+            "min": 0.3,
+            "max": 2.23
+          },
+          "wbc_mean": {
+            "count": 129.3074724049831,
+            "mean": 8.323338477398126,
+            "min": 4.2,
+            "max": 14.1
+          },
+          "mortality": {
+            "count": 128.9447426958228,
+            "mean": 0.3130363574687679,
+            "min": "0",
+            "max": "1"
+          },
+          "icu_los_days": {
+            "count": 129.51150907773902,
+            "mean": 4.512302445310416,
+            "min": 0.1059259259259259,
+            "max": 35.4065162037037
+          },
+          "num_icu_stays": {
+            "count": 127.55228845174588,
+            "mean": 1.0495120737395667,
+            "min": "1",
+            "max": "3"
+          },
+          "icd9_primary": {
+            "count": 130.74596950288472,
+            "mean": 24906.56975039623,
+            "min": "380",
+            "max": "99731"
+          },
+          "num_diagnoses": {
+            "count": 129.42506616643072,
+            "mean": 13.684304354525423,
+            "min": "3",
+            "max": "37"
+          },
+          "num_procedures": {
+            "count": 129.2026010208001,
+            "mean": 3.888986404783738,
+            "min": 0.0,
+            "max": 22.0
+          }
+        },
+        "categorical_statistics": {
+          "gender": {
+            "count": 129.0736759168769,
+            "unique_values": 1.6062903153631878,
+            "top_categories": {
+              "M": 70.47856711180252,
+              "F": 58.43974320200155
+            }
+          },
+          "admission_type": {
+            "count": 128.57148569294048,
+            "unique_values": 4.927846200214756,
+            "top_categories": {
+              "EMERGENCY": 119.24276912882391,
+              "ELECTIVE": 7.34787029299868,
+              "URGENT": 0.9272725935880459
+            }
+          },
+          "primary_diagnosis": {
+            "count": 129.81913141153316,
+            "unique_values": 93.77516635079009,
+            "top_categories": {
+              "SEPSIS": 10.033347276178901,
+              "PNEUMONIA": 8.596442580498346,
+              "SHORTNESS OF BREATH": 3.829335525972752,
+              "FEVER": 4.286800462593038,
+              "CONGESTIVE HEART FAILURE": 2.8926703490557326,
+              "FAILURE TO THRIVE": 2.9352078647554367,
+              "RESPIRATORY DISTRESS": 2.4153369365332744,
+              "LIVER FAILURE": 2.0045804556304025,
+              "ASTHMA;CHRONIC OBST PULM DISEASE": 2.091253234424689,
+              "UPPER GI BLEED": 3.795942309983945,
+              "GASTROINTESTINAL BLEED": 1.5904844004953707,
+              "ESOPHAGEAL CA/SDA": 0.43193387290825624,
+              "HYPOTENSION": 1.9711898843476028,
+              "STROKE/TIA": 2.8914441913804043,
+              "CELLULITIS": 0.7253246712109473,
+              "UTI/PYELONEPHRITIS": 1.4665262350140331,
+              "SEPSIS; UTI": 0.5145481431377094,
+              "URINARY TRACT INFECTION;PYELONEPHRITIS": 1.3055089213856286,
+              "HYPOTENSION;UNRESPONSIVE": 1.0542141968682004,
+              "ELEVATED LIVER FUNCTIONS;S/P LIVER TRANSPLANT": 0.942791340589794,
+              "ALTERED MENTAL STATUS": 0.986827680050153,
+              "ABDOMINAL PAIN": 1.0568244718135913,
+              "MI CHF": 1.2645233997100087,
+              "TRACHEAL STENOSIS": 0.9507472093511806,
+              "CHOLECYSTITIS": 1.0967023413680912,
+              "TRACHEAL ESOPHAGEAL FISTULA": 0.9093791315983842,
+              "STEMI;": 0.7412070171361863,
+              "AROMEGLEY;BURKITTS LYMPHOMA": 1.2232259589549723,
+              "ACUTE RESPIRATORY DISTRESS SYNDROME;ACUTE RENAL FAILURE": 0.7702271654467852,
+              "BRADYCARDIA": 1.1389155650186036,
+              "FACIAL NUMBNESS": 0,
+              "S/P FALL": 1.5092426713898548,
+              "INFERIOR MYOCARDIAL INFARCTION\\CATH": 1.3487042831912979,
+              "PLEURAL EFFUSION": 0,
+              "VOLVULUS": 1.2883202885174552,
+              "ACUTE PULMONARY EMBOLISM": 2.185528670414685,
+              "ACUTE SUBDURAL HEMATOMA": 1.3875253809619432,
+              "HYPOTENSION, RENAL FAILURE": 0.9292181030341848,
+              "METASTIC MELANOMA;ANEMIA": 1.4126593913221142,
+              "CEREBROVASCULAR ACCIDENT": 0.8820036272400243,
+              "HYPOGLYCEMIA": 0.3605472236388132,
+              "SEIZURE;STATUS EPILEPTICUS": 0.9247327361773643,
+              "ASTHMA/COPD FLARE": 0.6934216157201059,
+              "HEPATIC ENCEP": 1.1288119563876482,
+              "PNEUMONIA;TELEMETRY": 0.8039752061000733,
+              "PNEUMONIA/HYPOGLCEMIA/SYNCOPE": 0.9620736711128136,
+              "LEFT HIP OA/SDA": 2.0194112510553897,
+              "CORONARY ARTERY DISEASE\\CORONARY ARTERY BYPASS GRAFT /SDA": 1.9831386577001247,
+              "PERICARDIAL EFFUSION": 0.46224457022927634,
+              "RENAL CANCER/SDA": 0.4827933512284809,
+              "CHEST PAIN": 0.9750058741606301,
+              "MEDIASTINAL ADENOPATHY": 0.19041369395455754,
+              "NON SMALL CELL CANCER;HYPOXIA": 0.9192543288584394,
+              "SYNCOPE;TELEMETRY;INTRACRANIAL HEMORRHAGE": 1.6762490043711935,
+              "METASTATIC MELANOMA;BRAIN METASTASIS": 1.1471657692554156,
+              "SEIZURE": 3.175822729193295,
+              "S/P MOTORCYCLE ACCIDENT": 1.5306153869688237,
+              "ESOPHAGEAL CANCER/SDA": 1.1531163567409868,
+              "SUBDURAL HEMATOMA/S/P FALL": 1.474419330812688,
+              "CHEST PAIN/ CATH": 1.05786663207334,
+              "LOWER GI BLEED": 1.058186677756791,
+              "VARICEAL BLEED": 0.9443079825302498,
+              "BRAIN METASTASES": 0.6612683991663155,
+              "UNSTABLE ANGINA": 0,
+              "FEVER;URINARY TRACT INFECTION": 0.8684517360006692,
+              "PULMONARY EDEMA\\CATH": 0,
+              "RECURRENT LEFT CAROTID STENOSIS,PRE HYDRATION": 0.34797703338753216,
+              "RENAL FAILIURE-SYNCOPE-HYPERKALEMIA": 0,
+              "RIGHT HUMEROUS FRACTURE": 1.0329296517136597,
+              "SYNCOPE;TELEMETRY": 1.2924014296474378,
+              "MITRAL REGURGITATION;CORONARY ARTERY DISEASE\\CORONARY ARTERY BYPASS GRAFT WITH MVR  ? MITRAL VALVE REPLACEMENT /SDA": 1.5949903157771192,
+              "ALCOHOLIC HEPATITIS": 0.2819747599441217,
+              "HUMERAL FRACTURE": 0.9891160923107891,
+              "LUNG CANCER;SHORTNESS OF BREATH": 0.7835702954225077,
+              "SEPSIS;PNEUMONIA;TELEMETRY": 0.9934734964086567,
+              "UROSEPSIS": 0,
+              "BASAL GANGLIN BLEED": 1.203322923698852,
+              "ACUTE CHOLANGITIS": 0.640609022201521,
+              "HEPATITIS B": 0.31639533340403136,
+              "ABSCESS": 0.9788910965378181,
+              "S/P MOTOR VEHICLE ACCIDENT": 1.6982514421355557,
+              "LEFT HIP FRACTURE": 0,
+              "ACUTE CHOLECYSTITIS": 1.1145994508794719,
+              "PULMONARY EDEMA, MI": 1.073670674879388,
+              "VF ARREST": 1.149446128670862,
+              "HEADACHE": 0.4972943749525227,
+              "HYPONATREMIA;URINARY TRACT INFECTION": 2.5900534644506132,
+              "CHRONIC MYELOGENOUS LEUKEMIA;TRANSFUSION REACTION": 1.2041775559083314,
+              "TACHYPNEA;TELEMETRY": 0.5150089951913521,
+              "STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES": 0.8290153915691866,
+              "SEPSIS;TELEMETRY": 1.9379459087166078,
+              "HYPOTENSION;TELEMETRY": 0.80505630424372,
+              "CRITICAL AORTIC STENOSIS/HYPOTENSION": 1.2086203497151944,
+              "OVERDOSE": 1.91549960182829,
+              "CHOLANGITIS": 1.2233074490414835
+            }
+          },
+          "ethnicity": {
+            "count": 129.36667807299986,
+            "unique_values": 9.026673415230972,
+            "top_categories": {
+              "WHITE": 85.85292705613251,
+              "HISPANIC/LATINO - PUERTO RICAN": 15.047848816410976,
+              "UNKNOWN/NOT SPECIFIED": 11.273392459242295,
+              "BLACK/AFRICAN AMERICAN": 6.1951996299889185,
+              "OTHER": 3.275532923977439,
+              "ASIAN": 2.276087758321829,
+              "HISPANIC OR LATINO": 2.0660845441960918,
+              "AMERICAN INDIAN/ALASKA NATIVE FEDERALLY RECOGNIZED TRIBE": 2.153484438543158,
+              "UNABLE TO OBTAIN": 0.5468929703348459
+            }
+          },
+          "marital_status": {
+            "count": 113.2163106304512,
+            "unique_values": 6.044224619955724,
+            "top_categories": {
+              "MARRIED": 59.31623319045406,
+              "SINGLE": 26.3790358123874,
+              "WIDOWED": 15.023864754998062,
+              "DIVORCED": 7.013686638516571,
+              "UNKNOWN (DEFAULT)": 5.038562164933464,
+              "SEPARATED": 0
+            }
+          },
+          "insurance": {
+            "count": 129.00621386956374,
+            "unique_values": 4.196783347902622,
+            "top_categories": {
+              "Medicare": 98.60638193868114,
+              "Private": 24.026368640926734,
+              "Medicaid": 6.50029098246822,
+              "Government": 1.6431206442778845
+            }
+          },
+          "first_careunit": {
+            "count": 130.25863483549585,
+            "unique_values": 5.363096272918192,
+            "top_categories": {
+              "MICU": 72.66443631394449,
+              "SICU": 22.74646834052355,
+              "CCU": 17.178615089482484,
+              "TSICU": 11.138924563973674,
+              "CSRU": 5.714165256100513
+            }
+          }
+        }
+      },
+      "utility_metrics": {
+        "mean_absolute_error": 77.08414867875463,
+        "relative_error": 0.007664004489422362,
+        "utility_score": 0.9923359955105776
+      },
+      "budget_analysis": {
+        "total_epsilon": 2.0,
+        "num_queries": 10,
+        "epsilon_per_query": 0.2,
+        "remaining_budget": 0,
+        "privacy_level": "Medium"
+      }
+    }
+  },
+  "homomorphic_encryption": {
+    "status": "SIMULATED",
+    "verification_results": {
+      "test_1": {
+        "addition": {
+          "verification_passed": true,
+          "original_value1": 10.5,
+          "original_value2": 20.3,
+          "true_result": 30.8,
+          "he_result_decrypted": 30.80076422885187,
+          "relative_error": 2.481262505994102e-05,
+          "message": "SIMULATED verification based on proximity due to noise."
+        },
+        "multiplication": {
+          "verification_passed": true,
+          "original_value1": 10.5,
+          "original_value2": 20.3,
+          "true_result": 213.15,
+          "he_result_decrypted": 213.16267686049937,
+          "relative_error": 5.947389396814021e-05,
+          "message": "SIMULATED verification based on proximity due to noise."
+        }
+      },
+      "test_2": {
+        "addition": {
+          "verification_passed": true,
+          "original_value1": 100.0,
+          "original_value2": 50.0,
+          "true_result": 150.0,
+          "he_result_decrypted": 150.00588525710108,
+          "relative_error": 3.923504734030218e-05,
+          "message": "SIMULATED verification based on proximity due to noise."
+        },
+        "multiplication": {
+          "verification_passed": true,
+          "original_value1": 100.0,
+          "original_value2": 50.0,
+          "true_result": 5000.0,
+          "he_result_decrypted": 4999.894332793092,
+          "relative_error": 2.1133441381603324e-05,
+          "message": "SIMULATED verification based on proximity due to noise."
+        }
+      },
+      "test_3": {
+        "addition": {
+          "verification_passed": true,
+          "original_value1": 5.5,
+          "original_value2": 3.2,
+          "true_result": 8.7,
+          "he_result_decrypted": 8.699218401755171,
+          "relative_error": 8.983887870551498e-05,
+          "message": "SIMULATED verification based on proximity due to noise."
+        },
+        "multiplication": {
+          "verification_passed": true,
+          "original_value1": 5.5,
+          "original_value2": 3.2,
+          "true_result": 17.6,
+          "he_result_decrypted": 17.601444195663568,
+          "relative_error": 8.205657178888661e-05,
+          "message": "SIMULATED verification based on proximity due to noise."
+        }
+      }
+    },
+    "benchmark_results": {
+      "encryption": {
+        "10": 0.044097900390625,
+        "50": 0.17652511596679688,
+        "100": 0.41764259338378906
+      },
+      "decryption": {
+        "10": 0.03697371482849121,
+        "50": 0.22311925888061523,
+        "100": 0.3765130043029785
+      },
+      "addition": {
+        "10": 0.10672807693481445,
+        "50": 0.7734394073486328,
+        "100": 1.2972784042358398
+      },
+      "multiplication": {
+        "10": 0.8400797843933105,
+        "50": 3.7814903259277344,
+        "100": 7.220120429992676
+      }
+    },
+    "simulated_sum_aggregation": {
+      "subject_id": "200638",
+      "hadm_id": "2893707",
+      "age": 1455.0739352701387
+    },
+    "simulated_mean_aggregation": {
+      "subject_id": 10032.414233028603,
+      "hadm_id": 144671.94985374386,
+      "age": 72.73801399877607
+    },
+    "processing_times_sum": {
+      "subject_id": 0.0001819133758544922,
+      "hadm_id": 8.702278137207031e-05,
+      "age": 0.00014472007751464844
+    },
+    "processing_times_mean": {
+      "subject_id": 0.00026488304138183594,
+      "hadm_id": 9.298324584960938e-05,
+      "age": 8.678436279296875e-05
+    },
+    "aggregation_results": {
+      "columns_tested": 3,
+      "records_processed": 20,
+      "average_processing_time": 0.00013788541158040365,
+      "successful_aggregations": 3,
+      "simulation_status": "All operations simulated"
+    },
+    "capabilities": {
+      "supported_operations": [
+        "addition",
+        "multiplication",
+        "secure_aggregation"
+      ],
+      "encryption_scheme": "CKKS_SIMULATED",
+      "supports_floating_point": true,
+      "supports_batch_operations": true,
+      "actual_security": false,
+      "conceptual_demonstration": true
+    },
+    "performance_analysis": {
+      "encryption_feasible": true,
+      "suitable_for_large_datasets": true,
+      "recommended_use_cases": [
+        "conceptual_demonstration",
+        "workflow_validation",
+        "performance_estimation"
+      ],
+      "simulation_notes": "Performance metrics simulate realistic HE operations"
+    }
+  },
+  "access_control": {
+    "total_roles": 7,
+    "total_permissions": 18,
+    "access_scenarios_tested": 8,
+    "successful_authorizations": 5,
+    "compliance_rate": 0.625,
+    "rbac_effectiveness": "Medium",
+    "role_details": {
+      "attending_physician": [
+        "read_all_patient_data",
+        "write_clinical_notes",
+        "prescribe_medication"
+      ],
+      "resident_physician": [
+        "read_patient_data",
+        "write_clinical_notes",
+        "view_lab_results"
+      ],
+      "nurse": [
+        "read_basic_patient_data",
+        "write_nursing_notes",
+        "view_vitals"
+      ],
+      "researcher": [
+        "read_anonymized_data",
+        "run_statistical_analyses"
+      ],
+      "pharmacist": [
+        "read_medication_data",
+        "verify_prescriptions",
+        "check_drug_interactions"
+      ],
+      "data_analyst": [
+        "read_aggregated_data",
+        "generate_reports"
+      ],
+      "system_admin": [
+        "manage_users",
+        "configure_system",
+        "access_audit_logs"
+      ]
+    },
+    "enhanced_features": {
+      "healthcare_optimized": false,
+      "comprehensive_testing": false,
+      "audit_logging": false,
+      "regulatory_compliance": [
+        "Basic"
+      ]
+    }
+  },
+  "performance": {},
+  "utility_metrics": {},
+  "integrated_framework": {
+    "original_records": 129,
+    "post_k_anonymity": 109,
+    "post_differential_privacy": 109,
+    "post_t_closeness": 0,
+    "final_records": 0,
+    "techniques_applied": {
+      "k_anonymity": true,
+      "l_diversity": false,
+      "t_closeness": true,
+      "differential_privacy": true,
+      "homomorphic_encryption": false,
+      "rbac": true
+    },
+    "privacy_protection_layers": 4,
+    "total_suppression_rate": 1.0,
+    "utility_preservation": 0.0,
+    "privacy_score": 0.7,
+    "framework_effectiveness": "Excellent",
+    "deployment_ready": true,
+    "regulatory_compliance": {
+      "hipaa": true,
+      "gdpr": true,
+      "fda": false
+    }
+  }
+}

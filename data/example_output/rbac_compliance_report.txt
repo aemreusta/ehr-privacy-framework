@@ -1,77 +1,12 @@
-Healthcare RBAC Compliance Report
+Role-Based Access Control Compliance Report
 ==================================================
-
-Report Generated: 2025-06-05 10:14:35
 
 System Configuration:
 - Total roles defined: 7
-- Total permissions: 32
-- System status: Operational
+- Total permissions: 23
+- Total users: 8
 
-Compliance Test Results:
-- Total tests executed: 15
-- Tests passed: 15
-- Tests failed: 0
-- Compliance rate: 100.0%
-- RBAC effectiveness: High
-
-Security Analysis:
-- Authorized access granted: 9
-- Unauthorized access denied: 6
-- Security violations: 0
-
-Role-Permission Matrix:
-- attending_physician: 8 permissions
-  * access_radiology
-  * access_sensitive_data
-  * modify_diagnosis
-  * order_procedures
-  * prescribe_medication
-  * read_all_patient_data
-  * view_lab_results
-  * write_clinical_notes
-
-- resident_physician: 5 permissions
-  * access_radiology
-  * order_basic_procedures
-  * read_patient_data
-  * view_lab_results
-  * write_clinical_notes
-
-- nurse: 5 permissions
-  * administer_medication
-  * read_basic_patient_data
-  * update_patient_status
-  * view_vitals
-  * write_nursing_notes
-
-- pharmacist: 5 permissions
-  * access_allergy_data
-  * check_drug_interactions
-  * dispense_medication
-  * read_medication_history
-  * verify_prescriptions
-
-- researcher: 4 permissions
-  * access_research_datasets
-  * export_aggregate_data
-  * read_anonymized_data
-  * run_statistical_analyses
-
-- data_analyst: 4 permissions
-  * access_aggregate_statistics
-  * generate_reports
-  * read_anonymized_data
-  * view_trends
-
-- system_admin: 5 permissions
-  * audit_access_logs
-  * backup_data
-  * manage_permissions
-  * manage_users
-  * system_configuration
-
-Regulatory Compliance:
-- HIPAA: ✓ Role-based access controls implemented
-- GDPR: ✓ Access logging and audit trails active
-- FDA: ✓ Data integrity and access controls validated
+Access Control Effectiveness:
+- Access requests granted: 5
+- Access requests denied: 3
+- Security compliance rate: 37.5%
