@@ -277,8 +277,17 @@ st.markdown(
 
 
 def generate_simple_test_data():
-    """Generate very simple test data as fallback"""
-    logger.warning("Using simple test data as fallback")
+    """
+    Generate minimal test data as final fallback.
+
+    This function creates the simplest possible dataset when all other
+    data loading methods fail. It provides basic functionality to ensure
+    the demo can still run, but with limited data variety.
+
+    Returns:
+        pd.DataFrame: Simple test dataset with 129 records
+    """
+    logger.warning("Using simple test data as final fallback")
 
     data = {
         "age": [25, 30, 35, 40, 45, 50, 55, 60, 65, 70]
@@ -313,41 +322,69 @@ def generate_simple_test_data():
 
 
 def load_data():
-    """Load MIMIC-III dataset"""
+    """Load MIMIC-III dataset with proper fallback hierarchy"""
     logger.info("Attempting to load MIMIC-III dataset")
-    try:
-        data_path = Path("data/processed/mimic_comprehensive_dataset.csv")
-        if data_path.exists():
-            logger.info(f"Loading data from {data_path}")
+
+    # Priority 1: Try to load the real MIMIC comprehensive dataset
+    data_path = Path("data/processed/mimic_comprehensive_dataset.csv")
+    if data_path.exists():
+        try:
+            logger.info(f"Loading real MIMIC data from {data_path}")
             df = pd.read_csv(data_path)
             logger.info(
-                f"Successfully loaded {len(df)} records with {len(df.columns)} columns"
+                f"✅ Successfully loaded real MIMIC data: {len(df)} records with {len(df.columns)} columns"
             )
-            return df
-        else:
-            logger.warning(
-                f"Data file not found at {data_path}, generating sample data"
-            )
-            try:
-                return generate_sample_data()
-            except Exception as e:
-                logger.error(
-                    f"Error in generate_sample_data: {e}, using simple fallback"
+            # Validate that it looks like real MIMIC data
+            if len(df) > 100 and "subject_id" in df.columns:
+                logger.info("✅ Validated: Real MIMIC dataset structure confirmed")
+                return df
+            else:
+                logger.warning(
+                    "⚠️ File exists but doesn't look like MIMIC data, trying fallbacks"
                 )
-                return generate_simple_test_data()
+        except Exception as e:
+            logger.error(f"❌ Error reading MIMIC data file: {e}")
+    else:
+        logger.warning(f"📄 Real MIMIC data not found at {data_path}")
+        logger.info(
+            "💡 To use real MIMIC data, place 'mimic_comprehensive_dataset.csv' in data/processed/"
+        )
+
+    # Priority 2: Generate realistic sample data
+    try:
+        logger.info("🔄 Generating realistic sample healthcare data...")
+        df = generate_sample_data()
+        logger.info(
+            f"✅ Generated sample data: {len(df)} records with {len(df.columns)} columns"
+        )
+        return df
     except Exception as e:
-        logger.error(f"Error loading data: {e}")
-        st.error(f"Error loading data: {e}")
-        try:
-            return generate_sample_data()
-        except Exception as e2:
-            logger.error(f"Error in generate_sample_data: {e2}, using simple fallback")
-            return generate_simple_test_data()
+        logger.error(f"❌ Error generating sample data: {e}")
+
+    # Priority 3: Use simple test data as last resort
+    try:
+        logger.warning("🔄 Using simple test data as final fallback...")
+        df = generate_simple_test_data()
+        logger.info(f"✅ Generated simple test data: {len(df)} records")
+        return df
+    except Exception as e:
+        logger.error(f"❌ Critical error - all data loading failed: {e}")
+        st.error(f"Critical error loading data: {e}")
+        raise RuntimeError("All data loading methods failed") from e
 
 
 def generate_sample_data():
-    """Generate sample healthcare data for demo"""
-    logger.info("Generating sample healthcare data")
+    """
+    Generate realistic sample healthcare data for demo purposes.
+
+    This function creates a synthetic dataset that mimics the structure and
+    characteristics of the real MIMIC-III dataset, allowing users to explore
+    privacy techniques when the real data is not available.
+
+    Returns:
+        pd.DataFrame: Sample healthcare dataset with 129 records
+    """
+    logger.info("Generating realistic sample healthcare data for demo")
     np.random.seed(42)
     n_records = 129
 
@@ -700,7 +737,40 @@ def show_framework_overview(df):
         unsafe_allow_html=True,
     )
 
+    # Data Source Information
+    st.markdown("#### 📊 Dataset Information")
+
+    # Determine data source
+    data_source_info = "🔬 **Sample Data**"
+    data_source_help = "Using generated sample data for demonstration"
+
+    if "subject_id" in df.columns and len(df) > 100:
+        # Check if it looks like real MIMIC data
+        if df["subject_id"].min() >= 10000:  # Real MIMIC subject IDs start around 10000
+            data_source_info = "🏥 **Real MIMIC-III Data**"
+            data_source_help = "Using actual MIMIC-III clinical database"
+        else:
+            data_source_info = "🔬 **Realistic Sample Data**"
+            data_source_help = (
+                "Using comprehensive sample data that mimics MIMIC-III structure"
+            )
+
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.markdown(f"{data_source_info}")
+        st.caption(data_source_help)
+    with col2:
+        if st.button("ℹ️ Data Setup Guide"):
+            st.info("""
+            **To use real MIMIC-III data:**
+            1. Download MIMIC-III demo from PhysioNet
+            2. Place in `data/raw/mimic-iii-clinical-database-demo-1.4/`
+            3. Run `python src/main.py` to process
+            4. Restart the demo
+            """)
+
     # Key Performance Metrics from Report
+    st.markdown("#### 📈 Framework Performance")
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:

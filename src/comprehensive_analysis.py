@@ -99,12 +99,33 @@ class ComprehensivePrivacyAnalysis:
         )
 
     def load_mimic_data(self):
-        """Load MIMIC-III data."""
+        """Load MIMIC-III data with validation."""
         data_path = Path("data/processed/mimic_comprehensive_dataset.csv")
         if data_path.exists():
-            return pd.read_csv(data_path)
+            try:
+                logger.info(f"Loading MIMIC data from {data_path}")
+                df = pd.read_csv(data_path)
+
+                # Validate the dataset structure
+                if len(df) > 50 and "subject_id" in df.columns:
+                    logger.info(f"✅ Successfully loaded MIMIC data: {len(df)} records")
+                    return df
+                else:
+                    logger.warning(
+                        "⚠️ Dataset exists but appears incomplete or malformed"
+                    )
+                    return None
+            except Exception as e:
+                logger.error(f"❌ Error reading MIMIC dataset: {e}")
+                return None
         else:
-            logger.error("Processed dataset not found. Run main.py first.")
+            logger.error(f"📄 Processed dataset not found at {data_path}")
+            logger.info("💡 To process MIMIC data:")
+            logger.info(
+                "   1. Place raw MIMIC-III data in data/raw/mimic-iii-clinical-database-demo-1.4/"
+            )
+            logger.info("   2. Run: python src/main.py")
+            logger.info("   3. Or run: python src/utils/raw_data_processor.py")
             return None
 
     def analyze_anonymization_techniques(self, df, qi_cols, sensitive_cols):
