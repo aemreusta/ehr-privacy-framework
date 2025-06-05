@@ -49,6 +49,7 @@ Homepage = "https://github.com/aemreusta/ehr-privacy-framework"
 Repository = "https://github.com/aemreusta/ehr-privacy-framework.git"
 Documentation = "https://github.com/aemreusta/ehr-privacy-framework/blob/main/README.md"
 "Bug Tracker" = "https://github.com/aemreusta/ehr-privacy-framework/issues"
+"Live Demo" = "https://ehr-privacy-framework.streamlit.app/"
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.

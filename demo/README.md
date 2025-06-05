@@ -1,5 +1,11 @@
 # 🎥 Privacy-Preserving EHR Framework Demo
 
+## 🌐 **Live Interactive Demo**
+
+**👉 [https://ehr-privacy-framework.streamlit.app/](https://ehr-privacy-framework.streamlit.app/)**
+
+Experience the complete framework online with all privacy techniques in an interactive web interface.
+
 ## 10-Minute Comprehensive Framework Demonstration
 
 ### 📺 Demo Video Overview
@@ -8,7 +14,8 @@ This demo showcases the complete privacy-preserving EHR framework with all five 
 
 **Video Length**: ~10 minutes  
 **Dataset**: MIMIC-III Clinical Database (129 patient admissions, 24 variables)  
-**Framework Score**: 81.3% effectiveness with 95% privacy protection
+**Framework Score**: 81.3% effectiveness with 95% privacy protection  
+**Live Demo**: **[https://ehr-privacy-framework.streamlit.app/](https://ehr-privacy-framework.streamlit.app/)**
 
 ---
 

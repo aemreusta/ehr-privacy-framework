@@ -4,6 +4,8 @@
 **Hacettepe University - Department of Artificial Intelligence Engineering**  
 **Spring Semester 2025**
 
+**🌐 Live Demo:** **[https://ehr-privacy-framework.streamlit.app/](https://ehr-privacy-framework.streamlit.app/)**
+
 ---
 
 **Student:** Ahmet Emre Usta  
@@ -99,6 +101,13 @@ This project combines multiple privacy strategies into an integrated framework s
 4. **Regulatory Compliance**: Addressing HIPAA, GDPR, and FDA requirements
 
 ## 🚀 Quick Start
+
+### 🌐 **Try the Live Demo**
+
+**🎯 Experience the complete framework online:**
+**👉 [https://ehr-privacy-framework.streamlit.app/](https://ehr-privacy-framework.streamlit.app/)**
+
+The interactive demo showcases all privacy techniques working together with real healthcare data.
 
 ### Installation
 
@@ -196,7 +205,13 @@ python test_complete_framework.py
 
 ## 🎥 Interactive Streamlit Demo
 
-### Launch the Demo
+### 🌐 **Live Online Demo**
+
+**👉 [https://ehr-privacy-framework.streamlit.app/](https://ehr-privacy-framework.streamlit.app/)**
+
+Experience the complete framework with all privacy techniques in an interactive web interface.
+
+### Launch Local Demo
 
 ```bash
 # Option 1: Use the launcher script (recommended)
@@ -212,9 +227,10 @@ streamlit run streamlit_demo.py
 
 ### Access the Demo
 
-- **URL**: <http://localhost:8501>
-- **Browser**: Chrome/Firefox recommended for best recording quality
-- **Resolution**: 1920x1080 recommended for video recording
+- **Live Demo**: **[https://ehr-privacy-framework.streamlit.app/](https://ehr-privacy-framework.streamlit.app/)**
+- **Local URL**: <http://localhost:8501>
+- **Browser**: Chrome/Firefox recommended for best experience
+- **Resolution**: 1920x1080 recommended for optimal viewing
 
 ### Demo Features
 
