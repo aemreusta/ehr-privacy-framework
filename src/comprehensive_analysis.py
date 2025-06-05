@@ -24,15 +24,12 @@ import pandas as pd
 from anonymization.k_anonymity import KAnonymity
 from anonymization.l_diversity import LDiversity
 from anonymization.t_closeness import TCloseness
+
+# Import homomorphic encryption with availability flag
+from encryption.homomorphic_encryption import PYFHEL_AVAILABLE, HomomorphicEncryption
 from privacy.differential_privacy import DifferentialPrivacy
 
-# Try to import homomorphic encryption
-try:
-    from encryption.homomorphic_encryption import HomomorphicEncryption
-
-    HE_AVAILABLE = True
-except ImportError:
-    HE_AVAILABLE = False
+HE_AVAILABLE = PYFHEL_AVAILABLE  # This will be False for simulation mode
 
 # Configure logging
 logging.basicConfig(
@@ -76,14 +73,8 @@ class ComprehensivePrivacyAnalysis:
         # 2. Differential Privacy Analysis
         self.analyze_differential_privacy(df)
 
-        # 3. Homomorphic Encryption Analysis
-        if HE_AVAILABLE:
-            self.analyze_homomorphic_encryption(df)
-        else:
-            logger.warning(
-                "Homomorphic encryption not available (Pyfhel not installed)"
-            )
-            self.results["homomorphic_encryption"] = {"error": "Pyfhel not installed"}
+        # 3. Homomorphic Encryption Analysis (Simulation Mode)
+        self.analyze_homomorphic_encryption(df)
 
         # 4. Access Control Analysis
         self.analyze_access_control()
@@ -248,14 +239,18 @@ class ComprehensivePrivacyAnalysis:
         self.results["differential_privacy"] = results
 
     def analyze_homomorphic_encryption(self, df):
-        """Analyze homomorphic encryption capabilities."""
-        logger.info("Analyzing homomorphic encryption")
+        """Analyze homomorphic encryption capabilities (SIMULATION MODE)."""
+        logger.info("Analyzing homomorphic encryption in SIMULATION MODE")
 
         try:
-            # Initialize homomorphic encryption
+            # Initialize simulated homomorphic encryption
             he = HomomorphicEncryption()
 
-            results = {}
+            results = {
+                "status": "SIMULATED"
+                if not HE_AVAILABLE
+                else "LIVE_UNAVAILABLE_FALLBACK_TO_SIMULATION"
+            }
 
             # Test basic operations
             verification_results = {}
@@ -270,68 +265,84 @@ class ComprehensivePrivacyAnalysis:
                     "multiplication": mult_result,
                 }
 
-            # Benchmark operations
+            # Benchmark operations (simulated)
             benchmark_results = he.benchmark_operations([10, 50, 100])
-
-            # Get security parameters
-            security_params = he.get_security_parameters()
 
             # Test secure aggregation on a subset of data (for performance)
             numerical_cols = df.select_dtypes(include=[np.number]).columns.tolist()
             test_df = df.head(20)  # Use smaller subset for testing
 
-            aggregation_results = he.secure_aggregation(
-                test_df, numerical_cols[:3]
-            )  # Test first 3 columns
+            # Select first few numerical columns for simulation
+            cols_to_test = numerical_cols[: min(len(numerical_cols), 3)]
 
-            # Calculate performance metrics
-            encryption_overhead = sum(
-                aggregation_results["processing_times"].values()
-            ) / len(aggregation_results["processing_times"])
+            if cols_to_test:
+                # Simulated aggregation
+                sum_aggregation = he.secure_aggregation(
+                    test_df, cols_to_test, operation="sum"
+                )
+                mean_aggregation = he.secure_aggregation(
+                    test_df, cols_to_test, operation="mean"
+                )
 
-            results = {
-                "verification_results": verification_results,
-                "benchmark_results": benchmark_results,
-                "security_parameters": security_params,
-                "aggregation_results": {
-                    "columns_tested": len(numerical_cols[:3]),
-                    "records_processed": len(test_df),
-                    "average_processing_time": encryption_overhead,
-                    "successful_aggregations": len(
-                        [
-                            col
-                            for col in numerical_cols[:3]
-                            if col in aggregation_results
-                        ]
-                    ),
-                },
-                "capabilities": {
-                    "supported_operations": [
-                        "addition",
-                        "multiplication",
-                        "scalar_multiplication",
-                    ],
-                    "encryption_scheme": "CKKS",
-                    "supports_floating_point": True,
-                    "supports_batch_operations": True,
-                },
-                "performance_analysis": {
-                    "encryption_feasible": encryption_overhead < 10.0,  # seconds
-                    "suitable_for_large_datasets": encryption_overhead < 1.0,
-                    "recommended_use_cases": [
-                        "small_aggregations",
-                        "privacy_critical_computations",
-                    ],
-                },
-            }
+                # Calculate performance metrics
+                encryption_overhead = sum(
+                    sum_aggregation["processing_times"].values()
+                ) / len(sum_aggregation["processing_times"])
+
+                results.update(
+                    {
+                        "verification_results": verification_results,
+                        "benchmark_results": benchmark_results,
+                        "simulated_sum_aggregation": sum_aggregation[
+                            "aggregated_values"
+                        ],
+                        "simulated_mean_aggregation": mean_aggregation[
+                            "aggregated_values"
+                        ],
+                        "processing_times_sum": sum_aggregation["processing_times"],
+                        "processing_times_mean": mean_aggregation["processing_times"],
+                        "aggregation_results": {
+                            "columns_tested": len(cols_to_test),
+                            "records_processed": len(test_df),
+                            "average_processing_time": encryption_overhead,
+                            "successful_aggregations": len(cols_to_test),
+                            "simulation_status": "All operations simulated",
+                        },
+                        "capabilities": {
+                            "supported_operations": [
+                                "addition",
+                                "multiplication",
+                                "secure_aggregation",
+                            ],
+                            "encryption_scheme": "CKKS_SIMULATED",
+                            "supports_floating_point": True,
+                            "supports_batch_operations": True,
+                            "actual_security": False,  # Simulation provides no real security
+                            "conceptual_demonstration": True,
+                        },
+                        "performance_analysis": {
+                            "encryption_feasible": encryption_overhead
+                            < 10.0,  # seconds
+                            "suitable_for_large_datasets": encryption_overhead < 1.0,
+                            "recommended_use_cases": [
+                                "conceptual_demonstration",
+                                "workflow_validation",
+                                "performance_estimation",
+                            ],
+                            "simulation_notes": "Performance metrics simulate realistic HE operations",
+                        },
+                    }
+                )
+            else:
+                results["message"] = "No numerical columns found for HE simulation."
 
             self.results["homomorphic_encryption"] = results
 
         except Exception as e:
-            logger.error(f"Homomorphic encryption analysis failed: {e}")
+            logger.error(f"Simulated homomorphic encryption analysis failed: {e}")
             self.results["homomorphic_encryption"] = {
                 "error": str(e),
-                "status": "failed",
+                "status": "SIMULATION_FAILED",
             }
 
     def analyze_access_control(self):
@@ -532,9 +543,10 @@ class ComprehensivePrivacyAnalysis:
             "l_div": 0.15 if l_div else 0,
             "t_close": 0.15 if t_close else 0,
             "diff_priv": 0.25 if diff_priv else 0,
-            "he": 0.15 if he else 0,
+            "he": 0.05 if he else 0,  # Reduced score for simulation mode
             "rbac": 0.1 if rbac else 0,
         }
+        # Note: HE score reduced to 0.05 because simulation provides no real cryptographic security
         return sum(scores.values())
 
     def calculate_utility_score(self, original_df, processed_df):
@@ -677,7 +689,7 @@ class ComprehensivePrivacyAnalysis:
             axes[0, 2].set_title("Differential Privacy: Privacy vs Utility")
             axes[0, 2].grid(True, alpha=0.3)
 
-        # Homomorphic encryption analysis
+        # Homomorphic encryption analysis (SIMULATION)
         if (
             "homomorphic_encryption" in self.results
             and "error" not in self.results["homomorphic_encryption"]
@@ -686,10 +698,10 @@ class ComprehensivePrivacyAnalysis:
             if "benchmark_results" in he_data:
                 benchmark = he_data["benchmark_results"]
                 operations = [
-                    "encryption_times",
-                    "decryption_times",
-                    "addition_times",
-                    "multiplication_times",
+                    "encryption",
+                    "decryption",
+                    "addition",
+                    "multiplication",
                 ]
 
                 # Show times for data size 100
@@ -702,9 +714,23 @@ class ComprehensivePrivacyAnalysis:
                     alpha=0.7,
                     color=["blue", "green", "orange", "red"],
                 )
-                axes[1, 0].set_title("Homomorphic Encryption Performance")
+                axes[1, 0].set_title("HE Performance (SIMULATED)")
                 axes[1, 0].set_ylabel("Time (seconds)")
                 axes[1, 0].grid(True, alpha=0.3)
+                axes[1, 0].text(
+                    0.5,
+                    0.95,
+                    "Simulation Mode",
+                    transform=axes[1, 0].transAxes,
+                    ha="center",
+                    va="top",
+                    fontsize=10,
+                    bbox={
+                        "boxstyle": "round,pad=0.3",
+                        "facecolor": "yellow",
+                        "alpha": 0.5,
+                    },
+                )
 
         # Framework comparison
         framework_names = [

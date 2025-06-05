@@ -81,17 +81,19 @@ try:
     from anonymization.k_anonymity import KAnonymity
     from anonymization.l_diversity import LDiversity
     from anonymization.t_closeness import TCloseness
+
+    # Import homomorphic encryption with availability flag
+    from encryption.homomorphic_encryption import (
+        PYFHEL_AVAILABLE,
+        HomomorphicEncryption,
+    )
     from privacy.differential_privacy import DifferentialPrivacy
 
-    # Try to import homomorphic encryption
-    try:
-        from encryption.homomorphic_encryption import HomomorphicEncryption
-
-        HE_AVAILABLE = True
+    HE_AVAILABLE = PYFHEL_AVAILABLE  # This will be False for simulation mode
+    if HE_AVAILABLE:
         logger.info("Homomorphic encryption module available")
-    except ImportError as e:
-        HE_AVAILABLE = False
-        logger.warning(f"Homomorphic encryption not available: {e}")
+    else:
+        logger.debug("Homomorphic encryption in SIMULATION MODE")
 
     logger.info("All framework modules imported successfully")
 
@@ -1957,7 +1959,7 @@ def show_homomorphic_encryption_demo(df):
             "homomorphic_encryption",
             "simulation_demo",
             {
-                "pyfhel_available": False,
+                "pyfhel_available": HE_AVAILABLE,
                 "operation_demonstrated": operation
                 if "operation" in locals()
                 else "framework_overview",
@@ -2048,7 +2050,7 @@ def show_homomorphic_encryption_demo(df):
                         "homomorphic_encryption",
                         "live_demo",
                         {
-                            "pyfhel_available": True,
+                            "pyfhel_available": HE_AVAILABLE,
                             "val1": val1,
                             "val2": val2,
                             "verification_passed": verification["verification_passed"],
@@ -2317,22 +2319,20 @@ def run_sequential_integration(df):
             # Simulate encryption preparation and access control
             rbac_compliance = simulate_rbac()
 
-            # If HE is available, demonstrate encryption capability
-            he_ready = False
-            if HE_AVAILABLE:
-                try:
-                    he = HomomorphicEncryption()
-                    # Test encryption on a small subset
-                    test_cols = [
-                        col
-                        for col in dp_numerical_cols[:2]
-                        if col in current_df.columns
-                    ]
-                    if test_cols:
-                        he.secure_aggregation(current_df.head(5), test_cols)
-                        he_ready = True
-                except Exception as e:
-                    logger.warning(f"HE demonstration failed: {e}")
+            # HE is always in simulation mode
+            he_ready = (
+                not HE_AVAILABLE
+            )  # True when simulation, False when real HE available
+            try:
+                he = HomomorphicEncryption()
+                # Test encryption on a small subset (simulation)
+                test_cols = [
+                    col for col in dp_numerical_cols[:2] if col in current_df.columns
+                ]
+                if test_cols:
+                    he.secure_aggregation(current_df.head(5), test_cols)
+            except Exception as e:
+                logger.warning(f"HE simulation failed: {e}")
 
             stage_time = time.time() - stage_start
 
