@@ -694,7 +694,7 @@ def show_framework_overview(df):
             <div class="info-item">
                 <span class="info-label">🎥 Demo Video</span>
                 <span class="info-value">
-                    <a href="https://youtu.be/YOUR_VIDEO_ID" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=Rt1TSZ4ETZI" target="_blank">
                         🎬 Interactive Demo Walkthrough
                     </a>
                 </span>
