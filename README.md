@@ -6,6 +6,10 @@ A comprehensive framework implementing **five major privacy techniques** for sec
 
 Experience the complete framework online with interactive privacy techniques and real healthcare data visualization.
 
+## 🎥 **[Demo Video](https://www.youtube.com/watch?v=Rt1TSZ4ETZI)**
+
+Watch the complete walkthrough of the privacy-preserving EHR framework with detailed explanations of all five privacy techniques.
+
 ---
 
 ## 👥 Project Team
@@ -45,6 +49,10 @@ This project tackles one of healthcare's biggest challenges: **keeping patient d
 ### Option 1: Try Online (Easiest)
 
 👉 **[Open Live Demo](https://ehr-privacy-framework.streamlit.app/)**
+
+### 📺 Video Walkthrough
+
+🎬 **[Watch Demo Video](https://www.youtube.com/watch?v=Rt1TSZ4ETZI)** - Complete framework walkthrough with explanations
 
 ### Option 2: Run Locally
 
