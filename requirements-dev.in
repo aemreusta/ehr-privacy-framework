@@ -1,0 +1,6 @@
+# Development dependencies (extends runtime deps)
+-r requirements.in
+
+ruff
+pre-commit
+pytest

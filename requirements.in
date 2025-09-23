@@ -1,0 +1,11 @@
+# Top-level dependencies for the EHR Privacy Framework
+# Compiled to requirements.txt via pip-tools (pip-compile)
+
+pandas
+numpy
+matplotlib
+plotly
+streamlit
+
+# Optional: Homomorphic Encryption backend
+# Pyfhel>=3.0.0
