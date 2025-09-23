@@ -59,10 +59,7 @@ class DifferentialPrivacy:
         Returns:
             Noisy count with differential privacy
         """
-        if condition is not None:
-            true_count = (data == condition).sum()
-        else:
-            true_count = len(data)
+        true_count = (data == condition).sum() if condition is not None else len(data)
 
         # Sensitivity of count query is 1
         return max(0, self.laplace_mechanism(true_count, sensitivity=1.0))
