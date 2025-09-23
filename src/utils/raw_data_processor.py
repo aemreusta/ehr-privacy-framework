@@ -5,14 +5,13 @@ This module processes the raw MIMIC-III data files to create a comprehensive
 dataset for privacy-preserving analysis.
 """
 
-import logging
 from pathlib import Path
 from typing import Dict, Optional
 
 import numpy as np
 import pandas as pd
 
-logger = logging.getLogger(__name__)
+from .debug import debug_server as logger
 
 
 class MimicRawDataProcessor:
@@ -410,41 +409,42 @@ class MimicRawDataProcessor:
 
 
 def main():
-    """Demo function for raw data processor."""
-    # Set up paths
-    raw_data_path = Path("../data/raw/mimic-iii-clinical-database-demo-1.4")
-    output_path = Path("../data/processed/mimic_comprehensive_dataset.csv")
-
-    # Initialize processor
+    """Main function to run the raw data processor."""
     try:
+        # Set up paths
+        raw_data_path = Path("data/raw/mimic-iii-clinical-database-demo-1.4")
+        output_path = Path("data/processed/mimic_comprehensive_dataset.csv")
+
+        # Create output directory if it doesn't exist
+        output_path.parent.mkdir(exist_ok=True)
+
+        logger.info("Processing raw MIMIC-III data...")
         processor = MimicRawDataProcessor(raw_data_path)
-
-        # Create comprehensive dataset
-        print("Processing raw MIMIC-III data...")
         dataset = processor.create_comprehensive_dataset(output_path)
-
-        # Print summary
-        print("\nDataset created successfully!")
-        print(f"Shape: {dataset.shape}")
-        print(f"Columns: {list(dataset.columns)}")
-
         summary = processor.get_data_summary(dataset)
-        print("\nSummary:")
-        print(f"- Total records: {summary['total_records']}")
-        print(f"- Unique patients: {summary['unique_patients']}")
-        print(f"- Mortality rate: {summary['mortality_rate']:.1%}")
-        print(f"- Average age: {summary['avg_age']:.1f}")
-        print(f"- Average LOS: {summary['avg_los']:.1f} days")
 
-        print("\nFirst 5 records:")
-        print(dataset.head())
+        logger.info("\nDataset created successfully!")
+        logger.info(f"Shape: {dataset.shape}")
+        logger.info(f"Columns: {list(dataset.columns)}")
 
+        logger.info("\nSummary:")
+        logger.info(f"- Total records: {summary['total_records']}")
+        logger.info(f"- Unique patients: {summary['unique_patients']}")
+        logger.info(f"- Mortality rate: {summary['mortality_rate']:.1%}")
+        logger.info(f"- Average age: {summary['avg_age']:.1f}")
+        logger.info(f"- Average LOS: {summary['avg_los']:.1f} days")
+
+        logger.info("\nFirst 5 records:")
+        logger.info(dataset.head())
+
+    except FileNotFoundError as e:
+        logger.error(f"Error: {e}")
+        logger.warning(
+            "Please ensure the MIMIC-III demo data is in the correct location."
+        )
     except Exception as e:
-        print(f"Error processing data: {e}")
-        return 1
-
-    return 0
+        logger.error(f"An unexpected error occurred: {e}", exc_info=True)
 
 
 if __name__ == "__main__":
-    exit(main())
+    main()

@@ -29,6 +29,7 @@ from anonymization.t_closeness import TCloseness
 # Import homomorphic encryption with availability flag
 from encryption.homomorphic_encryption import PYFHEL_AVAILABLE, HomomorphicEncryption
 from privacy.differential_privacy import DifferentialPrivacy
+from utils.debug import debug_server as logger
 
 HE_AVAILABLE = PYFHEL_AVAILABLE  # This will be False for simulation mode
 
@@ -36,7 +37,6 @@ HE_AVAILABLE = PYFHEL_AVAILABLE  # This will be False for simulation mode
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
-logger = logging.getLogger(__name__)
 
 
 class ComprehensivePrivacyAnalysis:
@@ -1022,147 +1022,157 @@ class ComprehensivePrivacyAnalysis:
                 print(f"   ✅ Figure {i}: {matching_files[0].name}")
 
     def generate_results_summary(self):
-        """Generate a comprehensive results summary."""
-        print("\n" + "=" * 80)
-        print("🎉 COMPREHENSIVE EXPERIMENTAL RESULTS SUMMARY")
-        print("=" * 80)
+        """Generate and print a summary of all experimental results."""
+        summary = []
+        summary.append("\n" + "=" * 80)
+        summary.append("🎉 COMPREHENSIVE EXPERIMENTAL RESULTS SUMMARY")
+        summary.append("=" * 80)
+        summary.append(
+            f"📅 Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        )
+        summary.append("📊 Dataset: MIMIC-III (129 records, 24 features)")
 
-        print(f"📅 Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        print("📊 Dataset: MIMIC-III (129 records, 24 features)")
-
-        # Anonymization Results Summary
-        if "anonymization" in self.results:
-            print("\n" + "=" * 80)
-            print("ANONYMIZATION TECHNIQUES SUMMARY")
-            print("=" * 80)
+        # Anonymization Summary
+        if "anonymization" in self.results and self.results["anonymization"]:
+            summary.append("\n" + "=" * 80)
+            summary.append("ANONYMIZATION TECHNIQUES SUMMARY")
+            summary.append("=" * 80)
 
             # K-anonymity
             if "k_anonymity" in self.results["anonymization"]:
-                print("\n🔐 K-ANONYMITY RESULTS:")
-                print("-" * 40)
-                print(
-                    f"{'k-value':<8} {'Records':<8} {'Suppression':<12} {'Utility':<8} {'Time(s)':<8}"
-                )
-                print("-" * 40)
-
+                summary.append("\n🔐 K-ANONYMITY RESULTS:")
+                summary.append("-" * 40)
                 k_data = self.results["anonymization"]["k_anonymity"]
+                df_k = pd.DataFrame.from_dict(k_data, orient="index")
+                summary.append(df_k.to_string())
+                summary.append("-" * 40)
                 for k, data in k_data.items():
-                    suppression_pct = data["suppression_rate"] * 100
-                    print(
-                        f"{k:<8} {data['records_retained']:<8} {suppression_pct:<11.1f}% {data['utility_score']:<7.3f} {data['processing_time']:<7.4f}"
+                    summary.append(
+                        f"  k={k}: Utility Score: {data['utility_score']:.3f}, "
+                        f"Suppression: {data['suppression_rate']:.1%}"
                     )
 
             # L-diversity
             if "l_diversity" in self.results["anonymization"]:
-                print("\n🔒 L-DIVERSITY RESULTS:")
-                print("-" * 40)
-                print(
-                    f"{'Config':<8} {'Records':<8} {'Suppression':<12} {'Utility':<8} {'Time(s)':<8}"
-                )
-                print("-" * 40)
-
+                summary.append("\n🔒 L-DIVERSITY RESULTS:")
+                summary.append("-" * 40)
                 l_data = self.results["anonymization"]["l_diversity"]
-                for config, data in l_data.items():
-                    if "records_retained" in data:
-                        suppression_pct = data["suppression_rate"] * 100
-                        print(
-                            f"{config:<8} {data['records_retained']:<8} {suppression_pct:<11.1f}% {data['utility_score']:<7.3f} {data['processing_time']:<7.4f}"
+                df_l = pd.DataFrame.from_dict(l_data, orient="index")
+                summary.append(df_l.to_string())
+                summary.append("-" * 40)
+                for l_key, data in l_data.items():
+                    if "error" not in data:
+                        summary.append(
+                            f"  {l_key}: Utility Score: {data['utility_score']:.3f}, "
+                            f"Suppression: {data['suppression_rate']:.1%}"
                         )
 
             # T-closeness
             if "t_closeness" in self.results["anonymization"]:
-                print("\n🛡️ T-CLOSENESS RESULTS:")
-                print("-" * 50)
-                print(
-                    f"{'Config':<10} {'Records':<8} {'Suppression':<12} {'Utility':<8} {'Max EMD':<8}"
-                )
-                print("-" * 50)
-
+                summary.append("\n🛡️ T-CLOSENESS RESULTS:")
+                summary.append("-" * 50)
                 t_data = self.results["anonymization"]["t_closeness"]
-                for config, data in t_data.items():
-                    if "records_retained" in data:
-                        suppression_pct = data["suppression_rate"] * 100
-                        max_dist = data.get("max_distance", 0)
-                        print(
-                            f"{config:<10} {data['records_retained']:<8} {suppression_pct:<11.1f}% {data['utility_score']:<7.3f} {max_dist:<7.3f}"
+                df_t = pd.DataFrame.from_dict(t_data, orient="index")
+                summary.append(df_t.to_string())
+                summary.append("-" * 50)
+                for t_key, data in t_data.items():
+                    if "error" not in data:
+                        summary.append(
+                            f"  {t_key}: Utility Score: {data.get('utility_score', 0):.3f}, "
+                            f"Max Distance: {data.get('max_distance', 0):.3f}, "
+                            f"Compliance: {data.get('compliance_rate', 0):.1%}"
                         )
 
-        # Differential Privacy Results
+        # Differential Privacy Summary
         if "differential_privacy" in self.results:
-            print("\n🔢 DIFFERENTIAL PRIVACY RESULTS:")
-            print("-" * 50)
-            print(
-                f"{'Epsilon':<8} {'Utility':<8} {'MAE':<8} {'Rel Error':<10} {'Records':<8}"
-            )
-            print("-" * 50)
-
+            summary.append("\n🔢 DIFFERENTIAL PRIVACY RESULTS:")
+            summary.append("-" * 50)
             dp_data = self.results["differential_privacy"]
-            for epsilon, data in dp_data.items():
-                utility = data.get("utility_metrics", {}).get("utility_score", 0)
-                mae = data.get("utility_metrics", {}).get("mean_absolute_error", 0)
-                rel_error = data.get("utility_metrics", {}).get("relative_error", 0)
-                records = data["private_statistics"].get("total_records", 0)
-
-                print(
-                    f"{epsilon:<8} {utility:<7.3f} {mae:<7.1f} {rel_error:<9.3f} {records:<7.1f}"
+            df_dp = pd.DataFrame(
+                {eps: data["utility_metrics"] for eps, data in dp_data.items()}
+            ).T
+            summary.append(df_dp.to_string())
+            summary.append("-" * 50)
+            for eps, data in dp_data.items():
+                summary.append(
+                    f"  ε={eps}: Utility Score: {data['utility_metrics']['utility_score']:.3f}, "
+                    f"MSE: {data['utility_metrics']['mse']:.4f}"
                 )
 
-        # Homomorphic Encryption Results
+        # Homomorphic Encryption Summary
         if "homomorphic_encryption" in self.results:
-            print("\n🔐 HOMOMORPHIC ENCRYPTION (SIMULATION) RESULTS:")
-            print("-" * 60)
-
+            summary.append("\n🔐 HOMOMORPHIC ENCRYPTION (SIMULATION) RESULTS:")
+            summary.append("-" * 60)
             he_data = self.results["homomorphic_encryption"]
+            summary.append("✅ Basic Operations Verification:")
+            for test_name, he_test in he_data["basic_tests"].items():
+                add_error = he_test["add_result"]["relative_error"] * 100
+                mult_error = he_test["mult_result"]["relative_error"] * 100
+                summary.append(f"   {test_name}:")
+                summary.append(f"     Addition: {add_error:.6f}% error")
+                summary.append(f"     Multiplication: {mult_error:.6f}% error")
 
-            print("✅ Basic Operations Verification:")
-            if "verification_results" in he_data:
-                for test_name, test_data in he_data["verification_results"].items():
-                    print(f"   {test_name}:")
-                    if "addition" in test_data:
-                        add_error = test_data["addition"]["relative_error"]
-                        print(f"     Addition: {add_error:.6f}% error")
-                    if "multiplication" in test_data:
-                        mult_error = test_data["multiplication"]["relative_error"]
-                        print(f"     Multiplication: {mult_error:.6f}% error")
-
-        # Access Control Results
+        # Access Control Summary
         if "access_control" in self.results:
-            print("\n👤 ACCESS CONTROL (RBAC) RESULTS:")
-            print("-" * 40)
-
+            summary.append("\n👤 ACCESS CONTROL (RBAC) RESULTS:")
+            summary.append("-" * 40)
             ac_data = self.results["access_control"]
-            print(f"Roles defined: {ac_data['total_roles']}")
-            print(f"Permissions defined: {ac_data['total_permissions']}")
-            print(f"Scenarios tested: {ac_data['access_scenarios_tested']}")
-            print(f"Compliance rate: {ac_data['compliance_rate'] * 100:.1f}%")
+            summary.append(f"Roles defined: {ac_data['total_roles']}")
+            summary.append(f"Permissions defined: {ac_data['total_permissions']}")
+            summary.append(f"Scenarios tested: {ac_data['access_scenarios_tested']}")
+            summary.append(f"Compliance rate: {ac_data['compliance_rate'] * 100:.1f}%")
 
-        # Integrated Framework Results
+        # Integrated Framework Summary
         if "integrated_framework" in self.results:
-            print("\n🎯 INTEGRATED FRAMEWORK RESULTS:")
-            print("-" * 50)
-
+            summary.append("\n🎯 INTEGRATED FRAMEWORK RESULTS:")
+            summary.append("-" * 50)
             integrated = self.results["integrated_framework"]
-            print(f"Original records: {integrated['original_records']}")
-            print(f"Final records retained: {integrated['final_records']}")
-            suppression_rate = 1 - (
-                integrated["final_records"] / integrated["original_records"]
+            suppression_rate = (
+                1 - integrated["final_records"] / integrated["original_records"]
             )
-            print(f"Overall suppression rate: {suppression_rate * 100:.1f}%")
-            print(f"Privacy score: {integrated.get('privacy_score', 0) * 100:.1f}%")
+            summary.append(f"Original records: {integrated['original_records']}")
+            summary.append(f"Final records retained: {integrated['final_records']}")
+            summary.append(f"Overall suppression rate: {suppression_rate * 100:.1f}%")
+            summary.append(
+                f"Privacy score: {integrated.get('privacy_score', 0) * 100:.1f}%"
+            )
 
-        print("\n" + "=" * 80)
-        print("✅ ALL EXPERIMENTS COMPLETED SUCCESSFULLY!")
-        print("🔬 5 Privacy Techniques Implemented and Tested")
-        print("📊 Individual Figures Saved with Proper Naming")
-        print("=" * 80)
+        summary.append("\n" + "=" * 80)
+        summary.append("✅ ALL EXPERIMENTS COMPLETED SUCCESSFULLY!")
+        summary.append("🔬 5 Privacy Techniques Implemented and Tested")
+        summary.append("📊 Individual Figures Saved with Proper Naming")
+        summary.append("=" * 80)
+
+        logger.info("\n".join(summary))
+
+
+def run_and_generate_scientific_results(df: pd.DataFrame) -> dict:
+    """Run analysis and return scientific results without generating visualizations."""
+    analyzer = ComprehensivePrivacyAnalysis()
+    analyzer.load_mimic_data = lambda: df  # Override data loading
+    analyzer.run_complete_analysis()
+    return analyzer.results
+
+
+def visualize_all_results(results_data: dict):
+    """Generate all visualizations from results data."""
+    analyzer = ComprehensivePrivacyAnalysis()
+    analyzer.results = results_data
+    analyzer.create_comprehensive_visualizations()
+    analyzer.generate_results_summary()
 
 
 def main():
-    """Main execution function."""
-    analysis = ComprehensivePrivacyAnalysis()
-    analysis.run_complete_analysis()
-    return 0
+    """Main function to run the comprehensive analysis."""
+    logger.info("=" * 80)
+    logger.info("COMPREHENSIVE PRIVACY-PRESERVING EHR ANALYSIS - MAIN EXECUTION")
+    logger.info("=" * 80)
+    analyzer = ComprehensivePrivacyAnalysis()
+    analyzer.run_complete_analysis()
 
 
 if __name__ == "__main__":
-    exit(main())
+    try:
+        main()
+    except Exception as e:
+        logger.error(f"An unexpected error occurred: {e}", exc_info=True)

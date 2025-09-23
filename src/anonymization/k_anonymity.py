@@ -5,10 +5,11 @@ k-anonymity ensures that each record in the dataset is indistinguishable from at
 k-1 other records with respect to quasi-identifiers.
 """
 
-import logging
 from typing import Any, Dict, List
 
 import pandas as pd
+
+from ..utils.debug import debug_server as logger
 
 
 class KAnonymity:
@@ -36,7 +37,6 @@ class KAnonymity:
         self.k = k
         self.suppression_threshold = suppression_threshold
         self.generalization_rules = {}
-        self.logger = logging.getLogger(__name__)
 
     def anonymize(
         self, data: pd.DataFrame, quasi_identifiers: List[str]
@@ -51,9 +51,7 @@ class KAnonymity:
         Returns:
             pd.DataFrame: k-anonymous dataset
         """
-        self.logger.info(
-            f"Applying {self.k}-anonymity to dataset with {len(data)} records"
-        )
+        logger.info(f"Applying {self.k}-anonymity to dataset with {len(data)} records")
 
         # Create a copy of the data
         result_data = data.copy()
@@ -64,9 +62,9 @@ class KAnonymity:
 
         # Verify k-anonymity property
         if self._verify_k_anonymity(result_data, quasi_identifiers):
-            self.logger.info(f"Successfully achieved {self.k}-anonymity")
+            logger.info(f"Successfully achieved {self.k}-anonymity")
         else:
-            self.logger.warning(f"Failed to achieve {self.k}-anonymity")
+            logger.warning(f"Failed to achieve {self.k}-anonymity")
 
         return result_data
 
@@ -185,7 +183,7 @@ class KAnonymity:
         # Check suppression threshold
         suppression_rate = suppressed_count / len(data)
         if suppression_rate > self.suppression_threshold:
-            self.logger.info(
+            logger.info(
                 f"Suppression rate ({suppression_rate:.2%}) exceeds threshold ({self.suppression_threshold:.1%})"
             )
 
@@ -194,9 +192,7 @@ class KAnonymity:
         else:
             result = pd.DataFrame(columns=data.columns)
 
-        self.logger.info(
-            f"Suppressed {suppressed_count} records ({suppression_rate:.2%})"
-        )
+        logger.info(f"Suppressed {suppressed_count} records ({suppression_rate:.2%})")
 
         return result
 
@@ -248,59 +244,52 @@ class KAnonymity:
 
 
 def main():
-    """Demo function for k-anonymity."""
-    import os
-    import sys
-
-    sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-
-    # Create sample data
+    """Demonstrate k-anonymity."""
+    # Sample data
     data = pd.DataFrame(
         {
-            "age": [25, 26, 27, 35, 36, 45, 46, 55, 56, 65],
-            "gender": ["M", "F", "M", "F", "M", "F", "M", "F", "M", "F"],
+            "age": [25, 35, 45, 25, 35, 45, 25, 35, 45],
+            "gender": ["M", "F", "M", "M", "F", "M", "F", "M", "F"],
             "zipcode": [
                 "12345",
-                "12346",
+                "54321",
+                "12345",
                 "12345",
                 "54321",
-                "54322",
-                "98765",
-                "98766",
-                "11111",
-                "11112",
-                "22222",
+                "54321",
+                "12345",
+                "54321",
+                "12345",
             ],
-            "diagnosis": [
+            "disease": [
                 "Flu",
                 "Cold",
                 "Flu",
-                "Diabetes",
-                "Diabetes",
-                "Hypertension",
-                "Hypertension",
-                "Cancer",
-                "Cancer",
-                "Heart Disease",
+                "Flu",
+                "Cold",
+                "Flu",
+                "Cold",
+                "Flu",
+                "Cold",
             ],
         }
     )
+    quasi_identifiers = ["age", "gender", "zipcode"]
 
-    print("Original data:")
-    print(data)
-    print(f"\nDataset shape: {data.shape}")
+    logger.info("Original data:")
+    logger.info(data)
+    logger.info(f"\nDataset shape: {data.shape}")
 
     # Apply k-anonymity
     k_anon = KAnonymity(k=2)
-    anonymized = k_anon.anonymize(data, ["age", "gender", "zipcode"])
+    anonymized = k_anon.anonymize(data, quasi_identifiers)
 
-    print(f"\n{k_anon.k}-anonymous data:")
-    print(anonymized)
-    print(f"\nAnonymized dataset shape: {anonymized.shape}")
+    logger.info(f"\n{k_anon.k}-anonymous data:")
+    logger.info(anonymized)
+    logger.info(f"\nAnonymized dataset shape: {anonymized.shape}")
 
-    # Get statistics
     stats = k_anon.get_statistics(data, anonymized)
-    print(f"\nStatistics: {stats}")
+    logger.info(f"\nStatistics: {stats}")
 
 
 if __name__ == "__main__":

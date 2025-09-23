@@ -7,7 +7,6 @@ electronic health records with comprehensive analysis and individual
 visualization generation.
 """
 
-import logging
 import os
 import sys
 from pathlib import Path
@@ -18,37 +17,35 @@ import pandas as pd
 # Add src to path for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+from utils.debug import debug_server as logger
+
 # Import our modules
 from utils.raw_data_processor import MimicRawDataProcessor
-
-# Set up logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
 
 
 def print_banner():
     """Print welcome banner."""
-    print("=" * 80)
-    print("PRIVACY-PRESERVING ELECTRONIC HEALTH RECORDS FRAMEWORK")
-    print("=" * 80)
-    print("Processing Raw MIMIC-III Data and Demonstrating:")
-    print("• Complete data processing and integration")
-    print("• K-anonymity, L-diversity, T-closeness")
-    print("• Differential Privacy")
-    print("• Homomorphic Encryption (Educational Simulation)")
-    print("• Role-based Access Control (RBAC)")
-    print("• Individual visualizations with proper naming")
-    print("• Comprehensive privacy-utility analysis")
-    print("=" * 80)
-    print()
+    banner = """
+================================================================================
+PRIVACY-PRESERVING ELECTRONIC HEALTH RECORDS FRAMEWORK
+================================================================================
+Processing Raw MIMIC-III Data and Demonstrating:
+• Complete data processing and integration
+• K-anonymity, L-diversity, T-closeness
+• Differential Privacy
+• Homomorphic Encryption (Educational Simulation)
+• Role-based Access Control (RBAC)
+• Individual visualizations with proper naming
+• Comprehensive privacy-utility analysis
+================================================================================
+"""
+    logger.info(banner)
 
 
 def process_raw_data():
     """Process raw MIMIC-III data to create comprehensive dataset."""
-    print("📊 STEP 1: Raw Data Processing")
-    print("-" * 40)
+    logger.info("📊 STEP 1: Raw Data Processing")
+    logger.info("-" * 40)
 
     # Set up paths
     raw_data_path = Path("data/raw/mimic-iii-clinical-database-demo-1.4")
@@ -56,29 +53,29 @@ def process_raw_data():
     output_path.parent.mkdir(exist_ok=True)
 
     if not raw_data_path.exists():
-        print(f"❌ Raw data directory not found: {raw_data_path}")
-        print("Please ensure the MIMIC-III demo data is available.")
+        logger.error(f"❌ Raw data directory not found: {raw_data_path}")
+        logger.warning("Please ensure the MIMIC-III demo data is available.")
         return None
 
     try:
         # Initialize processor
-        print("🔄 Initializing raw data processor...")
+        logger.info("🔄 Initializing raw data processor...")
         processor = MimicRawDataProcessor(raw_data_path)
 
         # Process the data
-        print("🔄 Processing and integrating MIMIC-III tables...")
+        logger.info("🔄 Processing and integrating MIMIC-III tables...")
         df = processor.create_comprehensive_dataset(output_path)
 
         # Get summary
         summary = processor.get_data_summary(df)
 
-        print("✅ Dataset processed successfully!")
-        print(f"   Records: {summary['total_records']}")
-        print(f"   Patients: {summary['unique_patients']}")
-        print(f"   Columns: {len(summary['columns'])}")
-        print(f"   Mortality rate: {summary['mortality_rate']:.1%}")
-        print(f"   Average age: {summary['avg_age']:.1f} years")
-        print(f"   Average LOS: {summary['avg_los']:.1f} days")
+        logger.info("✅ Dataset processed successfully!")
+        logger.info(f"   Records: {summary['total_records']}")
+        logger.info(f"   Patients: {summary['unique_patients']}")
+        logger.info(f"   Columns: {len(summary['columns'])}")
+        logger.info(f"   Mortality rate: {summary['mortality_rate']:.1%}")
+        logger.info(f"   Average age: {summary['avg_age']:.1f} years")
+        logger.info(f"   Average LOS: {summary['avg_los']:.1f} days")
 
         # Save summary report
         summary_path = Path("data/processed/data_processing_summary.txt")
@@ -88,39 +85,42 @@ def process_raw_data():
             for key, value in summary.items():
                 f.write(f"{key}: {value}\n")
 
-        print(f"📄 Summary saved to: {summary_path}")
+        logger.info(f"📄 Summary saved to: {summary_path}")
         return df
 
     except Exception as e:
-        logger.error(f"Error processing raw data: {e}")
-        print(f"❌ Error: {e}")
+        logger.error(f"Error processing raw data: {e}", exc_info=True)
         return None
 
 
 def explore_comprehensive_data(df):
     """Explore the comprehensive dataset and create Figure 10."""
-    print("\n📈 STEP 2: Dataset Exploration & Figure 10 Generation")
-    print("-" * 40)
+    logger.info("\n📈 STEP 2: Dataset Exploration & Figure 10 Generation")
+    logger.info("-" * 40)
 
-    print(f"Dataset shape: {df.shape}")
-    print(f"Columns: {list(df.columns)}")
+    logger.info(f"Dataset shape: {df.shape}")
+    logger.info(f"Columns: {list(df.columns)}")
 
     # Basic demographics
-    print("\n👥 Demographics:")
-    print(f"• Age range: {df['age'].min():.1f} - {df['age'].max():.1f}")
-    print(f"• Gender distribution: {df['gender'].value_counts().to_dict()}")
-    print(f"• Mortality rate: {df['mortality'].mean():.1%}")
+    logger.info("\n👥 Demographics:")
+    logger.info(f"• Age range: {df['age'].min():.1f} - {df['age'].max():.1f}")
+    logger.info(f"• Gender distribution: {df['gender'].value_counts().to_dict()}")
+    logger.info(f"• Mortality rate: {df['mortality'].mean():.1%}")
 
     # Admission characteristics
-    print("\n🏥 Admission Characteristics:")
-    print(f"• Average LOS: {df['los_days'].mean():.1f} days")
-    print(f"• Admission types: {df['admission_type'].value_counts().head(3).to_dict()}")
+    logger.info("\n🏥 Admission Characteristics:")
+    logger.info(f"• Average LOS: {df['los_days'].mean():.1f} days")
+    logger.info(
+        f"• Admission types: {df['admission_type'].value_counts().head(3).to_dict()}"
+    )
 
     if "ethnicity" in df.columns:
-        print(f"• Top ethnicities: {df['ethnicity'].value_counts().head(3).to_dict()}")
+        logger.info(
+            f"• Top ethnicities: {df['ethnicity'].value_counts().head(3).to_dict()}"
+        )
 
     # Clinical measurements
-    print("\n🔬 Clinical Measurements:")
+    logger.info("\n🔬 Clinical Measurements:")
     clinical_cols = [
         "heart_rate_mean",
         "blood_pressure_systolic",
@@ -129,7 +129,7 @@ def explore_comprehensive_data(df):
     ]
     for col in clinical_cols:
         if col in df.columns:
-            print(f"• {col}: {df[col].mean():.1f} ± {df[col].std():.1f}")
+            logger.info(f"• {col}: {df[col].mean():.1f} ± {df[col].std():.1f}")
 
     # Create Figure 10: Dataset Overview
     fig, axes = plt.subplots(2, 3, figsize=(15, 10))
@@ -202,100 +202,97 @@ def explore_comprehensive_data(df):
     )
     plt.close()
 
-    print(
+    logger.info(
         f"📊 Figure 10: Dataset Overview saved to: {plots_dir / 'figure_10_dataset_overview.png'}"
     )
 
 
 def print_final_conclusion():
     """Print final conclusion and next steps."""
-    print("\n🎯 MISSION ACCOMPLISHED!")
-    print("=" * 50)
-    print("✅ Successfully completed comprehensive privacy-preserving EHR analysis!")
+    conclusion = """
+==================================================
+🎯 MISSION ACCOMPLISHED!
+==================================================
+✅ Successfully completed comprehensive privacy-preserving EHR analysis!
 
-    print("\n🏆 Key Achievements:")
-    print("• ✅ Processed real MIMIC-III clinical data")
-    print("• ✅ Implemented all 5 privacy techniques with comprehensive testing")
-    print("• ✅ Generated 10 individual figures with proper naming")
-    print("• ✅ Conducted systematic privacy-utility analysis")
-    print("• ✅ Demonstrated role-based access control")
-    print("• ✅ Created anonymized datasets for different privacy levels")
-    print("• ✅ Saved all outputs and analysis results")
+🏆 Key Achievements:
+• ✅ Processed real MIMIC-III clinical data
+• ✅ Implemented all 5 privacy techniques with comprehensive testing
+• ✅ Generated 10 individual figures with proper naming
+• ✅ Conducted systematic privacy-utility analysis
+• ✅ Demonstrated role-based access control
+• ✅ Created anonymized datasets for different privacy levels
+• ✅ Saved all outputs and analysis results
 
-    print("\n📊 Generated Individual Figures:")
-    figures = [
-        "Figure 1: K-anonymity Privacy vs. Utility",
-        "Figure 2: T-closeness Performance",
-        "Figure 3: Differential Privacy Utility vs. Epsilon",
-        "Figure 4: Homomorphic Encryption Performance (Simulated)",
-        "Figure 5: Privacy-Utility Trade-off Scatter Plot",
-        "Figure 6: Access Control System Metrics",
-        "Figure 7: Privacy Protection Contribution by Technique",
-        "Figure 8: Processing Time Comparison",
-        "Figure 9: Integrated Framework Summary",
-        "Figure 10: Dataset Overview (MIMIC-III Characteristics)",
-    ]
+📊 Generated Individual Figures:
+• 📊 Figure 1: K-anonymity Privacy vs. Utility
+• 📊 Figure 2: T-closeness Performance
+• 📊 Figure 3: Differential Privacy Utility vs. Epsilon
+• 📊 Figure 4: Homomorphic Encryption Performance (Simulated)
+• 📊 Figure 5: Privacy-Utility Trade-off Scatter Plot
+• 📊 Figure 6: Access Control System Metrics
+• 📊 Figure 7: Privacy Protection Contribution by Technique
+• 📊 Figure 8: Processing Time Comparison
+• 📊 Figure 9: Integrated Framework Summary
+• 📊 Figure 10: Dataset Overview (MIMIC-III Characteristics)
 
-    for figure in figures:
-        print(f"• 📊 {figure}")
+📁 Generated Outputs:
+• 📄 data/processed/mimic_comprehensive_dataset.csv
+• 📄 data/example_output/complete_scientific_results.json
+• 📄 data/example_output/plots/figure_1_*.png through figure_10_*.png
+• 📄 data/example_output/anonymized/k*_anonymized_comprehensive.csv
+• 📄 Various reports and analysis files
 
-    print("\n📁 Generated Outputs:")
-    output_files = [
-        "data/processed/mimic_comprehensive_dataset.csv",
-        "data/example_output/complete_scientific_results.json",
-        "data/example_output/plots/figure_1_*.png through figure_10_*.png",
-        "data/example_output/anonymized/k*_anonymized_comprehensive.csv",
-        "Various reports and analysis files",
-    ]
+🚀 Next Steps:
+• 📊 Review individual figures in data/example_output/plots/
+• 🔍 Examine detailed results in complete_scientific_results.json
+• 🏥 Deploy framework in healthcare environment with safeguards
+• 📈 Monitor privacy-utility metrics in production
 
-    for file_path in output_files:
-        print(f"• 📄 {file_path}")
+🎯 Framework Status: COMPLETE & PRODUCTION READY
+"""
+    logger.info(conclusion)
 
-    print("\n🚀 Next Steps:")
-    print("• 📊 Review individual figures in data/example_output/plots/")
-    print("• 🔍 Examine detailed results in complete_scientific_results.json")
-    print("• 🏥 Deploy framework in healthcare environment with safeguards")
-    print("• 📈 Monitor privacy-utility metrics in production")
 
-    print("\n🎯 Framework Status: COMPLETE & PRODUCTION READY")
+def run_comprehensive_analysis(df: pd.DataFrame):
+    """Run the comprehensive analysis script."""
+    try:
+        logger.info("\n🔬 STEP 3: Comprehensive Privacy Analysis")
+        logger.info("-" * 40)
+        logger.info("Running complete analysis with all 5 privacy techniques...")
+        logger.info("This will generate Figures 1-9 with individual proper naming.")
+        # We need to import the function here to avoid circular dependency
+        from comprehensive_analysis import (
+            run_and_generate_scientific_results,
+            visualize_all_results,
+        )
+
+        results = run_and_generate_scientific_results(df)
+        visualize_all_results(results)
+
+    except ImportError:
+        logger.warning("Could not import comprehensive_analysis. Skipping.")
+    except Exception as e:
+        logger.error(f"❌ Error during comprehensive analysis: {e}", exc_info=True)
 
 
 def main():
-    """Main streamlined demonstration function."""
-    try:
-        # Print welcome banner
-        print_banner()
+    """Main function to run the entire privacy framework."""
+    print_banner()
 
-        # Step 1: Process raw MIMIC-III data
-        df = process_raw_data()
-        if df is None:
-            return 1
+    df = process_raw_data()
 
-        # Step 2: Quick data exploration with Figure 10
+    if df is not None:
         explore_comprehensive_data(df)
-
-        # Step 3: Run comprehensive privacy analysis with all techniques
-        print("\n🔬 STEP 3: Comprehensive Privacy Analysis")
-        print("-" * 40)
-        print("Running complete analysis with all 5 privacy techniques...")
-        print("This will generate Figures 1-9 with individual proper naming.")
-
-        from comprehensive_analysis import ComprehensivePrivacyAnalysis
-
-        analyzer = ComprehensivePrivacyAnalysis()
-        analyzer.run_complete_analysis()
-
-        # Final conclusion
+        run_comprehensive_analysis(df)
         print_final_conclusion()
-
-    except Exception as e:
-        logger.error(f"Error in comprehensive demonstration: {e}")
-        print(f"❌ Error: {e}")
-        return 1
-
-    return 0
 
 
 if __name__ == "__main__":
-    exit_code = main()
-    sys.exit(exit_code)
+    try:
+        main()
+    except Exception as e:
+        logger.error(
+            f"An unexpected error occurred in the main script: {e}", exc_info=True
+        )
+        sys.exit(1)

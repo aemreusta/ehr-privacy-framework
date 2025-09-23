@@ -5,14 +5,13 @@ This module provides functions for loading, cleaning, and preprocessing
 the MIMIC-III dataset for privacy-preserving analysis.
 """
 
-import logging
 from pathlib import Path
 from typing import Dict, Optional
 
 import numpy as np
 import pandas as pd
 
-logger = logging.getLogger(__name__)
+from .debug import debug_server as logger
 
 
 class DataLoader:
@@ -337,33 +336,35 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main():
-    """Demo function for data loader."""
-    # Create synthetic data for demonstration
-    loader = DataLoader()
+    """Demonstrate data loading and preprocessing."""
+    logger.info("--- Data Loader Demonstration ---")
 
-    print("Creating synthetic MIMIC-III-like dataset...")
-    synthetic_df = loader.create_synthetic_subset(n_records=100)
+    # Create synthetic data
+    logger.info("\nCreating synthetic MIMIC-III-like dataset...")
+    data_loader = DataLoader()
+    synthetic_df = data_loader.create_synthetic_subset(n_records=100)
+    logger.info(f"Created dataset with shape: {synthetic_df.shape}")
+    logger.info(f"Columns: {list(synthetic_df.columns)}")
+    logger.info("\nFirst 5 records:")
+    logger.info(synthetic_df.head())
 
-    print(f"Created dataset with shape: {synthetic_df.shape}")
-    print(f"Columns: {list(synthetic_df.columns)}")
+    # Get summary
+    logger.info("\nData summary:")
+    summary = data_loader.get_data_summary(synthetic_df)
+    logger.info(f"Total records: {summary['total_records']}")
+    logger.info(f"Total columns: {summary['total_columns']}")
+    logger.info(f"Missing values: {summary['missing_values']}")
 
-    print("\nFirst 5 records:")
-    print(synthetic_df.head())
-
-    print("\nData summary:")
-    summary = loader.get_data_summary(synthetic_df)
-    print(f"Total records: {summary['total_records']}")
-    print(f"Total columns: {summary['total_columns']}")
-    print(f"Missing values: {summary['missing_values']}")
-
-    # Test preprocessing
-    print("\nTesting preprocessing...")
-    processed_df = loader.preprocess_data(synthetic_df)
-    print(f"Processed dataset shape: {processed_df.shape}")
+    # Preprocess data
+    logger.info("\nTesting preprocessing...")
+    processed_df = data_loader.preprocess_data(synthetic_df)
+    logger.info(f"Processed dataset shape: {processed_df.shape}")
 
     if "age_group" in processed_df.columns:
-        print("Age group distribution:")
-        print(processed_df["age_group"].value_counts())
+        logger.info("Age group distribution:")
+        logger.info(processed_df["age_group"].value_counts())
+
+    logger.info("\n--- Demonstration Complete ---")
 
 
 if __name__ == "__main__":

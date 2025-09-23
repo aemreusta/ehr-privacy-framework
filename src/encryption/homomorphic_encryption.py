@@ -9,17 +9,16 @@ fit into the privacy-preserving pipeline. It does not provide actual cryptograph
 but serves as a placeholder for a full HE implementation.
 """
 
-import logging
 import time
 from typing import Any, Dict, List, Optional, Union
 
 import numpy as np
 import pandas as pd
 
+from utils.debug import debug_server as logger
+
 # Global flag to indicate if a real HE library is available (it's not, in this case)
 PYFHEL_AVAILABLE = False  # Explicitly set to False
-
-logger = logging.getLogger(__name__)
 
 
 class HomomorphicEncryption:
@@ -486,62 +485,58 @@ class HomomorphicEncryption:
 
 # Example Usage (for testing this file directly)
 if __name__ == "__main__":
-    # Enable INFO logging for demo
-    logging.basicConfig(level=logging.INFO)
+    # Demo of the simulated homomorphic encryption
+    he_system = HomomorphicEncryption()
 
-    print("--- Testing Simulated Homomorphic Encryption ---")
-    he_sim = HomomorphicEncryption()
+    # Simple values
+    num1, num2 = 150.5, 12.3
 
-    num1, num2 = 15.75, 22.50
-    print(f"\nOriginal numbers: {num1}, {num2}")
+    logger.info("--- Testing Simulated Homomorphic Encryption ---")
+    logger.info(f"\nOriginal numbers: {num1}, {num2}")
 
-    # Simulate encryption
-    enc_num1 = he_sim.encrypt_value(num1)
-    enc_num2 = he_sim.encrypt_value(num2)
-    print(
-        f"Simulated 'encrypted' numbers: {enc_num1}, {enc_num2} (Note: these are plaintext in simulation)"
+    # Addition
+    add_result = he_system.verify_homomorphic_property(num1, num2, "add")
+    logger.info(
+        f"\nSimulated Homomorphic Addition:\n"
+        f"  - Enc(A) + Enc(B) = {add_result['encrypted_op_result']:.4f}\n"
+        f"  - Dec(Enc(A) + Enc(B)) = {add_result['decrypted_result']:.4f}\n"
+        f"  - True A + B = {add_result['true_result']:.4f}\n"
+        f"  - Verification Passed: {add_result['verification_passed']}\n"
+        f"  - Relative Error: {add_result['relative_error']:.6f}"
     )
 
-    # Simulate homomorphic addition
-    enc_sum = he_sim.homomorphic_add(enc_num1, enc_num2)
-    dec_sum = he_sim.decrypt_value(enc_sum)
-    print(
-        f"Simulated HE Add: {num1} + {num2} = {dec_sum:.4f} (True sum: {num1 + num2:.4f})"
+    # Multiplication
+    mult_result = he_system.verify_homomorphic_property(num1, num2, "multiply")
+    logger.info(
+        f"\nSimulated Homomorphic Multiplication:\n"
+        f"  - Enc(A) * Enc(B) = {mult_result['encrypted_op_result']:.4f}\n"
+        f"  - Dec(Enc(A) * Enc(B)) = {mult_result['decrypted_result']:.4f}\n"
+        f"  - True A * B = {mult_result['true_result']:.4f}\n"
+        f"  - Verification Passed: {mult_result['verification_passed']}\n"
+        f"  - Relative Error: {mult_result['relative_error']:.6f}"
     )
 
-    # Simulate homomorphic multiplication
-    enc_prod = he_sim.homomorphic_multiply(enc_num1, enc_num2)
-    dec_prod = he_sim.decrypt_value(enc_prod)
-    print(
-        f"Simulated HE Multiply: {num1} * {num2} = {dec_prod:.4f} (True product: {num1 * num2:.4f})"
-    )
-
-    # Simulate verification
-    add_verification = he_sim.verify_homomorphic_property(num1, num2, "add")
-    print(
-        f"Addition Verification: Passed={add_verification['verification_passed']}, Error={add_verification['relative_error']:.6%}"
-    )
-
-    mult_verification = he_sim.verify_homomorphic_property(num1, num2, "multiply")
-    print(
-        f"Multiplication Verification: Passed={mult_verification['verification_passed']}, Error={mult_verification['relative_error']:.6%}"
-    )
-
-    # Simulate secure aggregation
-    sample_df_data = {
+    # Secure Aggregation
+    sample_data = {
         "patient_id": [1, 2, 3, 4, 5],
-        "lab_value_A": [10.1, 12.3, 11.5, 13.0, 10.9],
-        "lab_value_B": [100.5, 102.1, 99.8, 101.0, 103.2],
+        "heart_rate": [75, 82, 68, 90, 78],
+        "glucose": [99.5, 105.2, 95.8, 110.0, 102.3],
     }
-    sample_df = pd.DataFrame(sample_df_data)
-    agg_cols = ["lab_value_A", "lab_value_B"]
+    sample_df = pd.DataFrame(sample_data)
+    agg_cols = ["heart_rate", "glucose"]
 
-    print("\nSimulating Secure Aggregation (SUM):")
-    sum_agg_results = he_sim.secure_aggregation(sample_df, agg_cols, operation="sum")
-    print(f"  Aggregated Sums (Simulated): {sum_agg_results['aggregated_values']}")
-    print(f"  True Sums: {sample_df[agg_cols].sum().to_dict()}")
+    logger.info("\nSimulating Secure Aggregation (SUM):")
+    sum_agg_results = he_system.secure_aggregation(sample_df, agg_cols, operation="sum")
+    logger.info(
+        f"  Aggregated Sums (Simulated): {sum_agg_results['aggregated_values']}"
+    )
+    logger.info(f"  True Sums: {sample_df[agg_cols].sum().to_dict()}")
 
-    print("\nSimulating Secure Aggregation (MEAN):")
-    mean_agg_results = he_sim.secure_aggregation(sample_df, agg_cols, operation="mean")
-    print(f"  Aggregated Means (Simulated): {mean_agg_results['aggregated_values']}")
-    print(f"  True Means: {sample_df[agg_cols].mean().to_dict()}")
+    logger.info("\nSimulating Secure Aggregation (MEAN):")
+    mean_agg_results = he_system.secure_aggregation(
+        sample_df, agg_cols, operation="mean"
+    )
+    logger.info(
+        f"  Aggregated Means (Simulated): {mean_agg_results['aggregated_values']}"
+    )
+    logger.info(f"  True Means: {sample_df[agg_cols].mean().to_dict()}")

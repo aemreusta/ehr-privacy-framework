@@ -13,14 +13,13 @@ Features:
 - Real-time access control validation
 """
 
-import logging
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
-logger = logging.getLogger(__name__)
+from ..utils.debug import debug_server as logger
 
 
 class HealthcareRBAC:
@@ -542,37 +541,20 @@ def simulate_rbac() -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    # Demo usage
-    print("Healthcare RBAC System Demo")
-    print("=" * 30)
+    logger.info("Healthcare RBAC System Demo")
+    logger.info("=" * 30)
+    results = simulate_rbac()
 
-    # Create RBAC system
-    rbac = create_healthcare_rbac_system()
+    logger.info("\n--- Compliance Testing ---")
+    logger.info(f"Compliance test passed: {results['compliance_test']['passed']}")
+    logger.info(f"Compliance score: {results['compliance_test']['score']:.2%}")
 
-    # Add some users
-    rbac.add_user("dr_alice", "attending_physician")
-    rbac.add_user("nurse_bob", "nurse")
-    rbac.add_user("researcher_carol", "researcher")
-
-    # Test permissions
-    print(
-        f"Dr. Alice can prescribe medication: {rbac.check_permission('dr_alice', 'prescribe_medication')}"
-    )
-    print(
-        f"Nurse Bob can prescribe medication: {rbac.check_permission('nurse_bob', 'prescribe_medication')}"
-    )
-    print(
-        f"Researcher Carol can read anonymized data: {rbac.check_permission('researcher_carol', 'read_anonymized_data')}"
+    logger.info("\n--- System Status ---")
+    logger.info(f"Total users: {results['system_status']['total_users']}")
+    logger.info(f"Total roles: {results['system_status']['total_roles']}")
+    logger.info(
+        f"Access attempts logged: {results['system_status']['access_log_entries']}"
     )
 
-    # Run compliance test
-    results = rbac.run_compliance_test()
-    print(
-        f"\nCompliance test: {results['successful_tests']}/{results['total_tests']} passed"
-    )
-    print(f"RBAC effectiveness: {results['rbac_effectiveness']}")
-
-    # Generate reports
-    rbac.generate_access_log_report()
-    rbac.generate_compliance_report()
-    print("\nReports generated successfully!")
+    logger.info(f"\nRBAC effectiveness: {results['rbac_effectiveness']}")
+    logger.info("\nReports generated successfully!")
