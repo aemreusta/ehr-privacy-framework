@@ -1,0 +1,32 @@
+name: Tag Working Master
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create working tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          DATE_TAG=$(date +%Y%m%d-%H%M)
+          TAG="working-master-${DATE_TAG}-${SHORT_SHA}"
+          echo "Creating tag $TAG"
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git tag -a "$TAG" -m "Working master snapshot $DATE_TAG ($SHORT_SHA)"
+          git push origin "$TAG"
