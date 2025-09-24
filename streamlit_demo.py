@@ -73,21 +73,22 @@ def setup_logging():
 logger = setup_logging()
 
 # Add src to path for imports
-sys.path.append("src")
+sys.path.insert(0, str(Path(__file__).parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent))
 
 # Import our framework modules
 try:
     logger.info("Importing framework modules...")
-    from anonymization.k_anonymity import KAnonymity
-    from anonymization.l_diversity import LDiversity
-    from anonymization.t_closeness import TCloseness
+    from src.anonymization.k_anonymity import KAnonymity
+    from src.anonymization.l_diversity import LDiversity
+    from src.anonymization.t_closeness import TCloseness
 
     # Import homomorphic encryption with availability flag
-    from encryption.homomorphic_encryption import (
+    from src.encryption.homomorphic_encryption import (
         PYFHEL_AVAILABLE,
         HomomorphicEncryption,
     )
-    from privacy.differential_privacy import DifferentialPrivacy
+    from src.privacy.differential_privacy import DifferentialPrivacy
 
     HE_AVAILABLE = PYFHEL_AVAILABLE  # This will be False for simulation mode
     if HE_AVAILABLE:
