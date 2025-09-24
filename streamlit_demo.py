@@ -869,7 +869,7 @@ def show_framework_overview(df):
     - **Quasi-identifiers**: age, gender, admission_type, ethnicity
     - **Sensitive attributes**: primary_diagnosis, mortality
     """)
-    st.dataframe(df.head(10), use_container_width=True)
+    st.dataframe(df.head(10), width="stretch")
 
     # Data distribution visualizations
     col1, col2 = st.columns(2)
@@ -933,7 +933,7 @@ def show_framework_overview(df):
         "Processing Time": ["<0.1s", "0.012s", "3.5s", "<0.001s", "4.0s"],
     }
 
-    st.dataframe(pd.DataFrame(architecture_info), use_container_width=True)
+    st.dataframe(pd.DataFrame(architecture_info), width="stretch")
 
 
 def show_k_anonymity_demo(df):
@@ -1622,9 +1622,7 @@ def show_differential_privacy_demo(df):
                         )
 
                 if comparison_data:
-                    st.dataframe(
-                        pd.DataFrame(comparison_data), use_container_width=True
-                    )
+                    st.dataframe(pd.DataFrame(comparison_data), width="stretch")
 
                 # Privacy budget analysis
                 st.subheader("📈 Privacy Budget Analysis")
@@ -1902,7 +1900,7 @@ def show_homomorphic_encryption_demo(df):
             ],
         }
 
-        st.dataframe(pd.DataFrame(perf_data), use_container_width=True)
+        st.dataframe(pd.DataFrame(perf_data), width="stretch")
 
         # Integration with privacy framework
         st.subheader("🔗 Framework Integration")
@@ -1935,7 +1933,7 @@ def show_homomorphic_encryption_demo(df):
             ],
         }
 
-        st.dataframe(pd.DataFrame(integration_info), use_container_width=True)
+        st.dataframe(pd.DataFrame(integration_info), width="stretch")
 
         # Log the simulation
         log_user_interaction(
@@ -2157,7 +2155,7 @@ def run_sequential_integration(df):
 
                 # Show intermediate result
                 with st.expander(f"📊 After k-anonymity: {len(current_df)} records"):
-                    st.dataframe(current_df.head(), use_container_width=True)
+                    st.dataframe(current_df.head(), width="stretch")
             else:
                 st.error("❌ k-anonymity failed - no records retained")
                 return
@@ -2189,7 +2187,7 @@ def run_sequential_integration(df):
                 logger.info(f"Stage 2 complete: {len(current_df)} records retained")
 
                 with st.expander(f"📊 After l-diversity: {len(current_df)} records"):
-                    st.dataframe(current_df.head(), use_container_width=True)
+                    st.dataframe(current_df.head(), width="stretch")
 
             except Exception as e:
                 logger.warning(f"l-diversity failed on k-anonymous data: {e}")
@@ -2235,7 +2233,7 @@ def run_sequential_integration(df):
                 logger.info(f"Stage 3 complete: {len(current_df)} records retained")
 
                 with st.expander(f"📊 After t-closeness: {len(current_df)} records"):
-                    st.dataframe(current_df.head(), use_container_width=True)
+                    st.dataframe(current_df.head(), width="stretch")
 
             except Exception as e:
                 logger.warning(f"t-closeness failed: {e}")
@@ -2288,7 +2286,7 @@ def run_sequential_integration(df):
             with st.expander(
                 f"📊 After Differential Privacy: {len(current_df)} records"
             ):
-                st.dataframe(current_df.head(), use_container_width=True)
+                st.dataframe(current_df.head(), width="stretch")
                 st.caption(
                     "⚠️ Numerical values have been modified with calibrated noise"
                 )
@@ -2433,7 +2431,7 @@ def display_sequential_results(
         showlegend=True,
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # Detailed pipeline table
     st.subheader("📊 Detailed Pipeline Results")
@@ -2461,7 +2459,7 @@ def display_sequential_results(
         "Utility Score",
         "Processing Time",
     ]
-    st.dataframe(display_df[display_columns], use_container_width=True)
+    st.dataframe(display_df[display_columns], width="stretch")
 
     # Privacy vs Utility trade-off
     st.subheader("📈 Privacy-Utility Trade-off Evolution")
@@ -2494,7 +2492,7 @@ def display_sequential_results(
         showlegend=True,
     )
 
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
     # Final dataset comparison
     st.subheader("📋 Original vs Final Protected Dataset")
@@ -2503,11 +2501,11 @@ def display_sequential_results(
 
     with col1:
         st.markdown("**Original Dataset (First 5 records)**")
-        st.dataframe(original_df.head(), use_container_width=True)
+        st.dataframe(original_df.head(), width="stretch")
 
     with col2:
         st.markdown("**Final Protected Dataset (First 5 records)**")
-        st.dataframe(final_df.head(), use_container_width=True)
+        st.dataframe(final_df.head(), width="stretch")
         st.caption("⚠️ Data has been anonymized, diversified, closed, and noise-added")
 
     # RBAC Detailed Analysis
@@ -2576,7 +2574,7 @@ def display_sequential_results(
             "Context",
         ]
 
-        st.dataframe(final_access_df, use_container_width=True)
+        st.dataframe(final_access_df, width="stretch")
 
         # Show summary stats
         passed_tests = rbac_compliance["successful_tests"]
@@ -2634,7 +2632,7 @@ def display_sequential_results(
     readiness_df = pd.DataFrame(
         readiness_items, columns=["Component", "Status", "Description"]
     )
-    st.dataframe(readiness_df, use_container_width=True)
+    st.dataframe(readiness_df, width="stretch")
 
     # Download option for final dataset
     if st.button("📥 Download Final Protected Dataset"):
@@ -2706,7 +2704,7 @@ def run_parallel_comparison(df):
             ],
         }
 
-        st.dataframe(pd.DataFrame(comparison_data), use_container_width=True)
+        st.dataframe(pd.DataFrame(comparison_data), width="stretch")
 
         st.info(
             "📝 **Note**: These scores represent individual technique performance, not cumulative effect of sequential application."
