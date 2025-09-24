@@ -10,6 +10,9 @@ data/private/
 !data/example_output/*.csv
 !data/processed/mimic_comprehensive_dataset.csv
 
+# Development dependencies
+requirements-dev.txt
+
 # Encryption keys and sensitive files
 keys/
 *.key
