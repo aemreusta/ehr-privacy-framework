@@ -22,7 +22,7 @@ if command -v conda &> /dev/null; then
         echo "✅ Activated ${EHR_CONDA_ENV} environment"
     else
         echo "⚠️  ${EHR_CONDA_ENV} not found, creating new environment..."
-        conda create -n "${EHR_CONDA_ENV}" python=3.10 -y
+        conda create -n "${EHR_CONDA_ENV}" python=3.13 -y
         source "$(conda info --base)/etc/profile.d/conda.sh"
         conda activate "${EHR_CONDA_ENV}"
         echo "✅ Created and activated ${EHR_CONDA_ENV} environment"
